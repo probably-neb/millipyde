@@ -1,24 +1,27 @@
+from utils import ansi
+import logging
 import time
 from skimage import io
 import sys
 import pathlib
+
 cur_lib_path = pathlib.Path().absolute()
 sys.path.append(str(cur_lib_path))
 import millipyde as mp
 
+
 def greyscale_performance(img, img_name):
-    print('\033[95m' + f"\nGreyscaling {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nGreyscaling {img_name}\n"))
     d_img = mp.gpuimage(img)
 
     start = time.perf_counter()
     d_img.rgb2grey()
     stop = time.perf_counter()
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def greyscale_and_transpose_performance(img, img_name):
-    print('\033[95m' +
-          f"\nGreyscaling and transposing {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nGreyscaling and transposing {img_name}\n"))
     img_on_gpu = mp.gpuimage(img)
 
     start = time.perf_counter()
@@ -26,50 +29,48 @@ def greyscale_and_transpose_performance(img, img_name):
     img_on_gpu.transpose()
     stop = time.perf_counter()
 
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def transpose_performance(img, img_name):
-    print('\033[95m' + f"\nTransposing {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nTransposing {img_name}\n"))
     d_img = mp.gpuimage(img)
 
     start = time.perf_counter()
     d_img.transpose()
     stop = time.perf_counter()
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def gauss_performance(img, img_name):
-    print('\033[95m' +
-          f"\nDoing Gaussian blur on {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nDoing Gaussian blur on {img_name}\n"))
     d_img = mp.gpuimage(img)
     d_img.rgb2grey()
     start = time.perf_counter()
     d_img.gaussian(2)
     stop = time.perf_counter()
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def rot_performance(img, img_name):
-    print('\033[95m' + f"\nRotating {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nRotating {img_name}\n"))
     d_img = mp.gpuimage(img)
 
     start = time.perf_counter()
     d_img.rotate(.785398)
     stop = time.perf_counter()
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def gamma_performance(img, img_name):
-    print('\033[95m' +
-          f"\nAdjusting the gamma of {img_name}\n" + '\033[0m')
+    logging.info(ansi(f"\nAdjusting the gamma of {img_name}\n"))
     d_img = mp.gpuimage(img)
     d_img.rgb2grey()
 
     start = time.perf_counter()
     d_img.adjust_gamma(2, 1)
     stop = time.perf_counter()
-    print("\nTime to convert image: {}\n".format(stop - start))
+    logging.info("\nTime to convert image: {}\n".format(stop - start))
 
 
 def main():
@@ -93,4 +94,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
