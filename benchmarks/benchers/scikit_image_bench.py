@@ -11,23 +11,24 @@ logger = logging.getLogger("benchmarks")
 class Bench:
     name = "Scikit Image"
 
-    def greyscale_and_rotate_90_deg(img, img_name) -> float:
-        logger.info(
-            ansi(f"\nGreyscaling and rotating 90 degrees {img_name} using SciKit-Image\n"))
+    # def greyscale_and_rotate_90_deg(img, img_name) -> float:
+    #     logger.info(
+    #         ansi(f"\nGreyscaling and rotating 90 degrees {img_name} using SciKit-Image\n"))
+    #
+    #     start = time.perf_counter()
+    #     grey_img = rgb2gray(rgba2rgb(img))
+    #     transform.rotate(grey_img, 90)
+    #     stop = time.perf_counter()
+    #     delta: float = stop - start
+    #     logger.info("\nTime to convert image: {}\n".format(delta))
+    #     return delta
 
-        start = time.perf_counter()
-        grey_img = rgb2gray(rgb2gray(rgba2rgb(img)))
-        transform.rotate(grey_img, 90)
-        stop = time.perf_counter()
-        delta: float = stop - start
-        logger.info("\nTime to convert image: {}\n".format(delta))
-        return delta
-
-    def rgba_to_rgb_to_grayscale(img, img_name) -> float:
+    def rgb_to_grayscale(img, img_name) -> float:
         logger.info('\033[95m' +
                     f"\nGreyscaling {img_name} using SciKit-Image\n" + '\033[0m')
         start = time.perf_counter()
-        img = rgb2gray(rgba2rgb(img))
+        # img = rgb2gray(rgba2rgb(img))
+        img = rgb2gray(img)
         stop = time.perf_counter()
         delta: float = stop - start
         logger.info("\nTime to convert image: {}\n".format(stop - start))
@@ -63,7 +64,7 @@ class Bench:
         logger.info("\nTime to convert image: {}\n".format(stop - start))
         return delta
 
-    def gauss(img, img_name) -> float:
+    def gauss_sigma_2(img, img_name) -> float:
         logger.info(
             ansi(f"\nDoing Gaussian blur on {img_name} using SciKit-Image\n"))
         img = rgb2gray(img)
