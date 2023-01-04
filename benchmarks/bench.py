@@ -1,8 +1,8 @@
 from typing import List, Tuple, Callable
 import logging
-from benchers import millipyde_bench, scikit_image_bench
 
-def get_bench_funcs(bench) -> List[Tuple[ str, Callable ]]:
+
+def get_bench_funcs(bench) -> List[Tuple[str, Callable]]:
     funcs = []
     attrs = bench.__dict__
     for name, val in attrs.items():
@@ -10,20 +10,29 @@ def get_bench_funcs(bench) -> List[Tuple[ str, Callable ]]:
             name_fn = name, val
             funcs.append(name_fn)
     return funcs
-            
+
+
 def main():
     logger = logging.getLogger("benchmarks")
     logger.setLevel(logging.DEBUG)
+    data = {}
 
-    for bencher in [millipyde_bench, scikit_image_bench]:
+    import benchers
+    for bencher in benchers.load_benchers():
         bench = bencher.Bench
         benchmarks = get_bench_funcs(bench)
         from skimage import io
         img = io.imread("benchmarks/inputs/charlie10.png")
-        print(bench.name.upper())
-        print('=' * 10)
         for name, fn in benchmarks:
-            print(name,':',fn(img, "charlie10"))
+            t = fn(img, "charlie10")
+            if not data.get(name):
+                data[name] = {}
+            if not data[name].get(bench.name):
+                data[name][bench.name] = {}
+            data[name][bench.name]["charlie10"] = t
+        from pprint import pprint
+    pprint(data)
+
 
 if __name__ == "__main__":
     main()
