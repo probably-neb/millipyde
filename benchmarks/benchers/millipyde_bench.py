@@ -4,7 +4,6 @@ import sys
 import pathlib
 cur_lib_path = pathlib.Path().absolute()
 sys.path.append(str(cur_lib_path))
-
 import millipyde as mp
 
 def greyscale_performance(img, img_name):
