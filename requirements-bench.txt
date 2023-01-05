@@ -3,3 +3,4 @@ scipy==1.7.0
 scikit-image==0.18.2
 setuptools==45.2.0
 pillow==9.3.0
+opencv-contrib-python-headless==4.7.0.68
