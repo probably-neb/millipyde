@@ -13,11 +13,11 @@ def load_image_from_path(path):
 class Bench:
     name = "Pillow"
 
-    def rotate_45_deg(img, img_name) -> float:
+    def rotate_90_deg(img, img_name) -> float:
         logger.info(ansi(f"Using pillow to rotate {img_name} 45 degrees"))
 
         start = time.perf_counter()
-        img.rotate(45)
+        img.rotate(90)
         end = time.perf_counter()
         delta = end - start
         logger.info(f"Time taken: {delta}")
