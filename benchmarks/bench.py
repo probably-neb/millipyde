@@ -22,7 +22,11 @@ def main():
         bench = bencher.Bench
         benchmarks = get_bench_funcs(bench)
         from skimage import io
-        img = io.imread("benchmarks/inputs/charlie10.png")
+        path = "benchmarks/inputs/charlie10.png"
+        if 'load_image_from_path' in dir(bencher):
+            img = bencher.load_image_from_path(path)
+        else:
+            img = io.imread(path)
         for name, fn in benchmarks:
             t = fn(img, "charlie10")
             if not data.get(name):

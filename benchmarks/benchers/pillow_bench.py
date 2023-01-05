@@ -5,12 +5,16 @@ import time
 
 logger = logging.getLogger("benchmarks")
 
+
+def load_image_from_path(path):
+    return Image.open(path)
+
+
 class Bench:
     name = "Pillow"
 
     def rotate_45_deg(img, img_name) -> float:
-        logger.info(ansi(f"Using pillow to rotate {img_name} 45 degrees")) 
-        img = Image.fromarray(img)
+        logger.info(ansi(f"Using pillow to rotate {img_name} 45 degrees"))
 
         start = time.perf_counter()
         img.rotate(45)
@@ -21,7 +25,6 @@ class Bench:
 
     def transpose(img, img_name) -> float:
         logger.info(ansi(f"Using pillow to transpose {img_name}"))
-        img = Image.fromarray(img)
 
         start = time.perf_counter()
         img.transpose(Image.Transpose.TRANSPOSE)
@@ -32,7 +35,6 @@ class Bench:
 
     def rgb_to_grayscale(img, img_name) -> float:
         logger.info(ansi(f"Using pillow to convert {img_name} to grayscale"))
-        img = Image.fromarray(img)
         start = time.perf_counter()
         img.convert("L")
         end = time.perf_counter()
@@ -43,7 +45,6 @@ class Bench:
     # https://stackoverflow.com/questions/62968174/for-pil-imagefilter-gaussianblur-how-what-kernel-is-used-and-does-the-radius-par
     def gauss_sigma_2(img, img_name) -> float:
         logger.info(ansi(f"Using pillow to convert {img_name} to grayscale"))
-        img = Image.fromarray(img)
         sigma = 2
         start = time.perf_counter()
         img.filter(ImageFilter.GaussianBlur(radius=sigma))
