@@ -43,10 +43,10 @@ class Bench:
         logger.info("\nTime to convert image: {}\n".format(stop - start))
         return delta
 
-    def rotate_45_deg(img, img_name) -> float:
+    def rotate_90_deg(img, img_name) -> float:
         logger.info(ansi(f"\nRotating {img_name} using SciKit-Image\n"))
         start = time.perf_counter()
-        img = transform.rotate(img, 45)
+        img = transform.rotate(img, 90)
         stop = time.perf_counter()
         delta: float = stop - start
         logger.info("\nTime to convert image: {}\n".format(stop - start))

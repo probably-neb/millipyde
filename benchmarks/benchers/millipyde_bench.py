@@ -61,11 +61,11 @@ class Bench:
         logger.info("\nTime to convert image: {}\n".format(delta))
         return delta
 
-    def rotate_45_deg(img, img_name) -> float:
+    def rotate_90_deg(img, img_name) -> float:
         logger.info(ansi(f"\nRotating {img_name}\n"))
         d_img = mp.gpuimage(img)
         import math
-        theta = math.radians(45)
+        theta = math.radians(90)
 
         start = time.perf_counter()
         d_img.rotate(theta)
