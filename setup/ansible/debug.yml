@@ -1,0 +1,13 @@
+- name: print ansible info
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: print ansible facts
+      debug:
+        var: ansible_facts
+    # - name: print vars
+    #   debug:
+    #     msg: <
+    #       - {{ansible_facts["machine"]}}
+    #       - {{ansible_facts["kernel"]}}
+
