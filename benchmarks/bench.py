@@ -15,16 +15,6 @@ LOG_LEVEL = logging.WARNING
 INPUTS_DIR = join(dirname(abspath(__file__)), "inputs")
 
 
-def get_single_image_path() -> List[Tuple[str, str]]:
-    """
-    Just returns a list a single image.
-    Intended to reduce the time it takes to run the benchmarks
-    during development
-    """
-    path = join(INPUTS_DIR, "charlie10.png")
-    return [path]
-
-
 def get_test_image_paths() -> List[str]:
     """
     Returns absolute paths for every image in INPUTS_DIR
@@ -51,6 +41,7 @@ def main():
 
     benchmarkers = benchers.get_benchmarkers()
 
+    names = []
     for benchmark in Benchmarker._benchmarks:
         logger.debug(f"Running benchmark: {benchmark}")
         for image_path in get_single_image_path():
@@ -58,7 +49,8 @@ def main():
                 f"Running benchmark: {benchmark} on {image_path}")
             for benchmarker in benchmarkers:
                 logger.debug(
-                    f"Running benchmark: {benchmark} on {image_path} with {benchmarker.__name__}")
+                    f"Running benchmark: {benchmark} on {image_path} with {benchmarker.name}")
+                names.append(benchmarker.__name__)
                 result = Benchmarker.run_benchmark(
                     benchmarker, benchmark, image_path)
                 # unimplemented benchmarks return None
@@ -66,6 +58,8 @@ def main():
                 if result is not None:
                     logger.info(result.__str__())
                     print(result.__str__())
+    with open("names.json", 'w') as f:
+        f.write('\n'.join(names))
 
 
 if __name__ == "__main__":
