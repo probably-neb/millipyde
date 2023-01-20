@@ -33,10 +33,11 @@ class BenchmarkResult:
 def benchmark(func):
     """A function designed to be a decorator around any benchmark"""
 
+    benchmark = func.__name__
     # register this benchmark in the list of bencharks
     # within the Benchmarker class
-    if func.__name__ not in Benchmarker._benchmarks:
-        Benchmarker._benchmarks.append(func.__name__)
+    if benchmark not in Benchmarker._benchmarks:
+        Benchmarker._benchmarks.append(benchmark)
 
     @classmethod
     def inner(cls, image_path):
@@ -46,7 +47,7 @@ def benchmark(func):
         logger = parent_logger.getChild(cls.name)
 
         logger.info(
-            ansi(f"\nRunning benchmark {func.__name__} on {image_path}\n"))
+            ansi(f"\nRunning benchmark {benchmark} on {image_path}\n"))
 
         # self refers to the class that this benchmark is in
         #
