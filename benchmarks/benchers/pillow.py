@@ -23,5 +23,5 @@ class PillowBenchmarker(Benchmarker):
     # https://stackoverflow.com/questions/62968174/for-pil-imagefilter-gaussianblur-how-what-kernel-is-used-and-does-the-radius-par
     @benchmark
     def gauss_sigma_2(image) -> float:
-        sigma = 2
-        return image.filter(ImageFilter.GaussianBlur(radius=sigma))
+        # sigma = 2
+        return image.filter(ImageFilter.GaussianBlur(radius=2))

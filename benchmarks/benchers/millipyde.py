@@ -1,7 +1,6 @@
 from .bencher_interface import Benchmarker, benchmark
 from utils import ansi
 import time
-# from skimage import io
 import sys
 import pathlib
 
@@ -25,9 +24,6 @@ import millipyde as mp
 # autopep8: on
 
 
-# logger = logging.getLogger("benchmarks")
-
-
 class MillipydeBenchmark(Benchmarker):
     name = "Millipyde"
 
@@ -35,25 +31,11 @@ class MillipydeBenchmark(Benchmarker):
     def load_image_from_path(cls, path: str):
         image = super().load_image_from_path(path)
         return mp.gpuimage(image)
-        # return "millipyde image"
 
     @benchmark
     def rgb_to_grayscale(image) -> float:
         image.rgb2grey()
         return image
-
-    # def rgb_to_grayscale_then_transpose(img, img_name) -> float:
-    #     logger.info(ansi(f"\nGreyscaling and transposing {img_name}\n"))
-    #     img_on_gpu = mp.gpuimage(img)
-    #
-    #     start = time.perf_counter()
-    #     img_on_gpu.rgb2grey()
-    #     img_on_gpu.transpose()
-    #     stop = time.perf_counter()
-    #     delta: float = stop - start
-    #
-    #     logger.info("\nTime to convert image: {}\n".format(delta))
-    #     return delta
 
     @benchmark
     def transpose(image) -> float:
@@ -62,8 +44,6 @@ class MillipydeBenchmark(Benchmarker):
 
     @benchmark
     def gauss_sigma_2(image) -> float:
-        # TOODO: figure ouy why this was here?
-        # d_img.rgb2grey()
         image.gaussian(2)
         return image
 
@@ -74,8 +54,5 @@ class MillipydeBenchmark(Benchmarker):
 
     @benchmark
     def adjust_gamma_2_gain_1(image) -> float:
-        # TOODO: figure ouy why this was here?
-        # d_img.rgb2grey()
-
         image.adjust_gamma(2, 1)
         return image
