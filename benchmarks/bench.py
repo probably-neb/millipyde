@@ -1,9 +1,8 @@
 from os import listdir
 from os.path import join, dirname, abspath
-import numpy as np
 import json
 
-from typing import List, Tuple
+from typing import List
 import logging
 
 from benchers import Benchmarker

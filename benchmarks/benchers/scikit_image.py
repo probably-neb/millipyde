@@ -1,15 +1,12 @@
 from skimage import transform, exposure, filters
 from skimage.color import rgb2gray, rgba2rgb
+import numpy as np
 
 from .bencher_interface import Benchmarker, benchmark
 
 
 class SciKitImageBenchmarker(Benchmarker):
     name = "Scikit Image"
-
-    # def greyscale_and_rotate_90_deg(img, img_name) -> float:
-    #     grey_img = rgb2gray(rgba2rgb(img))
-    #     transform.rotate(grey_img, 90)
 
     # NOTE: this worked with just rgb2gray(image) in scikit-image=0.18.2 however
     # it raised a warning that rgb2gray(rgba2rgb(image)) was the proper way
@@ -22,10 +19,11 @@ class SciKitImageBenchmarker(Benchmarker):
         # return rgb2gray(image)
         return rgb2gray(rgba2rgb(image))
 
-    # As far as I can tell SciKit-Image does not have a transpose function
-    # @benchmark
-    # def transpose(image):
-        # return np.transpose(image)
+    @benchmark
+    def transpose(image):
+        # a transpose is equivalent to 90 degree rotation ccw
+        # followed by a flip along the horizantal axis
+        return np.flipud(transform.rotate(image, 90))
 
     @benchmark
     def rotate_90_deg(image):

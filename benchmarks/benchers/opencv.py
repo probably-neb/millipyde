@@ -21,7 +21,7 @@ class OpenCVBenchmarker(Benchmarker):
     @benchmark
     def gauss_sigma_2(image) -> float:
         return cv.GaussianBlur(image, ksize=(0, 0), sigmaX=2, sigmaY=2,
-                        borderType=cv.BORDER_CONSTANT)
+                               borderType=cv.BORDER_CONSTANT)
 
     @benchmark
     def rotate_90_deg(image) -> float:

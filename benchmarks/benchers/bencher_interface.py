@@ -10,28 +10,25 @@ import numpy as np
 import collections
 
 
+def repr_nparr(arr: np.ndarray):
+    """A helper function to make numpy arrays print nicely"""
+    return f'np.array{arr.shape}'
+
+
 @dataclass
 class BenchmarkResult:
     time: float
-    output_image: Any
+    output_image: np.ndarray
     benchmark: str
     tool: str
 
     def __repr__(self):
-        img_str = repr(self.output_image)
-        if len(img_str) > 100:
-            img_str = "<image>"
-        return f"BenchmarkResult(time={self.time},output_image={img_str},benchmark={self.benchmark},tool={self.tool})"
-
-# NOTE: could add extra args to benchmark for extra info
-# such as a logger name so that each benchmarker has its own
-# logger settings, or load_image_function so a specific
-# benchmark could have a different way of loading the image
-# than the other benchmarks in the class
+        img_str = repr_nparr(self.output_image)
+        return f"BenchmarkResult(time={self.time:.5f},output_image={img_str},benchmark={self.benchmark},tool={self.tool})"
 
 
 def benchmark(func):
-    """A function designed to be a decorator around any benchmark"""
+    """A function designed to be a decorator around all benchmarks"""
 
     benchmark = func.__name__
     # register this benchmark in the list of bencharks
@@ -59,7 +56,7 @@ def benchmark(func):
         start = time.perf_counter()
         output_image = func(image)
         stop = time.perf_counter()
-
+        output_image = np.array(output_image)
         # cleanup
         delta: float = stop - start
         logger.info("\nTime to run test: {}\n".format(delta))
@@ -87,9 +84,20 @@ class Benchmarker(ABC):
         to load images their own way without affecting
         their benchmark times"""
         from skimage import io
+        # returns a np.array
         return io.imread(path)
 
     def run_benchmark(benchmarker, benchmark: str, image_path: str):
+        """How all Benchmarks _should_ be ran
+
+        Args:
+            benchmarker: a subclass of Benchmarker
+            benchmark: the stringified name of the function (i.e. "rgb_to_grayscale")
+            image_path: absolute path of the image
+
+        Returns:
+            the output of the benchmark
+        """
         benchmark_func = getattr(benchmarker, benchmark)
         output = benchmark_func(image_path)
         if output is None:
