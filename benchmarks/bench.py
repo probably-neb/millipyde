@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import join, dirname, abspath
+import numpy.testing as npt
 import json
 
 from typing import List
@@ -8,6 +9,8 @@ import logging
 from benchers import Benchmarker
 import benchers
 
+SHOULD_CHECK_OUTPUTS = True
+DECIMAL_THRESHOLD = 4
 # NOTE: change this to something like logging.DEBUG
 # to stop logging messages from showing up
 LOG_LEVEL = logging.WARNING
@@ -43,11 +46,12 @@ def main():
 
     benchmarkers = benchers.get_benchmarkers()
 
-    for benchmark in Benchmarker._benchmarks:
-        logger.debug(f"Running benchmark: {benchmark}")
-        for image_path in get_single_image_path():
-            logger.debug(
-                f"Running benchmark: {benchmark} on {image_path}")
+    for image_path in get_single_image_path():
+        logger.debug(
+            f"Running benchmarks on {image_path}")
+        for benchmark in Benchmarker._benchmarks:
+            logger.debug(f"Running benchmark: {benchmark}")
+            benchmark_results = []
             for benchmarker in benchmarkers:
                 logger.debug(
                     f"Running benchmark: {benchmark} on {image_path} with {benchmarker.name}")
@@ -68,6 +72,18 @@ def main():
                 if result is not None:
                     logger.info(result.__str__())
                     print(result.__str__())
+                benchmark_results.append(result)
+            if SHOULD_CHECK_OUTPUTS:
+                logger.info("Checking outputs")
+                for i in range(1, len(benchmark_results)):
+                    a, b = benchmark_results[i-1], benchmark_results[i]
+                    try:
+                        npt.assert_almost_equal(
+                            a.output_image, b.output_image, decimal=DECIMAL_THRESHOLD)
+                    except AssertionError as e:
+                        logger.error(
+                            f"Output images for {a.benchmark} on {a.tool} and {b.tool} do not match")
+                        logger.error(e)
 
 
 if __name__ == "__main__":
