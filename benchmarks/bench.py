@@ -1,6 +1,7 @@
 from os import listdir
 from os.path import join, dirname, abspath
 import numpy as np
+import json
 
 from typing import List, Tuple
 import logging
@@ -38,10 +39,11 @@ def main():
     _logger = logging.getLogger("benchmarks")
     _logger.setLevel(LOG_LEVEL)
     logger = _logger.getChild("main")
+    with open('./benchmarks_to_run.json') as f:
+        benchmarks_to_run = json.load(f)
 
     benchmarkers = benchers.get_benchmarkers()
 
-    names = []
     for benchmark in Benchmarker._benchmarks:
         logger.debug(f"Running benchmark: {benchmark}")
         for image_path in get_single_image_path():
@@ -50,7 +52,16 @@ def main():
             for benchmarker in benchmarkers:
                 logger.debug(
                     f"Running benchmark: {benchmark} on {image_path} with {benchmarker.name}")
-                names.append(benchmarker.__name__)
+                bname = benchmarker.name
+                should_run = benchmarks_to_run.get(bname)
+                if not should_run:
+                    if should_run is None:
+                        logger.warn(
+                            f"Tool: {bname} not in `benchmarks_to_run.json`... skipping")
+                    else:
+                        logger.info(
+                            f"Tool: {bname} marked as False ... skipping")
+                    continue
                 result = Benchmarker.run_benchmark(
                     benchmarker, benchmark, image_path)
                 # unimplemented benchmarks return None
@@ -58,8 +69,6 @@ def main():
                 if result is not None:
                     logger.info(result.__str__())
                     print(result.__str__())
-    with open("names.json", 'w') as f:
-        f.write('\n'.join(names))
 
 
 if __name__ == "__main__":
