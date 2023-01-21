@@ -15,13 +15,16 @@ def repr_nparr(arr: np.ndarray):
 @dataclass
 class BenchmarkResult:
     time: float
+
     # don't print the output image
     output_image: np.ndarray = field(repr=False)
     # print this instead
     output: str = field(default="", init=False)
+
     dtype: str = field(default=None, init=False)
     benchmark: str
     tool: str
+
     # don't print full image_path
     image_path: str = field(repr=False)
     # print this instead
@@ -36,12 +39,23 @@ class BenchmarkResult:
     def image_name(self):
         return path.basename(self.image_path).replace(".", "_")
 
+    def output_path(self, dir):
+        output_path = Path(dir, self.image_name, self.benchmark, f"{self.tool}.png")
+        return output_path
+
     def store_result(self, dir: str):
         from skimage.io import imsave
 
-        output_path = Path(dir, self.image_name, self.benchmark, f"{self.tool}.png")
+        output_path = self.output_path(dir)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         imsave(output_path, self.output_image)
+
+    def assert_almost_equal(self, other, atol: float = 0.0, rtol: float = 0.0):
+        import numpy.testing as npt
+
+        return npt.assert_allclose(
+            self.output_image, other.output_image, atol=atol, rtol=rtol
+        )
 
 
 def benchmark(func):
