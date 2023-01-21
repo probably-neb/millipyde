@@ -15,7 +15,7 @@ for module_fs_path in os.listdir(os.path.dirname(__file__)):
     importlib.import_module(module_path)
 
 
-def get_benchmarkers():
+def get_tools():
     """
     Returns every class in benchers dir that is a subclass
     """

@@ -49,7 +49,7 @@ class MillipydeBenchmark(Benchmarker):
 
     @benchmark
     def rotate_90_deg(image) -> float:
-        image.rotate(RAD_OF_90_DEG)
+        image.rotate(90)
         return image
 
     @benchmark

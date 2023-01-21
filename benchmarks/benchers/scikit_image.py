@@ -23,7 +23,9 @@ class SciKitImageBenchmarker(Benchmarker):
     def transpose(image):
         # a transpose is equivalent to 90 degree rotation ccw
         # followed by a flip along the horizantal axis
-        return np.flipud(transform.rotate(image, 90))
+        #
+        # resize is for consistency with other tools implementations
+        return np.flipud(transform.rotate(image, 90, resize=True))
 
     @benchmark
     def rotate_90_deg(image):
@@ -35,4 +37,6 @@ class SciKitImageBenchmarker(Benchmarker):
 
     @benchmark
     def gauss_sigma_2(image):
-        return filters.gaussian(image, sigma=2, cval=0, truncate=8, mode="constant")
+        return filters.gaussian(
+            image, sigma=2, cval=0, truncate=8, mode="constant", channel_axis=2
+        )

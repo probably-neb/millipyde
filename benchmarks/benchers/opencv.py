@@ -1,6 +1,4 @@
-import cv2 as cv
-import time
-import logging
+import cv2
 from .bencher_interface import Benchmarker, benchmark
 
 
@@ -8,21 +6,47 @@ class OpenCVBenchmarker(Benchmarker):
     name = "OpenCV"
 
     def load_image_from_path(path: str):
-        return cv.imread(path, cv.IMREAD_COLOR)
+        image = cv2.imread(path, cv2.IMREAD_COLOR)
+        # to get it in the same format everything else uses
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
+        from skimage.util import img_as_float
+        # image = img_as_float(image)
+        return image
 
     @benchmark
     def rgb_to_grayscale(image):
-        return cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+        return cv2.cvtColor(image, cv2.COLOR_RGBA2GRAY)
 
     @benchmark
     def transpose(image):
-        return cv.transpose(image)
+        return cv2.transpose(image)
 
     @benchmark
-    def gauss_sigma_2(image) -> float:
-        return cv.GaussianBlur(image, ksize=(0, 0), sigmaX=2, sigmaY=2,
-                               borderType=cv.BORDER_CONSTANT)
+    def gauss_sigma_2(image):
+        return cv2.GaussianBlur(image, ksize=(0, 0), sigmaX=2, sigmaY=2,
+                                borderType=cv2.BORDER_CONSTANT)
 
     @benchmark
-    def rotate_90_deg(image) -> float:
-        return cv.rotate(image, cv.ROTATE_90_CLOCKWISE)
+    def rotate_90_deg(image):
+        """taken from https://github.com/PyImageSearch/imutils/blob/master/imutils/convenience.py
+         using this over the builtin opencv.rotate function to maintain consistent behavior with
+         other tools:
+           opencv.rotate takes a (w,h) image and turns it into a (h,w) image
+           this implementation as well as the majority of other tools return an image with
+           the same dimensions leaving the gaps empty
+
+        example behavior of this implementation:
+
+            img a = | v | after rotate = |   |
+                    | v |                | > |
+                    | v |                |   |
+        """
+        (h, w) = image.shape[:2]
+
+        center = (w // 2, h // 2)
+
+        # perform the rotation
+        M = cv2.getRotationMatrix2D(center, 90, 1.0)
+        rotated = cv2.warpAffine(image, M, (w, h))
+
+        return rotated
