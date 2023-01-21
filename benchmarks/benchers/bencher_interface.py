@@ -45,10 +45,15 @@ class BenchmarkResult:
 
     def store_result(self, dir: str):
         from skimage.io import imsave
+        from skimage.util import img_as_ubyte
 
         output_path = self.output_path(dir)
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        imsave(output_path, self.output_image)
+        # to avoid warnings about lossy conversions when saving
+        # images with float values
+        output_image = img_as_ubyte(self.output_image)
+
+        imsave(output_path, output_image)
 
     def assert_almost_equal(self, other, atol: float = 0.0, rtol: float = 0.0):
         import numpy.testing as npt
@@ -115,6 +120,9 @@ class Benchmarker(ABC):
     with the `@benchmark` decorator ran as a benchmark
     """
 
+    # NOTE: using __slots__ to define allowed functions in subclasses
+    # could be a good idea to prevent typos
+
     # all subclasses should declare a name
     name = "No Name Specified"
     # this will have no effect if it is set in a subclass
@@ -127,7 +135,6 @@ class Benchmarker(ABC):
         to load images their own way without affecting
         their benchmark times"""
         from skimage import io
-        from skimage.util import img_as_float
 
         # returns a np.array
         img = io.imread(path)
@@ -140,9 +147,11 @@ class Benchmarker(ABC):
         This function is for reconciling the different ways different tools
         handle images such as using rgb vs rgba or floats vs integers
         """
+        from skimage.util import img_as_float
+
         # from skimage.util import img_as_float
         output_image = np.array(output_image)
-        # output_image = img_as_float(output_image)
+        output_image = img_as_float(output_image)
         return output_image
 
     def run_benchmark(benchmarker, benchmark: str, image_path: str):

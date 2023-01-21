@@ -1,6 +1,9 @@
 {
+  "tools": {
     "OpenCV": true,
     "Millipyde": true,
     "Pillow": true,
     "Scikit Image": true
+  },
+  "benchmarks": {}
 }
