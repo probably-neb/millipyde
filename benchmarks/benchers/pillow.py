@@ -6,7 +6,7 @@ class PillowBenchmarker(Benchmarker):
     name = "Pillow"
 
     def load_image_from_path(image_path: str):
-        return Image.open(image_path)
+        return Image.open(image_path).convert("RGBA")
 
     @benchmark
     def rotate_90_deg(image):
