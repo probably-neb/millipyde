@@ -40,7 +40,7 @@ def get_single_image_path() -> List[str]:
     Intended to reduce the time it takes to run the benchmarks
     during development
     """
-    imgpath = abspath(path.join(INPUTS_DIR, "charlie10.png"))
+    imgpath = abspath(path.join(INPUTS_DIR, "charlie12.png"))
     return [imgpath]
 
 
@@ -60,27 +60,106 @@ def check_outputs(results):
     paths = {}
 
     for result in results:
-        paths.setdefault(result.image_name, {}).setdefault(result.benchmark, {}).update({result.tool:result})
+        paths.setdefault(result.image_name, {}).setdefault(result.benchmark, {}).update(
+            {result.tool: result}
+        )
 
     logger = get_logger().getChild("check_outputs")
+    import copy
+
+    check_results = copy.deepcopy(paths)
 
     for image_name, image_results in paths.items():
         for benchmark, benchmark_results in image_results.items():
-            for i, (tool_a, result_a) in enumerate(benchmark_results.items()):
-                for j, (tool_b, result_b) in enumerate(benchmark_results.items()):
-                    # don't compare to self
-                    if i != j:
-                        try:
-                            result_a.assert_almost_equal(result_b, atol=TOLERANCE_PERCENTAGE)
-                        except AssertionError as e:
-                            logger.error(f"\nResult of [{benchmark}] differs between {tool_a} & {tool_b}\n{'-'*4}")
-                            logger.error(e)
+            tools = check_results[image_name][benchmark].keys()
+            for tool in tools:
+                check_results[image_name][benchmark][tool] = None
+
+            import itertools
+
+            comparisons = []
+            for a, b in itertools.product(tools, tools):
+                if a != b:
+                    ord = sorted([a, b])
+                    comparisons.append((ord[0], ord[1]))
+            comparisons = set(comparisons)
+
+            # All of this 'colors' nonsense results in a dictionary
+            # of values that show which outputs are similar to each other
+
+            colors = check_results[image_name][benchmark]
+
+            color = 1
+            for a, b in comparisons:
+                result_a = benchmark_results[a]
+                result_b = benchmark_results[b]
+                color_a = colors[a]
+                color_b = colors[b]
+
+                try:
+                    result_a.assert_almost_equal(result_b, atol=TOLERANCE_PERCENTAGE)
+
+                    # if almost_equal
+                    color_a = color_a if color_a else color_b if color_b else color
+                    color_b = color_b if color_b else color_a
+                except AssertionError as e:
+                    logger.error(
+                        f"Result of [{benchmark}] differs between {a} & {b}\n{'-'*4}"
+                    )
+                    logger.error(f"{e}\n")
+                    if color_a and not color_b:
+                        color_b = color
+                        color += 1
+                    elif color_b and not color_a:
+                        color_a = color
+                        color += 1
+                    elif not color_a and not color_b:
+                        color_a = color
+                        color_b = color + 1
+                        color += 2
+                colors[a] = color_a
+                colors[b] = color_b
+
+            # check_results[image_name][benchmark] = colors
+
+    from pprint import pprint
+
+    pprint(check_results)
+
+
+def get_benchmarks_to_run():
+    with open("./benchmarks_to_run.json") as f:
+        config = json.load(f)["benchmarks"]
+    logger = get_logger().getChild("get_benchmarks_to_run")
+    def is_benchmark_enabled(benchmark):
+        status = config.get(benchmark)
+        keep = status is True or status is None
+        if not keep:
+            logger.info(f"benchmark: {benchmark} marked as False ... skipping")
+        return keep
+
+    all_benchmarks = Benchmarker._benchmarks
+
+    return list(filter(is_benchmark_enabled, all_benchmarks))
+
+
+def get_tools_to_benchmark():
+    with open("./benchmarks_to_run.json") as f:
+        config = json.load(f)["tools"]
+    all_tools = benchers.get_tools()
+    logger = get_logger().getChild("get_tools_to_benchmark")
+    def is_tool_enabled(tool):
+        status = config.get(tool.name)
+        keep = status is True or status is None
+        if not keep:
+            logger.info(f"Tool: {tool.name} marked as False ... skipping")
+        return keep
+
+    return list(filter(is_tool_enabled, all_tools))
 
 
 def main():
     logger = setup_logger()
-    with open("./benchmarks_to_run.json") as f:
-        benchmarks_to_run = json.load(f)
 
     # clear outputs before running
     if SHOULD_STORE_OUTPUTS:
@@ -90,34 +169,23 @@ def main():
             pass
         mkdir(OUTPUTS_DIR)
 
-    benchmarkers = benchers.get_benchmarkers()
     results = []
 
     for image_path in get_single_image_path():
         logger.debug(f"Running benchmarks on {image_path}")
 
-        for benchmark in Benchmarker._benchmarks:
+        for benchmark in get_benchmarks_to_run():
             logger.debug(f"Running benchmark: {benchmark}")
 
             benchmark_results = []
-            for benchmarker in benchmarkers:
+            for tool in get_tools_to_benchmark():
                 logger.debug(
-                    f"Running benchmark: {benchmark} on {image_path} with {benchmarker.name}"
+                    f"Running benchmark: {benchmark} on {image_path} with {tool.name}"
                 )
 
-                bname = benchmarker.name
+                bname = tool.name
 
-                should_run = benchmarks_to_run.get(bname)
-                if not should_run:
-                    if should_run is None:
-                        logger.warn(
-                            f"Tool: {bname} not in `benchmarks_to_run.json`... skipping"
-                        )
-                    else:
-                        logger.info(f"Tool: {bname} marked as False ... skipping")
-                    continue
-
-                result = Benchmarker.run_benchmark(benchmarker, benchmark, image_path)
+                result = Benchmarker.run_benchmark(tool, benchmark, image_path)
 
                 # unimplemented benchmarks return None
                 # and should log their own error
@@ -131,34 +199,6 @@ def main():
 
     if SHOULD_CHECK_OUTPUTS:
         check_outputs(results)
-            # save_output_image(benchmarker, benchmark, image_path)
-            # logger.info("Checking outputs")
-            #
-            # for i in range(1, len(benchmark_results)):
-            #     a, b = benchmark_results[i-1], benchmark_results[i]
-            #     a_img, b_img = normalize(
-            #         a.output_image), normalize(b.output_image)
-            #
-            #     try:
-            #         npt.assert_allclose(
-            #             a_img, b_img, atol=TOLERANCE_PERCENTAGE)
-            #
-            #     except AssertionError as e:
-            #         logger.error(
-            #             f"Output images for {a.benchmark} on {a.tool} and {b.tool} do not match")
-            #         logger.error(e)
-            #
-            #         benchmark_err_path = path.join(OUTPUTS_DIR, benchmark)
-            #         try:
-            #             mkdir(benchmark_err_path)
-            #         except FileExistsError:
-            #             pass
-            #
-            #         from skimage.util import img_as_ubyte
-            #         imsave(path.join(benchmark_err_path,
-            #                f"{a.tool}.png"), img_as_ubyte(a_img))
-            #         imsave(path.join(benchmark_err_path,
-            #                f"{b.tool}.png"), img_as_ubyte(b_img))
 
 
 if __name__ == "__main__":
