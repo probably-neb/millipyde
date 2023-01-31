@@ -2,6 +2,8 @@ import cv2
 from .bencher_interface import Benchmarker, benchmark
 
 
+print("OpenCV Cuda:",cv2.cuda.getCudaEnabledDeviceCount())
+
 class OpenCVBenchmarker(Benchmarker):
     name = "OpenCV"
 
