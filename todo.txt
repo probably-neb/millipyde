@@ -1,0 +1,57 @@
+AbsVal
+Accum
+AveragePooling
+BatchNormalization
+BNLL
+Concatenation
+Convolution (1d, 2d, including dilated convolution, 3d)
+Crop
+CropAndResize (RCNN-specific layer)
+Deconvolution, a.k.a. transposed convolution or full convolution
+DetectionOutput (SSD-specific layer)
+Dropout
+Eltwise (+, *, max)
+ELU
+Expand
+Flatten
+FullyConnected
+FlowWarp
+Gather
+Interpolation
+LRN
+LSTM
+MaxPooling
+MaxUnpooling
+Mish
+MVN
+NormalizeBBox (SSD-specific layer)
+Padding
+Permute
+Power
+PReLU (including ChannelPReLU with channel-specific slopes)
+PriorBox (SSD-specific layer)
+ReLU
+ReduceL1
+ReduceL2
+ReduceLogSum
+ReduceLogSumExp
+ReduceMax
+ReduceMean
+ReduceMin
+ReduceProd
+ReduceSum
+ReduceSumSquare
+Region (for DarkNet models)
+Reorg
+Resize
+RNN
+ROI Pooling (RCNN-specific layer)
+Scale
+Shift
+ShuffleChannel
+Sigmoid
+Slice
+Softmax
+Split
+Swish
+TanH
