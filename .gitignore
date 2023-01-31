@@ -129,3 +129,4 @@ venv.bak/
 dmypy.json
 benchmarks/errors
 benchmarks/outputs
+setup/opencv-python
