@@ -129,3 +129,6 @@ venv.bak/
 dmypy.json
 benchmarks/errors
 benchmarks/outputs
+setup/opencv_build.out
+*.whl
+
