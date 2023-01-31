@@ -130,5 +130,4 @@ dmypy.json
 benchmarks/errors
 benchmarks/outputs
 setup/opencv-python
-setup/opencv-python
-opencv_contrib_python_headless-4.7.0.9620162-cp38-cp38-linux_x86_64.whl
+*.whl
