@@ -1,0 +1,15 @@
+- name: setup the host machine for developing millipyde
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: install build prereqs
+      apt:
+        pkg:
+          - git
+          - python3-dev
+          - python3-pip
+          - python3-testresources
+      become: true
+    - include_tasks: tasks/docker.yml
