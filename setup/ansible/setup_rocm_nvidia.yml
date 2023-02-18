@@ -9,6 +9,6 @@
   vars_prompt:
     - name: rocm_version
       # TODO: ask for numbers that map to versions (i.e. 1:4.5.0,2:5.4.3,etc)
-      prompt: "Rocm Version: 4.5.0/5.4.3"
+      prompt: "Rocm Version: 4.5.0/5.4.3/5.3.0"
       private: no
     # TODO: make this nvidia agnostic by prompting for amd or nvidia

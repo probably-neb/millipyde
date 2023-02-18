@@ -1,6 +1,7 @@
 rocm_baseurl_map:
-  "4.5.0": deb [arch=amd64] https://repo.radeon.com/rocm/apt/4.5/ ubuntu main
-  "5.4.3": deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.4.3/ focal main
+  "4.5.0": deb [arch={{cpu_arch}}] https://repo.radeon.com/rocm/apt/4.5/ ubuntu main
+  "5.3.0": deb [arch={{cpu_arch}} signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.3/ focal main
+  "5.4.3": deb [arch={{cpu_arch}} signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.4.3/ focal main
 rocm_baseurl: "{{rocm_baseurl_map[rocm_version]}}"
 rocm_gpg_key_file: "{{millipyde_dir}}/setup/rocm.gpg.key"
 rocm_gpg_file: "/etc/apt/trusted.gpg.d/rocm-keyring.gpg"
