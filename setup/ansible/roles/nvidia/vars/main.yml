@@ -1,0 +1,4 @@
+# from: https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network
+cuda_keyring_deb: cuda-keyring_1.0-1_all.deb
+cuda_keyring_deb_url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+cuda_keyring_deb_dest: "{{millipyde_dir}}/setup/{{cuda_keyring_deb}}"

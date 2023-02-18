@@ -1,0 +1,56 @@
+# Install the NVIDIA driver and prebuilt packages. Follow these steps:
+#
+# 1.    Ensure you install the NVIDIA driver using the following instructions:
+#
+# sudo apt-get install ubuntu-drivers-common && sudo ubuntu-drivers autoinstall
+# sudo reboot
+# Or you may download the latest CUDA toolkit to install the driver automatically:
+#
+# from: https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+# sudo dpkg -i cuda-keyring_1.0-1_all.deb
+# sudo apt-get update
+# sudo apt-get -y install cuda
+#
+# 2.    Add the ROCm package server to your system. Refer to the OS-specific instructions in the ROCm Installation Guide.
+#
+# 3.    Install the "hip-runtime-nvidia" and "hip-dev" packages. This will install CUDA SDK and the HIP porting layer.
+#
+# apt-get install hip-runtime-nvidia hip-dev
+
+- name: print deb file path
+  debug: var=cuda_keyring_deb_dest
+- name: add cuda keyring
+  get_url:
+    dest: "{{cuda_keyring_deb_dest}}"
+    url: "{{cuda_keyring_deb_url}}"
+
+# NOTE: apt command has support for 
+# deb: url 
+# removing need for the above tasks
+- name: install cuda keyring deb
+  apt:
+    deb: "{{cuda_keyring_deb_dest}}"
+  become: true
+
+- name: install cuda toolkit
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    pkg: cuda
+  become: true
+
+# FIXME: set dependency on rocm role
+# as package servers must be added to system 
+# before hip can be installed
+
+- name: install hip
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    pkg:
+      - hip-runtime-nvidia
+      - hip-dev
+  become: true
+
+# TODO: run hipconfig to verify successfull installation

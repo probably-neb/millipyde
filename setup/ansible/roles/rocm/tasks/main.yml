@@ -1,0 +1,71 @@
+# TODO: amdgpu install for amd system
+
+- name: show rocm version
+  debug: var=rocm_version
+
+- name: assert that os version is Ubuntu 20.04
+  assert:
+    that:
+      - "{{ansible_facts['distribution_version']}} is version('20.04','==')"
+      - "'{{ansible_facts['distribution']}}' == 'Ubuntu'"
+
+- name: install basic requirements
+  apt:
+    pkg:
+      - git
+      - wget
+      - gnupg2
+  become: true
+
+- name: install python3
+  apt:
+    pkg:
+      - python3
+      - python-is-python3
+      - python3-pip
+      - python3-venv
+  become: true
+
+- name: install kernel headers
+  apt:
+    pkg:
+      - "linux-headers-{{ ansible_facts['kernel'] }}"
+      - "linux-modules-extra-{{ ansible_facts['kernel'] }}"
+  become: true
+
+
+# curl -fsSL https://repo.radeon.com/rocm/rocm.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/rocm-keyring.gpg
+- name: download rocm gpg key
+  get_url:
+    url: https://repo.radeon.com/rocm/rocm.gpg.key
+    dest: "{{rocm_gpg_key_file}}"
+
+- name: add rocm gpg key
+  command: "gpg --dearmor -o {{rocm_gpg_file}} {{rocm_gpg_key_file}}"
+  become: yes
+  args:
+    creates: "{{rocm_gpg_file}}"
+
+# echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.4.3 focal main' | sudo tee /etc/apt/sources.list.d/rocm.list
+# echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+# sudo apt-get update
+- name: add rocm baserepo
+  lineinfile:
+    path: /etc/apt/sources.list.d/rocm.list
+    line: "{{rocm_baseurl}}"
+    state: present
+    # create the file if it doesn't exist
+    create: yes
+  become: true
+
+- name: set priority of repo.radeon.com for rocm packages
+  copy:
+    src: rocm-pin-600
+    dest: /etc/apt/preferences.d/
+    mode: 0644
+
+- name: install rocm
+  apt:
+    update_cache: yes
+    pkg: "rocm-hip-sdk{{rocm_version}}"
+  become: yes

@@ -1,5 +1,0 @@
-- name: assert that os version is Ubuntu 20.04
-  assert:
-    that:
-      - "{{ansible_facts['distribution_version']}} is version('20.04','==')"
-      - "'{{ansible_facts['distribution']}}' == 'Ubuntu'"
