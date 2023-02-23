@@ -10,6 +10,7 @@ from typing import List
 import logging
 
 from benchers import Benchmarker
+from benchers.bencher_interface import BenchmarkResult
 import benchers
 
 SHOULD_STORE_OUTPUTS = True
@@ -131,6 +132,7 @@ def get_benchmarks_to_run():
     with open("./benchmarks_to_run.json") as f:
         config = json.load(f)["benchmarks"]
     logger = get_logger().getChild("get_benchmarks_to_run")
+
     def is_benchmark_enabled(benchmark):
         status = config.get(benchmark)
         keep = status is True or status is None
@@ -148,6 +150,7 @@ def get_tools_to_benchmark():
         config = json.load(f)["tools"]
     all_tools = benchers.get_tools()
     logger = get_logger().getChild("get_tools_to_benchmark")
+
     def is_tool_enabled(tool):
         status = config.get(tool.name)
         keep = status is True or status is None
@@ -156,6 +159,24 @@ def get_tools_to_benchmark():
         return keep
 
     return list(filter(is_tool_enabled, all_tools))
+
+
+def store_results_data(results):
+    """store the results of the benchmarks in csv format into
+    the 'data_collection' directory with a filename based on the current time"""
+    from datetime import datetime
+    lines = []
+    header = BenchmarkResult.csv_header()
+    lines.append(header)
+    for result in results:
+        lines.append(result.csv())
+    results_csv = "\n".join(lines)
+    time = datetime.now()
+    file_name = "data/%s.csv" % time.strftime(
+        "%m-%d-%Y-%H:%M.csv"
+    )
+    with open(file_name, "w") as f:
+        f.write(results_csv)
 
 
 def main():
@@ -195,10 +216,12 @@ def main():
                     benchmark_results.append(result)
                     results.append(result)
                     if SHOULD_STORE_OUTPUTS:
-                        result.store_result(OUTPUTS_DIR)
+                        result.store_result_image(OUTPUTS_DIR)
 
     if SHOULD_CHECK_OUTPUTS:
         check_outputs(results)
+
+    store_results_data(results)
 
 
 if __name__ == "__main__":

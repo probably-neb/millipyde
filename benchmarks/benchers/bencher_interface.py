@@ -5,6 +5,7 @@ import time
 import numpy as np
 from os import path
 from pathlib import Path
+from datetime import datetime
 
 
 def repr_nparr(arr: np.ndarray):
@@ -15,6 +16,7 @@ def repr_nparr(arr: np.ndarray):
 @dataclass
 class BenchmarkResult:
     time: float
+    dtime: datetime
 
     # don't print the output image
     output_image: np.ndarray = field(repr=False)
@@ -39,15 +41,15 @@ class BenchmarkResult:
     def image_name(self):
         return path.basename(self.image_path).replace(".", "_")
 
-    def output_path(self, dir):
-        output_path = Path(dir, self.image_name, self.benchmark, f"{self.tool}.png")
+    def output_image_path(self, dir):
+        output_path = Path(dir) / self.image_name / self.benchmark / f"{self.tool}.png"
         return output_path
 
-    def store_result(self, dir: str):
+    def store_result_image(self, dir: str):
         from skimage.io import imsave
         from skimage.util import img_as_ubyte
 
-        output_path = self.output_path(dir)
+        output_path = self.output_image_path(dir)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         # to avoid warnings about lossy conversions when saving
         # images with float values
@@ -60,6 +62,19 @@ class BenchmarkResult:
 
         return npt.assert_allclose(
             self.output_image, other.output_image, atol=atol, rtol=rtol
+        )
+
+    @classmethod
+    def field_names(cls):
+        return ["time", "dtime", "output", "dtype", "benchmark", "tool", "input_name"]
+
+    @classmethod
+    def csv_header(cls):
+        return ",".join(cls.field_names())
+
+    def csv(self):
+        return ",".join(
+            map(str, [getattr(self, field) for field in self.field_names()])
         )
 
 
@@ -107,6 +122,7 @@ def benchmark(func):
             benchmark=benchmark,
             tool=cls.name,
             image_path=image_path,
+            dtime=datetime.now(),
         )
 
     return inner
