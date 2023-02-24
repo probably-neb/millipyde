@@ -54,6 +54,7 @@
     path: /etc/apt/sources.list.d/rocm.list
     line: "{{rocm_baseurl}}"
     state: present
+    regexp: "{{rocm_version}}"
     # create the file if it doesn't exist
     create: yes
   become: true

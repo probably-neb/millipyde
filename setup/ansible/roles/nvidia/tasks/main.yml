@@ -49,8 +49,8 @@
     update_cache: yes
     force_apt_get: yes
     pkg:
-      - hip-runtime-nvidia
-      - hip-dev
+      - "hip-runtime-nvidia{{rocm_version}}"
+      - "hip-dev{{rocm_version}}"
   become: true
 
 # TODO: run hipconfig to verify successfull installation
