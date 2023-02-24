@@ -52,3 +52,7 @@
       - docker-compose-plugin
       - containerd.io
   become: yes
+
+- name: install nvidia-container stuff if needed
+  include_tasks: ./docker_nvidia.yml
+  when: gpu_vendor == "nvidia"
