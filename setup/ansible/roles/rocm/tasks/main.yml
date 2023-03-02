@@ -70,3 +70,4 @@
     update_cache: yes
     pkg: "rocm-hip-sdk{{rocm_version}}"
   become: yes
+  when: gpu_vendor == "amd"
