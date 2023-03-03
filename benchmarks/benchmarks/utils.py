@@ -24,10 +24,13 @@ def load_image_from_path(path: str = "./inputs/charlie1.png"):
     return img
 
 
+IMAGES = {}
+
+
 def load_funcs(mod_locals, load_image=load_image_from_path):
     """loads functions from a modules locals
-     wraps them in what pytest-benchmark wants for a benchmark
-     and puts them back"""
+    wraps them in what pytest-benchmark wants for a benchmark
+    and puts them back"""
 
     funcs = []
     for func_name in benchmarks_list():
@@ -36,15 +39,20 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
             funcs.append(benchmark_func)
         except KeyError:
             pass
-
-    def setup():
-        image = load_image()
-        return (), {"image": image}
+    tool_name = mod_locals["__name__"].replace("benchmark_", "")
 
     @pytest.mark.parametrize("func", funcs)
-    def benchmark_func(benchmark, func):
-        benchmark.pedantic(func, setup=setup, rounds=1)
-    test_name = "test_" + mod_locals['__name__'].replace('benchmark_','')
+    def benchmark_func(benchmark, func, image_path, rounds):
+        def setup():
+            image = IMAGES.get(tool_name, {}).get(image_path, None)
+            if image is None:
+                image = load_image(image_path)
+            return (), {"image": image}
+
+        benchmark.extra_info["image_path"] = image_path
+        benchmark.pedantic(func, setup=setup, rounds=rounds)
+
+    test_name = "test_" + tool_name
 
     # add the test to the modules locals
     mod_locals[test_name] = benchmark_func
