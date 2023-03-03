@@ -14,7 +14,7 @@ from typing import List
 # of the file as it has to be after the sys path nonsense
 #
 # autopep8: off
-cur_lib_path = str(pathlib.Path().absolute().parent)
+cur_lib_path = str(pathlib.Path().absolute())
 print(cur_lib_path)
 sys.path.append(cur_lib_path)
 import millipyde as mp

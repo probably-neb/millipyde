@@ -1,7 +1,16 @@
 import pytest
+from pathlib import Path
+import os.path as path
+
+def benchmarks_subpath(subpath):
+    return path.join(BENCHMARKS_DIR, subpath)
 
 
-CORRECT_IMAGE_OUTPUT_DIR = "outputs/correct/"
+BENCHMARKS_DIR = Path(__file__).parent
+
+MILLIPYDE_DIR = Path(BENCHMARKS_DIR).parent
+
+CORRECT_IMAGE_OUTPUT_DIR = benchmarks_subpath("/outputs/correct/")
 
 
 def ansi(s) -> str:
@@ -55,6 +64,7 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
 
         benchmark.extra_info["image_path"] = image_path
         benchmark.pedantic(func, setup=setup, rounds=rounds)
+        # benchmark(func, setup()[1]["image"])
 
     test_name = "test_" + tool_name
 
@@ -62,10 +72,12 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
     mod_locals[test_name] = benchmark_func
 
 
-
 def get_correct_image_path(image_path, func_name):
     from pathlib import path
+
     image_path = path(image_path)
     assert image_path.is_file()
-    image_path = path.join(CORRECT_IMAGE_OUTPUT_DIR, f"{image_path.stem}-{func_name}.npy")
+    image_path = path.join(
+        CORRECT_IMAGE_OUTPUT_DIR, f"{image_path.stem}-{func_name}.npy"
+    )
     return image_path
