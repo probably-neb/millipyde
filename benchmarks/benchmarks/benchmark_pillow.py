@@ -2,7 +2,7 @@ from PIL import Image, ImageFilter
 import utils
 
 
-def load_image_from_path(image_path: str = "./inputs/charlie1.png"):
+def load_image_from_path(image_path: str):
     return Image.open(image_path).convert("RGBA")
 
 def rotate_90_deg(image):

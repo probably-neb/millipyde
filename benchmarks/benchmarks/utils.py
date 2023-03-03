@@ -19,7 +19,7 @@ def benchmarks_list():
     ]
 
 
-def load_image_from_path(path: str = "./inputs/charlie1.png"):
+def load_image_from_path(path: str):
     import imageio.v2 as io
 
     # returns a np.array

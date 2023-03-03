@@ -22,7 +22,7 @@ import millipyde as mp
 # autopep8: on
 
 
-def load_image_from_path(path: str = "./inputs/charlie1.png"):
+def load_image_from_path(path: str):
     img = utils.load_image_from_path(path)
     image = mp.gpuimage(img)
     return image
@@ -63,12 +63,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--output-dir",
-        "-o",
-        help="where to save the correct images",
-        default="outputs/correct/",
-    )
-    parser.add_argument(
         "--images",
         "-i",
         nargs="+",
@@ -84,12 +78,10 @@ if __name__ == "__main__":
         func = locals()[func_name]
         for image_path in args.images:
             image = load_image_from_path(image_path)
-            image_path = pathlib.Path(image_path)
-            assert image_path.is_file()
-            name = f"{image_path.stem}-{func_name}.npy"
-            print(name)
+            output_path = utils.get_correct_image_path(image_path, func_name)
+            print(output_path)
             output_image = np.array(func(image)).astype(np.float64)
             print(output_image.shape, output_image.dtype)
-            with open(pathlib.Path(args.output_dir) / name, "wb") as f:
+            with open(output_path, "wb") as f:
                 # np.save(f, output_image)
                 pass
