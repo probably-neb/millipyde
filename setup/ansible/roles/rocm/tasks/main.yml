@@ -65,9 +65,14 @@
     dest: /etc/apt/preferences.d/
     mode: 0644
 
-- name: install rocm
+- name: install rocm for amd
   apt:
     update_cache: yes
     pkg: "rocm-hip-sdk{{rocm_version}}"
   become: yes
   when: gpu_vendor == "amd"
+
+- name: install rocm for nvidia
+  include_role:
+    name: nvidia
+  when: gpu_vendor == "nvidia"

@@ -3,7 +3,6 @@
   connection: local
   roles:
     - rocm
-    - nvidia
   vars_files:
     - vars.yml
   vars_prompt:
