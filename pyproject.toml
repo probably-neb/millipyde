@@ -13,3 +13,7 @@ python_files = [
     "benchmark_*",
     "benchmarks/conftest.py"
 ]
+python_functions = [
+    "benchmark_*",
+    "test_*"
+]

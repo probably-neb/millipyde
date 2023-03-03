@@ -1,5 +1,6 @@
 import pytest
 import utils
+from pathlib import Path
 
 DEFAULT_PATH = utils.benchmarks_subpath("inputs/charlie1.png")
 
@@ -15,13 +16,28 @@ def pytest_addoption(parser):
         "--benchmark-rounds",
         dest="rounds",
         type=int,
-        default=5,
+        nargs="*",
+        default=[1],
         help="the number of benchmark rounds to run",
     )
 
 
 def pytest_generate_tests(metafunc):
     if "image_path" in metafunc.fixturenames:
-        metafunc.parametrize("image_path", metafunc.config.getoption("images"))
+        image_params = list(
+            map(
+                lambda path: pytest.param(path, id=Path(path).stem),
+                metafunc.config.getoption("images"),
+            )
+        )
+        metafunc.parametrize("image_path", image_params)
     if "rounds" in metafunc.fixturenames:
-        metafunc.parametrize("rounds", [metafunc.config.getoption("rounds")])
+        round_params = list(
+            map(
+                lambda r: pytest.param(r, id=f'{r}-rounds'),
+                metafunc.config.getoption("rounds"),
+            )
+        )
+        metafunc.parametrize(
+                "rounds", round_params
+        )

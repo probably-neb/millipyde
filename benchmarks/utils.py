@@ -2,6 +2,7 @@ import pytest
 from pathlib import Path
 import os.path as path
 
+
 def benchmarks_subpath(subpath):
     return path.join(BENCHMARKS_DIR, subpath)
 
@@ -39,7 +40,6 @@ def load_image_from_path(path: str):
 
 IMAGES = {}
 
-
 def load_funcs(mod_locals, load_image=load_image_from_path):
     """loads functions from a modules locals
     wraps them in what pytest-benchmark wants for a benchmark
@@ -66,7 +66,7 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
         benchmark.pedantic(func, setup=setup, rounds=rounds)
         # benchmark(func, setup()[1]["image"])
 
-    test_name = "test_" + tool_name
+    test_name = "benchmark_" + tool_name
 
     # add the test to the modules locals
     mod_locals[test_name] = benchmark_func
