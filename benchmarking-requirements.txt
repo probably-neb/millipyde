@@ -3,4 +3,4 @@ scipy==1.7.0
 scikit-image==0.19
 setuptools==45.2.0
 pillow==9.3.0
-./opencv_contrib_python_headless-4.7.0.9620162-cp38-cp38-linux_x86_64.whl
+opencv-contrib-python-headless
