@@ -1,5 +1,9 @@
 import pytest
 
+
+CORRECT_IMAGE_OUTPUT_DIR = "outputs/correct/"
+
+
 def ansi(s) -> str:
     return f"\033[95m{s}\033[0m"
 
@@ -56,3 +60,12 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
 
     # add the test to the modules locals
     mod_locals[test_name] = benchmark_func
+
+
+
+def get_correct_image_path(image_path, func_name):
+    from pathlib import path
+    image_path = path(image_path)
+    assert image_path.is_file()
+    image_path = path.join(CORRECT_IMAGE_OUTPUT_DIR, f"{image_path.stem}-{func_name}.npy")
+    return image_path
