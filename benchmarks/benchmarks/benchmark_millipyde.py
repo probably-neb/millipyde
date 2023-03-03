@@ -13,20 +13,17 @@ import pytest
 # of the file as it has to be after the sys path nonsense
 #
 # autopep8: off
-cur_lib_path = str(pathlib.Path().absolute()).replace("benchmarks", "")
+cur_lib_path = str(pathlib.Path().absolute().parent)
 print(cur_lib_path)
 sys.path.append(cur_lib_path)
-# FIXME: commmented out while working on laptop
 import millipyde as mp
 
 # autopep8: on
 
-
-def getimg():
-    path = "./inputs/charlie8.png"
+def load_image_from_path(path: str="./inputs/charlie1.png"):
     img = utils.load_image_from_path(path)
     image = mp.gpuimage(img)
-    return (), {"image": image}
+    return image
 
 
 def transpose(image):
@@ -53,11 +50,4 @@ def rgb_to_grayscale(image):
     image.rgb2gray()
     return image
 
-
-@pytest.mark.parametrize("func", utils.benchmarks_list())
-def test_millipyde(benchmark, func):
-    try:
-        func = globals()[func]
-    except KeyError:
-        raise NotImplementedError(func)
-    benchmark.pedantic(func, setup=getimg, rounds=10, warmup_rounds=1)
+utils.load_funcs(locals(), load_image=load_image_from_path)
