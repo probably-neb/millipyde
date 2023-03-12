@@ -17,6 +17,10 @@ def transpose(image):
     return cupy.transpose(image)
 
 
+def to_ndarray(image):
+    return cupy.asnumpy(image)
+
+locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 #
 # def rgb_to_grayscale(image) -> float:
 #     pass
