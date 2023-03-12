@@ -14,11 +14,8 @@ from typing import List
 # of the file as it has to be after the sys path nonsense
 #
 # autopep8: off
-cur_lib_path = str(pathlib.Path().absolute())
-print(cur_lib_path)
-sys.path.append(cur_lib_path)
+sys.path.append(str(utils.MILLIPYDE_DIR))
 import millipyde as mp
-
 # autopep8: on
 
 
@@ -71,7 +68,7 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-
+    print(utils.BENCHMARKS_DIR)
     for func_name in utils.benchmarks_list():
         if not locals().get(func_name):
             continue
@@ -83,5 +80,4 @@ if __name__ == "__main__":
             output_image = np.array(func(image)).astype(np.float64)
             print(output_image.shape, output_image.dtype)
             with open(output_path, "wb") as f:
-                # np.save(f, output_image)
-                pass
+                np.save(f, output_image)
