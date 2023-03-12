@@ -70,7 +70,7 @@ def rotate_90_deg(image):
 
 
 try:
-    assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Wheels Not Found"
+    assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
     utils.load_funcs(locals(), load_image_from_path)
 except AssertionError:
     # don't load if OpenCV Cuda is not installed
