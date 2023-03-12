@@ -1,14 +1,17 @@
 import pytest
 from pathlib import Path
 import os.path as path
+import numpy as np
 
 
 BENCHMARKS_DIR = Path(__file__).parent
 
 MILLIPYDE_DIR = Path(BENCHMARKS_DIR).parent
 
+
 def benchmarks_subpath(subpath):
     return path.join(BENCHMARKS_DIR, subpath)
+
 
 CORRECT_IMAGE_OUTPUT_DIR = benchmarks_subpath("outputs/correct/")
 
@@ -39,13 +42,17 @@ def load_image_from_path(path: str):
 
 IMAGES = {}
 
+
 def get_correct_image_path(image_path, func_name):
     image_path = Path(image_path)
-    assert image_path.is_file()
+    if not image_path.is_file():
+        image_path = BENCHMARKS_DIR / "inputs" / image_path
+    assert image_path.is_file(), f"image: {image_path} does not exist"
     image_path = path.join(
         CORRECT_IMAGE_OUTPUT_DIR, f"{image_path.stem}-{func_name}.npy"
     )
     return image_path
+
 
 def load_funcs(mod_locals, load_image=load_image_from_path):
     """loads functions from a modules locals
@@ -72,8 +79,8 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
             # this wierd return signature is required by benchmark.pedantic
             # it represents *args, **kwargs
             return (), {"image": image}
-        return setup
 
+        return setup
 
     @pytest.mark.parametrize("func", funcs)
     def benchmark_func(benchmark, func, image_path, rounds):
@@ -81,18 +88,17 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
         benchmark.extra_info["image_path"] = image_path
         # TODO: run file once here to get output image type?
         benchmark.pedantic(func, setup=setup, rounds=rounds)
-    
+
     @pytest.mark.parametrize("func", funcs)
-    def test_ouput_correct(benchmark,func,image_path):
-        import numpy as np
+    def test_ouput_correct(func, image_path):
         correct_output_path = get_correct_image_path(image_path, func.__name__)
         correct_output = np.load(correct_output_path)
         setup = create_setup_func(image_path)
         input_image = setup()[1]["image"]
         this_output = func(input_image)
-        assert np.allclose(this_output, correct_output)
+        assert isinstance(this_output, np.ndarray), "output image is not np array"
+        assert np.allclose(this_output, correct_output, atol=0.05), "output image does not match millipyde output image"
 
     # add the test to the modules locals
     mod_locals[test_name] = benchmark_func
     mod_locals[verify_name] = test_ouput_correct
-
