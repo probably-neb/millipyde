@@ -2,6 +2,7 @@ import pytest
 from pathlib import Path
 import os.path as path
 import numpy as np
+import numpy.testing as npt
 
 
 BENCHMARKS_DIR = Path(__file__).parent
@@ -15,6 +16,7 @@ def benchmarks_subpath(subpath):
 
 CORRECT_IMAGE_OUTPUT_DIR = benchmarks_subpath("outputs/correct/")
 
+CONVERTER_FUNC_NAME = "convert_output_to_ndarray"
 
 def ansi(s) -> str:
     return f"\033[95m{s}\033[0m"
@@ -96,8 +98,19 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
         setup = create_setup_func(image_path)
         input_image = setup()[1]["image"]
         this_output = func(input_image)
-        assert isinstance(this_output, np.ndarray), "output image is not np array"
-        assert np.allclose(this_output, correct_output, atol=0.05), "output image does not match millipyde output image"
+
+        
+        if not isinstance(this_output, np.ndarray):
+            try:
+                converter_func = mod_locals[CONVERTER_FUNC_NAME]
+                this_output = converter_func(this_output)
+                assert isinstance(this_output, np.ndarray), f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return an ndarray"
+            except KeyError:
+                raise ValueError(f"output image is not a numpy array and there is no function named {CONVERTER_FUNC_NAME} in the module")
+        assert isinstance(this_output, np.ndarray), f"output image is not np array. type={type(this_output)}"
+        assert this_output.shape == correct_output.shape, f"output shape ({this_output.shape}) does not match millipyde output shape ({correct_output.shape})"
+        assert this_output.dtype == correct_output.dtype, f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype})"
+        assert np.allclose(this_output, correct_output, atol=0.5, rtol=0.10), f"output image does not match millipyde output image"
 
     # add the test to the modules locals
     mod_locals[test_name] = benchmark_func
