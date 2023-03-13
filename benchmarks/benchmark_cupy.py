@@ -2,23 +2,18 @@ import cupy
 import utils
 
 
-def load_image_from_path(image_path: str):
-    arr = utils.load_image_from_path(image_path)
-    cupy_arr = cupy.array(arr)
-    return cupy_arr
-
-
 def rotate_90_deg(image):
     return cupy.rot90(image, k=1, axes=(1, 0))
 
 
 def transpose(image):
     # note: this returns a view of the original image
-    return cupy.transpose(image)
-
+    return cupy.transpose(image, axes=(1,0,2))
 
 def to_ndarray(image):
-    return cupy.asnumpy(image)
+    ndarray = cupy.asnumpy(image)
+    return ndarray
+
 
 locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 #
@@ -27,5 +22,12 @@ locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 
 # def gauss_sigma_2(image) -> float:
 #     pass
+
+
+def load_image_from_path(image_path: str):
+    arr = utils.load_image_from_path(image_path)
+    cupy_arr = cupy.array(arr)
+    return cupy_arr
+
 
 utils.load_funcs(locals(), load_image=load_image_from_path)
