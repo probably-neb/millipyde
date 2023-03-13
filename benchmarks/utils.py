@@ -37,7 +37,7 @@ def load_image_from_path(path: str):
     import imageio.v2 as io
 
     # returns a np.array
-    img = io.imread(path)
+    img = io.imread(path).astype(np.float64)
 
     return img
 
