@@ -1,5 +1,6 @@
 import cv2
 import utils
+import numpy as np
 
 
 def load_image_from_path(path: str):
@@ -13,11 +14,14 @@ def load_image_from_path(path: str):
     return frame
 
 
-def output_image_to_np_array(image, benchmark_name: str):
+def output_image_to_np_array(image):
     # get image back from gpu
     image = image.download()
-    return super().output_image_to_np_array(image, benchmark_name)
+    image = np.array(image)
+    # return benchmark_opencv.output_image_to_np_array(image, benchmark_name)
+    return image
 
+locals()[utils.CONVERTER_FUNC_NAME] = output_image_to_np_array
 
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
