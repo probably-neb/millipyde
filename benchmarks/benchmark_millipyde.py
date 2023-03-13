@@ -77,7 +77,7 @@ if __name__ == "__main__":
             image = load_image_from_path(image_path)
             output_path = utils.get_correct_image_path(image_path, func_name)
             print(output_path)
-            output_image = np.array(func(image)).astype(np.float64)
+            output_image = np.array(func(image))
             print(output_image.shape, output_image.dtype)
             with open(output_path, "wb") as f:
                 np.save(f, output_image)

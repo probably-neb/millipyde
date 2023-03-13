@@ -2,6 +2,7 @@ import pytest
 import utils
 from skimage import transform, exposure, filters
 from skimage.color import rgb2gray, rgba2rgb
+from skimage.util import img_as_ubyte
 import numpy as np
 
 # NOTE: this worked with just rgb2gray(image) in scikit-image=0.18.2 however
@@ -29,7 +30,9 @@ def adjust_gamma_2_gain_1(image):
 
 def gauss_sigma_2(image):
     return filters.gaussian(
-        image, sigma=2, cval=0, truncate=8, mode="constant", channel_axis=2
+        image, sigma=2, cval=0, truncate=8, mode="constant"#, channel_axis=2
     )
+
+locals()[utils.CONVERTER_FUNC_NAME] = img_as_ubyte
 
 utils.load_funcs(locals())

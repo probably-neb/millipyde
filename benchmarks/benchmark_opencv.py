@@ -7,7 +7,6 @@ def load_image_from_path(path: str):
     image = cv2.imread(path, cv2.IMREAD_COLOR)
     # use rgba like a normal library
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
-    image = image.astype(np.float64)
     return image
 
 
