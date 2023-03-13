@@ -19,4 +19,10 @@ def gauss_sigma_2(image) -> float:
     # sigma = 2
     return image.filter(ImageFilter.GaussianBlur(radius=2))
 
+def to_ndarray(image):
+    import numpy
+    return numpy.array(image)
+
+locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
+
 utils.load_funcs(locals(), load_image=load_image_from_path)
