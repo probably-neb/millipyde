@@ -61,15 +61,19 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
     wraps them in what pytest-benchmark wants for a benchmark
     and puts them back"""
 
+    def get_func_from_locals(func_name, default=None):
+        try:
+            return mod_locals[func_name]
+        except KeyError:
+            return default
+
     funcs = []
     for func_name in benchmarks_list():
-        try:
-            benchmark_func = mod_locals[func_name]
-            funcs.append(benchmark_func)
-        except KeyError:
-            pass
+        if func_name in mod_locals:
+            mod_func = mod_locals[func_name]
+            funcs.append(mod_func)
 
-    test_name = mod_locals["__name__"]
+    benchmark_name = mod_locals["__name__"]
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
     verify_name = f"test_{tool_name}_outputs"
 
@@ -101,17 +105,16 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
 
         
         if not isinstance(this_output, np.ndarray):
-            try:
+            if CONVERTER_FUNC_NAME in mod_locals:
                 converter_func = mod_locals[CONVERTER_FUNC_NAME]
                 this_output = converter_func(this_output)
                 assert isinstance(this_output, np.ndarray), f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return an ndarray"
-            except KeyError:
+            else:
                 raise ValueError(f"output image is not a numpy array and there is no function named {CONVERTER_FUNC_NAME} in the module")
-        assert isinstance(this_output, np.ndarray), f"output image is not np array. type={type(this_output)}"
-        assert this_output.shape == correct_output.shape, f"output shape {this_output.shape} does not match millipyde output shape {correct_output.shape}"
-        assert this_output.dtype == correct_output.dtype, f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype})"
+        assert this_output.shape == correct_output.shape, f"output shape {this_output.shape} does not match millipyde output shape {correct_output.shape} (input shape: {load_image_from_path(image_path).shape})"
+        assert this_output.dtype == correct_output.dtype, f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) (input dtype: {input_image.dtype})"
         assert np.allclose(this_output, correct_output, atol=0.5, rtol=0.10), f"output image does not match millipyde output image"
 
     # add the test to the modules locals
-    mod_locals[test_name] = benchmark_func
+    mod_locals[benchmark_name] = benchmark_func
     mod_locals[verify_name] = test_ouput_correct
