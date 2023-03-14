@@ -56,6 +56,12 @@ def get_correct_image_path(image_path, func_name):
     )
     return image_path
 
+def wrap_setup(setup_func):
+    def setup():
+        image = setup_func()
+        return (image,), {}
+    return setup
+
 
 def load_funcs(mod_locals, load_image=load_image_from_path):
     """loads functions from a modules locals
@@ -80,18 +86,19 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
 
     def create_setup_func(image_path):
         def setup():
+            # TODO: load image once here
             image = IMAGES.get(tool_name, {}).get(image_path, None)
             if image is None:
                 image = load_image(image_path)
             # this wierd return signature is required by benchmark.pedantic
             # it represents *args, **kwargs
-            return (), {"image": image}
+            return image
 
         return setup
 
     @pytest.mark.parametrize("func", funcs)
     def benchmark_func(benchmark, func, image_path, rounds):
-        setup = create_setup_func(image_path)
+        setup = wrap_setup(create_setup_func(image_path))
         benchmark.extra_info["image_path"] = image_path
         # TODO: run file once here to get output image type?
         benchmark.pedantic(func, setup=setup, rounds=rounds)
@@ -104,7 +111,7 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
         correct_output = np.load(correct_output_path)
         # correct_output = skimage.util.img_as_ubyte(correct_output)
         setup = create_setup_func(image_path)
-        input_image = setup()[1]["image"]
+        input_image = setup()
         this_output = func(input_image)
         this_output = skimage.util.img_as_float64(this_output)
         
