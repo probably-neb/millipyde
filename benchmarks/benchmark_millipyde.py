@@ -30,10 +30,18 @@ def transpose(image):
     return image
 
 
+def rgb_to_grayscale(image):
+    image.rgb2gray()
+    return image
+
 def gauss_sigma_2(image):
     image.gaussian(2)
     return image
 
+def grayscale_gauss_sigma_2(image):
+    image.rgb2gray()
+    image.gaussian(2)
+    return image
 
 def rotate_90_deg(image):
     image.rotate(90)
@@ -45,10 +53,6 @@ def adjust_gamma_2_gain_1(image):
     return image
 
 
-def rgb_to_grayscale(image):
-    image.rgb2gray()
-    return image
-
 
 utils.load_funcs(locals(), load_image=load_image_from_path)
 
@@ -57,6 +61,7 @@ if __name__ == "__main__":
     import pathlib
     import numpy as np
     import imageio
+    from skimage.util import img_as_float64
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -78,6 +83,7 @@ if __name__ == "__main__":
             output_path = utils.get_correct_image_path(image_path, func_name)
             print(output_path)
             output_image = np.array(func(image))
+            output_image = img_as_float64(output_image)
             print(output_image.shape, output_image.dtype)
             with open(output_path, "wb") as f:
                 np.save(f, output_image)

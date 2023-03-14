@@ -30,9 +30,14 @@ def adjust_gamma_2_gain_1(image):
 
 def gauss_sigma_2(image):
     return filters.gaussian(
-        image, sigma=2, cval=0, truncate=8, mode="constant"#, channel_axis=2
+        image, sigma=2, cval=0, truncate=8, mode="constant", channel_axis=3
     )
 
-locals()[utils.CONVERTER_FUNC_NAME] = img_as_ubyte
+def grayscale_gauss_sigma_2(image):
+    return filters.gaussian(
+        rgb_to_grayscale(image), sigma=2, cval=0, truncate=8, mode="constant"
+    )
+
+# locals()[utils.CONVERTER_FUNC_NAME] = img_as_ubyte
 
 utils.load_funcs(locals())

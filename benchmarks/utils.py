@@ -26,6 +26,7 @@ def benchmarks_list():
     return [
         "transpose",
         "gauss_sigma_2",
+        "grayscale_gauss_sigma_2",
         "rotate_90_deg",
         "rgb_to_grayscale",
         "adjust_gamma_2_gain_1",
@@ -100,11 +101,12 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
     def test_ouput_correct(func, image_path,tool):
         correct_output_path = get_correct_image_path(image_path, func.__name__)
         import skimage
-        correct_output = skimage.util.img_as_ubyte(np.load(correct_output_path))
+        correct_output = np.load(correct_output_path)
+        # correct_output = skimage.util.img_as_ubyte(correct_output)
         setup = create_setup_func(image_path)
         input_image = setup()[1]["image"]
         this_output = func(input_image)
-
+        this_output = skimage.util.img_as_float64(this_output)
         
         is_ndarray = isinstance(this_output, np.ndarray)
         is_correct_dtype = is_ndarray and (this_output.dtype == correct_output.dtype)
@@ -116,7 +118,7 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
                 
                 # assert this_output.dtype == correct_output.dtype, f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return ndarray of correct dtype: {correct_output.dtype}"
                 # FIXME: explicit type conversion in modules
-                this_output = skimage.util.img_as_ubyte(this_output)
+                this_output = skimage.util.img_as_float64(this_output)
                 #f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) ({input_image.dtype if hasattr(input_image,'dtype') else 'input image has no dtype attr'})"
             else:
                 msg = f"a numpy array (actual type: {type(this_output)})" if not is_ndarray else f"of correct dtype ({correct_output.dtype})"
