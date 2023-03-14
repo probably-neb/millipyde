@@ -2,5 +2,4 @@
 
 . ./env/bin/activate
 pip install -r ./benchmarking-requirements.txt --quiet
-cd benchmarks
-python bench.py
+py.test --benchmark-only
