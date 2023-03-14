@@ -19,9 +19,8 @@ import millipyde as mp
 # autopep8: on
 
 
-def load_image_from_path(path: str):
-    img = utils.load_image_from_path(path)
-    image = mp.gpuimage(img)
+def gpuimage_from_ndarray(ndarray):
+    image = mp.gpuimage(ndarray)
     return image
 
 
@@ -54,7 +53,7 @@ def adjust_gamma_2_gain_1(image):
 
 
 
-utils.load_funcs(locals(), load_image=load_image_from_path)
+utils.load_funcs(locals(), image_from_ndarray=gpuimage_from_ndarray)
 
 if __name__ == "__main__":
     import argparse
@@ -79,7 +78,7 @@ if __name__ == "__main__":
             continue
         func = locals()[func_name]
         for image_path in args.images:
-            image = load_image_from_path(image_path)
+            image = gpuimage_from_ndarray(utils.load_image_from_path(image_path))
             output_path = utils.get_correct_image_path(image_path, func_name)
             print(output_path)
             output_image = np.array(func(image))

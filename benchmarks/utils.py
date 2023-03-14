@@ -62,8 +62,10 @@ def wrap_setup(setup_func):
         return (image,), {}
     return setup
 
+def identity(x):
+    return x
 
-def load_funcs(mod_locals, load_image=load_image_from_path):
+def load_funcs(mod_locals, image_from_ndarray=identity):
     """loads functions from a modules locals
     wraps them in what pytest-benchmark wants for a benchmark
     and puts them back"""
@@ -86,10 +88,8 @@ def load_funcs(mod_locals, load_image=load_image_from_path):
 
     def create_setup_func(image_path):
         def setup():
-            # TODO: load image once here
-            image = IMAGES.get(tool_name, {}).get(image_path, None)
-            if image is None:
-                image = load_image(image_path)
+            # TODO: memoize load image once here
+            image = image_from_ndarray(load_image_from_path(image_path))
             # this wierd return signature is required by benchmark.pedantic
             # it represents *args, **kwargs
             return image

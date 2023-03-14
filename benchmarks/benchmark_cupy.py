@@ -11,14 +11,9 @@ def transpose(image):
     # note: this returns a view of the original image
     return cupy.transpose(image, axes=(1,0,2))
 
-def to_ndarray(image):
-    ndarray = cupy.asnumpy(image)
-    return ndarray
-
 def gauss_sigma_2(image):
     return gaussian_filter(image, sigma=2)
 
-locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 #
 # def rgb_to_grayscale(image) -> float:
 #     pass
@@ -27,10 +22,15 @@ locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 #     pass
 
 
-def load_image_from_path(image_path: str):
-    arr = utils.load_image_from_path(image_path)
-    cupy_arr = cupy.array(arr)
+def cupy_array_from_ndarray(ndarray):
+    cupy_arr = cupy.array(ndarray)
     return cupy_arr
 
+def cupy_array_to_ndarray(image):
+    ndarray = cupy.asnumpy(image)
+    return ndarray
 
-utils.load_funcs(locals(), load_image=load_image_from_path)
+
+locals()[utils.CONVERTER_FUNC_NAME] = cupy_array_to_ndarray
+
+utils.load_funcs(locals(), image_from_ndarray=cupy_array_from_ndarray)

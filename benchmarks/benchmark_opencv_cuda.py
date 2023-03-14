@@ -13,6 +13,10 @@ def load_image_from_path(path: str):
 
     return frame
 
+def gpumat_from_ndarray(ndarray):
+    frame = cv2.cuda_GpuMat()
+    frame.upload(ndarray)
+    return frame
 
 def output_image_to_np_array(image):
     # get image back from gpu
@@ -75,7 +79,7 @@ def rotate_90_deg(image):
 
 try:
     assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
-    utils.load_funcs(locals(), load_image_from_path)
+    utils.load_funcs(locals(), image_from_ndarray=gpumat_from_ndarray)
 except AssertionError:
     # don't load if OpenCV Cuda is not installed
     pass

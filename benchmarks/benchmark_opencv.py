@@ -48,4 +48,4 @@ def rotate_90_deg(image):
     return rotated
 
 
-utils.load_funcs(locals(), load_image_from_path)
+utils.load_funcs(locals())
