@@ -1,4 +1,5 @@
 import cupy
+from cupyx.scipy.ndimage import gaussian_filter
 import utils
 
 
@@ -14,6 +15,8 @@ def to_ndarray(image):
     ndarray = cupy.asnumpy(image)
     return ndarray
 
+def gauss_sigma_2(image):
+    return gaussian_filter(image, sigma=2)
 
 locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 #
