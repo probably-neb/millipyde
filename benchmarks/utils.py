@@ -18,6 +18,7 @@ CORRECT_IMAGE_OUTPUT_DIR = benchmarks_subpath("outputs/correct/")
 
 CONVERTER_FUNC_NAME = "convert_output_to_uint8_ndarray"
 
+
 def ansi(s) -> str:
     return f"\033[95m{s}\033[0m"
 
@@ -43,9 +44,6 @@ def load_image_from_path(path: str):
     return img
 
 
-IMAGES = {}
-
-
 def get_correct_image_path(image_path, func_name):
     image_path = Path(image_path)
     if not image_path.is_file():
@@ -60,10 +58,42 @@ def wrap_setup(setup_func):
     def setup():
         image = setup_func()
         return (image,), {}
+
     return setup
+
+def create_setup_func(image_path, image_from_ndarray):
+    def setup():
+        # TODO: memoize load image once here
+        image = image_from_ndarray(load_image_from_path(image_path))
+        # this wierd return signature is required by benchmark.pedantic
+        # it represents *args, **kwargs
+        return image
+
+    return wrap_setup(setup)
+
 
 def identity(x):
     return x
+
+def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identity):
+    benchmark.extra_info["image_path"] = image_path
+    setup = create_setup_func(image_path, image_from_ndarray)
+    benchmark.extra_info["image_path"] = image_path
+    # TODO: run file once here to get output image type?
+    benchmark.pedantic(func, setup=setup, rounds=rounds)
+
+def _create_benchmark_func(func,image_from_ndarray):
+    # the parameters are fixtures, i.e. keywords that tell the testing framework
+    # what to pass to the function
+    def benchmark_func(benchmark, image_path, rounds):
+        run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray)
+    return benchmark_func
+
+def create_benchmark(func,image_from_ndarray,locals):
+    tool_name = locals["__name__"].replace("benchmark_", "")
+    benchmark_name = f"benchmark_{tool_name}_{func.__name__}"
+    benchmark_func = _create_benchmark_func(func,image_from_ndarray)
+    locals[benchmark_name] = benchmark_func
 
 def load_funcs(mod_locals, image_from_ndarray=identity):
     """loads functions from a modules locals
@@ -80,69 +110,67 @@ def load_funcs(mod_locals, image_from_ndarray=identity):
     for func_name in benchmarks_list():
         if func_name in mod_locals:
             mod_func = mod_locals[func_name]
+            create_benchmark(mod_func,image_from_ndarray,mod_locals)
             funcs.append(mod_func)
 
     benchmark_name = mod_locals["__name__"]
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
     verify_name = f"test_{tool_name}_outputs"
 
-    def create_setup_func(image_path):
-        def setup():
-            # TODO: memoize load image once here
-            image = image_from_ndarray(load_image_from_path(image_path))
-            # this wierd return signature is required by benchmark.pedantic
-            # it represents *args, **kwargs
-            return image
-
-        return setup
-
-    @pytest.mark.parametrize("func", funcs)
-    def benchmark_func(benchmark, func, image_path, rounds):
-        setup = wrap_setup(create_setup_func(image_path))
-        benchmark.extra_info["image_path"] = image_path
-        # TODO: run file once here to get output image type?
-        benchmark.pedantic(func, setup=setup, rounds=rounds)
 
     @pytest.mark.parametrize("func", funcs)
     @pytest.mark.parametrize("tool", [tool_name])
-    def test_ouput_correct(func, image_path,tool):
+    def test_ouput_correct(func, image_path, tool):
         correct_output_path = get_correct_image_path(image_path, func.__name__)
         import skimage
+
         correct_output = np.load(correct_output_path)
         # correct_output = skimage.util.img_as_ubyte(correct_output)
-        setup = create_setup_func(image_path)
-        input_image = setup()
+        input_image = image_from_ndarray(load_image_from_path(image_path))
         this_output = func(input_image)
         this_output = skimage.util.img_as_float64(this_output)
-        
+
         is_ndarray = isinstance(this_output, np.ndarray)
         is_correct_dtype = is_ndarray and (this_output.dtype == correct_output.dtype)
         if not (is_ndarray and is_correct_dtype):
             if CONVERTER_FUNC_NAME in mod_locals:
                 converter_func = mod_locals[CONVERTER_FUNC_NAME]
                 this_output = converter_func(this_output)
-                assert isinstance(this_output, np.ndarray), f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return an ndarray"
-                
+                assert isinstance(
+                    this_output, np.ndarray
+                ), f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return an ndarray"
+
                 # assert this_output.dtype == correct_output.dtype, f"{CONVERTER_FUNC_NAME} function of {tool_name} did not return ndarray of correct dtype: {correct_output.dtype}"
                 # FIXME: explicit type conversion in modules
                 this_output = skimage.util.img_as_float64(this_output)
-                #f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) ({input_image.dtype if hasattr(input_image,'dtype') else 'input image has no dtype attr'})"
+                # f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) ({input_image.dtype if hasattr(input_image,'dtype') else 'input image has no dtype attr'})"
             else:
-                msg = f"a numpy array (actual type: {type(this_output)})" if not is_ndarray else f"of correct dtype ({correct_output.dtype})"
-                raise ValueError(f"output image is not {msg} and there is no function named {CONVERTER_FUNC_NAME} in the module")
+                msg = (
+                    f"a numpy array (actual type: {type(this_output)})"
+                    if not is_ndarray
+                    else f"of correct dtype ({correct_output.dtype})"
+                )
+                raise ValueError(
+                    f"output image is not {msg} and there is no function named {CONVERTER_FUNC_NAME} in the module"
+                )
         # this_output = this_output.astype(correct_output.dtype)
-        assert this_output.shape == correct_output.shape, f"output shape {this_output.shape} does not match millipyde output shape {correct_output.shape} (input shape: {load_image_from_path(image_path).shape})"
-        assert this_output.dtype == correct_output.dtype, f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) ({input_image.dtype if hasattr(input_image,'dtype') else 'input image has no dtype attr'})"
-        RTOL=.10
+        assert (
+            this_output.shape == correct_output.shape
+        ), f"output shape {this_output.shape} does not match millipyde output shape {correct_output.shape} (input shape: {load_image_from_path(image_path).shape})"
+        assert (
+            this_output.dtype == correct_output.dtype
+        ), f"output dtype ({this_output.dtype}) does not match millipyde output dtype ({correct_output.dtype}) ({input_image.dtype if hasattr(input_image,'dtype') else 'input image has no dtype attr'})"
+        RTOL = 0.10
         try:
             np.testing.assert_allclose(this_output, correct_output, rtol=RTOL)
         except AssertionError as e:
             msg = e.args[0]
-        assert np.allclose(this_output, correct_output, rtol=RTOL), f"output image does not match millipyde output image {msg}"
+        assert np.allclose(
+            this_output, correct_output, rtol=RTOL
+        ), f"output image does not match millipyde output image {msg}"
 
     # TODO:
     # def benchmark_load_image_time
 
     # add the test to the modules locals
-    mod_locals[benchmark_name] = benchmark_func
     mod_locals[verify_name] = test_ouput_correct
