@@ -98,7 +98,7 @@ def _create_benchmark_func(func, image_from_ndarray):
     return benchmark_func
 
 
-def create_benchmark(func, image_from_ndarray, locals):
+def create_benchmark(func, locals, image_from_ndarray=identity):
     tool_name = locals["__name__"].replace("benchmark_", "")
     benchmark_name = f"benchmark_{tool_name}_{func.__name__}"
     if not benchmark_name in locals:
@@ -132,7 +132,7 @@ def convert_image_type_to_float(image):
     return img_as_float64(image)
 
 def create_output_verifier(
-    func, image_from_ndarray, mod_locals, image_to_ndarray=convert_image_type_to_float
+    func, mod_locals, image_from_ndarray=identity, image_to_ndarray=convert_image_type_to_float
 ):
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
 
@@ -151,7 +151,7 @@ def create_output_verifier(
         mod_locals[verify_name] = test_ouput_correct
 
 
-def load_funcs(mod_locals, image_from_ndarray=identity):
+def load_funcs(mod_locals, image_from_ndarray=identity,image_to_ndarray=convert_image_type_to_float):
     """loads functions from a modules locals
     wraps them in what pytest-benchmark wants for a benchmark
     and puts them back"""
@@ -159,8 +159,8 @@ def load_funcs(mod_locals, image_from_ndarray=identity):
     for func_name in benchmarks_list():
         if func_name in mod_locals:
             mod_func = mod_locals[func_name]
-            create_benchmark(mod_func, image_from_ndarray, mod_locals)
-            create_output_verifier(mod_func, image_from_ndarray, mod_locals)
+            create_benchmark(mod_func, mod_locals, image_from_ndarray)
+            create_output_verifier(mod_func, mod_locals, image_from_ndarray,image_to_ndarray)
 
             # TODO:
             # def benchmark_load_image_time
