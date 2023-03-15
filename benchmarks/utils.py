@@ -114,11 +114,13 @@ def get_millipyde_output(image_path, func_name):
     correct_output = np.load(correct_output_path)
     return correct_output
 
-def percent_mismatched(numpy_error_message):
-    search = PERCENT_MISMATCHED_REGEX.search(numpy_error_message)
-    if search is None:
-        return -1
-    return float(PERCENT_MISMATCHED_REGEX.search(numpy_error_message).group(1))
+def percent_mismatched(a,b):
+    # https://numpy.org/doc/stable/reference/generated/numpy.allclose.html#numpy.allclose
+    # absolute(a - b) <= (atol + rtol * absolute(b))
+    res = np.abs(a - b) <= (ABSOLUTE_TOLERANCE + RELATIVE_TOLERANCE * np.abs(b))
+    assert res.dtype == bool, "res is not bool array"
+    assert a.size == res.size, f"res {res.shape} is not same size as image {a.shape}"
+    return 100.0 - (res.sum() / a.size * 100.0)
 
 def check_output(actual_output, millipyde_output):
     assert (
@@ -128,16 +130,13 @@ Use the {convert_image_type_to_float.__name__} function in utils to convert the 
     assert (
         actual_output.shape == millipyde_output.shape
     ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape}"
-    try:
-        np.testing.assert_allclose(actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE)
-    except AssertionError as e:
-        msg = e.args[0]
-        prc_mismatched = percent_mismatched(msg)
-        if prc_mismatched < PERCENT_MISMATCHED_TOLERANCE and prc_mismatched > 0:
-            return
+    # np.testing.assert_allclose(actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE)
+    prc_mismatched = percent_mismatched(actual_output, millipyde_output)
+    if prc_mismatched < PERCENT_MISMATCHED_TOLERANCE and prc_mismatched > 0:
+        return
     assert np.allclose(
         actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE
-    ), f"output image does not match millipyde output image {msg}"
+        ), f"output image does not match millipyde output image. Mismatched: {prc_mismatched:.3}%"
 
 
 def convert_image_type_to_float(image):
