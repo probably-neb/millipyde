@@ -2,6 +2,7 @@ from pathlib import Path
 import os.path as path
 import numpy as np
 import copy
+from imageio.v2 import imread
 
 
 BENCHMARKS_DIR = Path(__file__).parent
@@ -38,13 +39,16 @@ def benchmarks_list():
     ]
 
 
+IMAGES = {}
+
+
 def load_image_from_path(path: str):
-    import imageio.v2 as io
 
-    # returns a np.array
-    img = io.imread(path)
-
-    return img
+    if path not in IMAGES:
+        img = imread(path)
+        IMAGES[path] = img
+    # assert np.array_equal(imread(path), IMAGES[path]), "ndarray changed during test"
+    return copy.deepcopy(IMAGES[path])
 
 
 def get_correct_image_path(image_path, func_name):
@@ -75,7 +79,7 @@ def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identi
     # TODO: run file once here to get output image type?
     @wrap_setup
     def setup():
-        return image_from_ndarray(copy.deepcopy(ndarray))
+        return image_from_ndarray(ndarray)
 
     benchmark.extra_info["image_info"] = {
         "path": image_path,
@@ -83,7 +87,6 @@ def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identi
         "shape": ndarray.shape,
     }
     benchmark.pedantic(func, setup=setup, rounds=rounds)
-    # assert np.array_equal(ndarray,load_image_from_path(image_path)), "ndarray changed during test"
 
 
 def _create_benchmark_func(func, image_from_ndarray):
