@@ -22,6 +22,7 @@ RTOL = 0.10
 
 COMPARISON_TYPE = np.float64
 
+
 def ansi(s) -> str:
     return f"\033[95m{s}\033[0m"
 
@@ -115,10 +116,11 @@ def get_millipyde_output(image_path, func_name):
 def verify_output(actual_output, millipyde_output):
     assert (
         actual_output.dtype == COMPARISON_TYPE
-    ), f"output dtype ({actual_output.dtype}) does not match {COMPARISON_TYPE} which is the dtype used for comparison"
+    ), f"""output dtype ({actual_output.dtype}) does not match {COMPARISON_TYPE} which is the dtype used for comparison.
+Use the {convert_image_type_to_float.__name__} function in utils to convert the image to the correct type"""
     assert (
         actual_output.shape == millipyde_output.shape
-    ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape} (input shape: {load_image_from_path(image_path).shape})"
+    ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape}"
     try:
         np.testing.assert_allclose(actual_output, millipyde_output, rtol=RTOL)
     except AssertionError as e:
@@ -127,12 +129,19 @@ def verify_output(actual_output, millipyde_output):
         actual_output, millipyde_output, rtol=RTOL
     ), f"output image does not match millipyde output image {msg}"
 
+
 def convert_image_type_to_float(image):
+    assert isinstance(image,np.ndarray), f"convert_image_type_to_float: expected image to be of type: np.ndarray but found: {type(image)}"
     from skimage.util import img_as_float64
+
     return img_as_float64(image)
 
+
 def create_output_verifier(
-    func, mod_locals, image_from_ndarray=identity, image_to_ndarray=convert_image_type_to_float
+    func,
+    mod_locals,
+    image_from_ndarray=identity,
+    image_to_ndarray=np.asarray,
 ):
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
 
@@ -141,6 +150,9 @@ def create_output_verifier(
 
         input_image = image_from_ndarray(load_image_from_path(image_path))
         output = image_to_ndarray(func(input_image))
+        allowed_types = [np.uint8, np.float64]
+        assert output.dtype in allowed_types, f"expected dtype of resulting np.array to be np.uint8 or np.float64 but found {output.dtype}"
+        output = convert_image_type_to_float(output)
 
         millipyde_output = get_millipyde_output(image_path, func.__name__)
 
@@ -151,7 +163,11 @@ def create_output_verifier(
         mod_locals[verify_name] = test_ouput_correct
 
 
-def load_funcs(mod_locals, image_from_ndarray=identity,image_to_ndarray=convert_image_type_to_float):
+def load_funcs(
+    mod_locals,
+    image_from_ndarray=identity,
+    image_to_ndarray=np.asarray,
+):
     """loads functions from a modules locals
     wraps them in what pytest-benchmark wants for a benchmark
     and puts them back"""
@@ -160,7 +176,9 @@ def load_funcs(mod_locals, image_from_ndarray=identity,image_to_ndarray=convert_
         if func_name in mod_locals:
             mod_func = mod_locals[func_name]
             create_benchmark(mod_func, mod_locals, image_from_ndarray)
-            create_output_verifier(mod_func, mod_locals, image_from_ndarray,image_to_ndarray)
+            create_output_verifier(
+                mod_func, mod_locals, image_from_ndarray, image_to_ndarray
+            )
 
             # TODO:
             # def benchmark_load_image_time
