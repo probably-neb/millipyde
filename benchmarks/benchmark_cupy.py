@@ -28,9 +28,9 @@ def cupy_array_from_ndarray(ndarray):
 
 def cupy_array_to_ndarray(image):
     ndarray = cupy.asnumpy(image)
-    return ndarray
+    return utils.convert_image_type_to_float(ndarray)
 
 
 locals()[utils.CONVERTER_FUNC_NAME] = cupy_array_to_ndarray
 
-utils.load_funcs(locals(), image_from_ndarray=cupy_array_from_ndarray)
+utils.load_funcs(locals(), image_from_ndarray=cupy_array_from_ndarray,image_to_ndarray=cupy_array_to_ndarray)
