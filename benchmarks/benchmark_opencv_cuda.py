@@ -3,7 +3,6 @@ import utils
 import numpy as np
 
 
-
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
 
@@ -14,9 +13,6 @@ def transpose(image):
 
 def gauss_sigma_2(image):
 
-    # get datatype of cuda_GpuMat:
-    # frame.type()
-    #
     # chart mapping resulting int to opencv datatypes:
     # https://stackoverflow.com/a/39780825
 
@@ -24,9 +20,6 @@ def gauss_sigma_2(image):
         cv2.CV_8UC4, cv2.CV_8UC4, ksize=(0, 0), sigma1=2, sigma2=2
     )
     return filter.apply(image)
-    # return cv2.cuda.GaussianBlur(
-    #     image, ksize=(0, 0), sigmaX=2, sigmaY=2, borderType=cv2.cuda.BORDER_CONSTANT
-    # )
 
 
 def rotate_90_deg(image):
@@ -44,7 +37,7 @@ def rotate_90_deg(image):
                 | v |                |   |
     """
     # frame.size == np.array.shape[:2]
-    (h, w) = image.size()
+    (w, h) = image.size()
 
     center = (w // 2, h // 2)
 
@@ -52,6 +45,7 @@ def rotate_90_deg(image):
     rotated = cv2.cuda.warpAffine(image, M, (w, h))
 
     return rotated
+
 
 def load_image_from_path(path: str):
     image = cv2.imread(path, cv2.IMREAD_COLOR)
@@ -63,10 +57,12 @@ def load_image_from_path(path: str):
 
     return frame
 
+
 def gpumat_from_np_array(ndarray):
     frame = cv2.cuda_GpuMat()
     frame.upload(ndarray)
     return frame
+
 
 def gpumat_to_np_array(image):
     # get image back from gpu
@@ -74,9 +70,14 @@ def gpumat_to_np_array(image):
     image = np.array(image)
     return image
 
+
 try:
     assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
-    utils.load_funcs(locals(), image_from_ndarray=gpumat_from_np_array, image_to_ndarray=gpumat_to_np_array)
+    utils.load_funcs(
+        locals(),
+        image_from_ndarray=gpumat_from_np_array,
+        image_to_ndarray=gpumat_to_np_array,
+    )
 except AssertionError:
     # don't load if OpenCV Cuda is not installed
     pass
