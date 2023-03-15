@@ -1,6 +1,5 @@
 import cv2
 import utils
-from utils import UnavoidableDifference
 import numpy as np
 from benchmark_scikit_image import TRUNCATE
 
@@ -41,7 +40,7 @@ def compare_gauss_sigma_2(actual,millipyde):
     assert not np.all(actual[:,:,-1] == 1.0), "Assumed opencv gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
     assert np.all(millipyde[:,:,-1] == 1.0), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
     # NOTE: the difference between the channels of each image is consistent
-    raise UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(actual - millipyde):.3} std dev: {np.std(actual-millipyde):.3}")
+    raise utils.UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(actual - millipyde):.3} std dev: {np.std(actual-millipyde):.3}")
 
 utils.create_output_verifier(gauss_sigma_2, locals(),image_to_ndarray=utils.identity, verify_output=compare_gauss_sigma_2)
 

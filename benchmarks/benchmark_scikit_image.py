@@ -43,8 +43,9 @@ def gauss_sigma_2(image):
 def compare_gauss_sigma_2(actual,millipyde):
     assert not np.all(actual[:,:,-1] == 1.0), "Assumed skimage gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
     assert np.all(millipyde[:,:,-1] == 1.0), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
-    # NOTE: the difference between the channels of each image is consistent
-    raise utils.UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, skimage treats it as another channel.")
+    argb = actual[:, :, :3]
+    brgb = millipyde[:, :, :3]
+    raise utils.UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, skimage treats it as another channel. Diff between rgb channels is not consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3}")
 
 utils.create_output_verifier(gauss_sigma_2, locals(), verify_output=compare_gauss_sigma_2)
 

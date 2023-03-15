@@ -162,10 +162,10 @@ def create_output_verifier(
 
         input_image = image_from_ndarray(load_image_from_path(image_path))
         output = image_to_ndarray(func(input_image))
-        allowed_types = [np.uint8, np.float64]
+        allowed_types = [np.uint8, np.float64, np.float32]
         assert (
             output.dtype in allowed_types
-        ), f"expected dtype of resulting np.array to be np.uint8 or np.float64 but found {output.dtype}"
+        ), f"expected dtype of resulting np.array to be u8, f32, or f64 but found {output.dtype}"
         output = convert_image_type_to_float(output)
 
         millipyde_output = get_millipyde_output(image_path, func.__name__)

@@ -1,5 +1,6 @@
 import cupy
 from cupyx.scipy.ndimage import gaussian_filter, rotate
+import numpy as np
 import utils
 import cv2
 
@@ -40,11 +41,28 @@ def transpose(image):
 
 
 def gauss_sigma_2(image):
-    return gaussian_filter(
-        image, sigma=2, truncate=8, cval=0, mode="constant"
-    )
+    return gaussian_filter(image, sigma=2, truncate=8, cval=0, mode="constant")
 
 
+def compare_gauss_sigma_2(actual, millipyde):
+    assert not np.all(
+        actual[:, :, -1] == 1.0
+    ), "Assumed cupy gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
+    assert np.all(
+        millipyde[:, :, -1] == 1.0
+    ), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
+    argb = actual[:, :, :3]
+    brgb = millipyde[:, :, :3]
+    raise utils.UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, cupy treats it as another channel. Diff between rgb channels is not consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3}")
+
+
+utils.create_output_verifier(
+    gauss_sigma_2,
+    locals(),
+    image_to_ndarray=cupy_array_to_ndarray,
+    image_from_ndarray=cupy_array_from_ndarray,
+    verify_output=compare_gauss_sigma_2,
+)
 #
 # def rgb_to_grayscale(image) -> float:
 #     pass
