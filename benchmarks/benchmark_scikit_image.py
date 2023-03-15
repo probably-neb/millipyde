@@ -5,6 +5,8 @@ from skimage.color import rgb2gray, rgba2rgb
 from skimage.util import img_as_ubyte
 import numpy as np
 
+TRUNCATE=8
+
 # NOTE: this worked with just rgb2gray(image) in scikit-image=0.18.2 however
 # it raised a warning that rgb2gray(rgba2rgb(image)) was the proper way
 # and doing only rgb2gray on rgba image would throw an error in the next
@@ -30,7 +32,7 @@ def adjust_gamma_2_gain_1(image):
 
 def gauss_sigma_2(image):
     return filters.gaussian(
-        image, sigma=2, cval=0, truncate=8, mode="constant", channel_axis=3
+        image, sigma=2, cval=0, truncate=TRUNCATE, mode="constant", channel_axis=3
     )
 
 def grayscale_gauss_sigma_2(image):
