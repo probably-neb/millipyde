@@ -1,8 +1,7 @@
-import pytest
 from pathlib import Path
 import os.path as path
 import numpy as np
-import numpy.testing as npt
+import copy
 
 
 BENCHMARKS_DIR = Path(__file__).parent
@@ -67,27 +66,24 @@ def wrap_setup(setup_func):
     return setup
 
 
-def create_setup_func(image_path, image_from_ndarray):
-    def setup():
-        # TODO: memoize load image once here
-        image = image_from_ndarray(load_image_from_path(image_path))
-        # this wierd return signature is required by benchmark.pedantic
-        # it represents *args, **kwargs
-        return image
-
-    return wrap_setup(setup)
-
-
 def identity(x):
     return x
 
 
 def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identity):
-    benchmark.extra_info["image_path"] = image_path
-    setup = create_setup_func(image_path, image_from_ndarray)
-    benchmark.extra_info["image_path"] = image_path
+    ndarray = load_image_from_path(image_path)
     # TODO: run file once here to get output image type?
+    @wrap_setup
+    def setup():
+        return image_from_ndarray(copy.deepcopy(ndarray))
+
+    benchmark.extra_info["image_info"] = {
+        "path": image_path,
+        "dtype": ndarray.dtype,
+        "shape": ndarray.shape,
+    }
     benchmark.pedantic(func, setup=setup, rounds=rounds)
+    # assert np.array_equal(ndarray,load_image_from_path(image_path)), "ndarray changed during test"
 
 
 def _create_benchmark_func(func, image_from_ndarray):
@@ -131,7 +127,9 @@ Use the {convert_image_type_to_float.__name__} function in utils to convert the 
 
 
 def convert_image_type_to_float(image):
-    assert isinstance(image,np.ndarray), f"convert_image_type_to_float: expected image to be of type: np.ndarray but found: {type(image)}"
+    assert isinstance(
+        image, np.ndarray
+    ), f"convert_image_type_to_float: expected image to be of type: np.ndarray but found: {type(image)}"
     from skimage.util import img_as_float64
 
     return img_as_float64(image)
@@ -152,7 +150,9 @@ def create_output_verifier(
         input_image = image_from_ndarray(load_image_from_path(image_path))
         output = image_to_ndarray(func(input_image))
         allowed_types = [np.uint8, np.float64]
-        assert output.dtype in allowed_types, f"expected dtype of resulting np.array to be np.uint8 or np.float64 but found {output.dtype}"
+        assert (
+            output.dtype in allowed_types
+        ), f"expected dtype of resulting np.array to be np.uint8 or np.float64 but found {output.dtype}"
         output = convert_image_type_to_float(output)
 
         millipyde_output = get_millipyde_output(image_path, func.__name__)
