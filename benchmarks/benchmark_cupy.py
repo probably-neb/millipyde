@@ -20,7 +20,7 @@ def rotate_90_deg(image):
 
 def compare_rotate_90(a, b):
     raise utils.UnavoidableDifference(
-        f"cupy cuts a few pixels from the edges and has a few pixel distortions. {utils.percent_mismatched(a,b):.3}% mismatched"
+        f"{utils.percent_mismatched(a,b):.4}% mismatch due to different handling of top and bottom edge (see README)"
     )
 
 
@@ -40,7 +40,9 @@ def transpose(image):
 
 
 def gauss_sigma_2(image):
-    return gaussian_filter(image, sigma=2, truncate=8, cval=0, mode="constant", output=cupy.float32)
+    return gaussian_filter(
+        image, sigma=2, truncate=8, cval=0, mode="constant"
+    )
 
 
 #

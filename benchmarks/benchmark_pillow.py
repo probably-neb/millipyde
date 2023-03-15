@@ -6,15 +6,19 @@ def pil_image_from_ndarray(ndarray):
     return Image.fromarray(ndarray)
 
 
-def to_ndarray(image):
-    import numpy
-
-    return numpy.array(image)
-
+# def to_ndarray(image):
+#     import numpy
+#
+#     return numpy.array(image)
+#
 
 def rotate_90_deg(image):
     return image.rotate(90)
 
+def compare_rotate_90(a,b):
+    raise utils.UnavoidableDifference(f"{utils.percent_mismatched(a,b):.4}% mismatch due to different handling of top and bottom edge (see README)")
+
+utils.create_output_verifier( rotate_90_deg, locals(), image_from_ndarray=pil_image_from_ndarray, verify_output=compare_rotate_90)
 
 def transpose(image) -> float:
     return image.transpose(Image.Transpose.TRANSPOSE)
@@ -40,10 +44,7 @@ utils.create_output_verifier(
     gauss_sigma_2,
     locals(),
     image_from_ndarray=pil_image_from_ndarray,
-    image_to_ndarray=to_ndarray,
     verify_output=compare_gauss_sigma_2,
 )
-
-locals()[utils.CONVERTER_FUNC_NAME] = to_ndarray
 
 utils.load_funcs(locals(), image_from_ndarray=pil_image_from_ndarray)

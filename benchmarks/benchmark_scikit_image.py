@@ -28,7 +28,7 @@ def rotate_90_deg(image):
     return transform.rotate(image, 90)
 
 def compare_rotate_90(a,b):
-    raise utils.UnavoidableDifference(f"skimage and millipyde crop the images differently. The difference is dimmininshed the larger the image size. mismatched: {utils.percent_mismatched(a,b):.4}%")
+    raise utils.UnavoidableDifference(f"{utils.percent_mismatched(a,b):.4}% mismatch due to different handling of top and bottom edge (see README)")
 
 utils.create_output_verifier(rotate_90_deg, locals(), verify_output=compare_rotate_90)
 
