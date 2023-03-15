@@ -27,6 +27,11 @@ def transpose(image):
 def rotate_90_deg(image):
     return transform.rotate(image, 90)
 
+def compare_rotate_90(a,b):
+    raise utils.UnavoidableDifference(f"skimage and millipyde crop the images differently. The difference is dimmininshed the larger the image size. mismatched: {utils.percent_mismatched(a,b):.4}%")
+
+utils.create_output_verifier(rotate_90_deg, locals(), verify_output=compare_rotate_90)
+
 def adjust_gamma_2_gain_1(image):
     return exposure.adjust_gamma(image, 2, 1)
 
