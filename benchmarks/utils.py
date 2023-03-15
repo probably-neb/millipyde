@@ -101,8 +101,9 @@ def _create_benchmark_func(func, image_from_ndarray):
 def create_benchmark(func, image_from_ndarray, locals):
     tool_name = locals["__name__"].replace("benchmark_", "")
     benchmark_name = f"benchmark_{tool_name}_{func.__name__}"
-    benchmark_func = _create_benchmark_func(func, image_from_ndarray)
-    locals[benchmark_name] = benchmark_func
+    if not benchmark_name in locals:
+        benchmark_func = _create_benchmark_func(func, image_from_ndarray)
+        locals[benchmark_name] = benchmark_func
 
 
 def get_millipyde_output(image_path, func_name):
@@ -146,7 +147,8 @@ def create_output_verifier(
         verify_output(output, millipyde_output)
 
     verify_name = f"test_{tool_name}_{func.__name__}_output"
-    mod_locals[verify_name] = test_ouput_correct
+    if not verify_name in mod_locals:
+        mod_locals[verify_name] = test_ouput_correct
 
 
 def load_funcs(mod_locals, image_from_ndarray=identity):
