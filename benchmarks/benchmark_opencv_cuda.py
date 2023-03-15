@@ -3,29 +3,6 @@ import utils
 import numpy as np
 
 
-def load_image_from_path(path: str):
-    image = cv2.imread(path, cv2.IMREAD_COLOR)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
-
-    # send image to gpu
-    frame = cv2.cuda_GpuMat()
-    frame.upload(image)
-
-    return frame
-
-def gpumat_from_ndarray(ndarray):
-    frame = cv2.cuda_GpuMat()
-    frame.upload(ndarray)
-    return frame
-
-def output_image_to_np_array(image):
-    # get image back from gpu
-    image = image.download()
-    image = np.array(image)
-    # return benchmark_opencv.output_image_to_np_array(image, benchmark_name)
-    return image
-
-locals()[utils.CONVERTER_FUNC_NAME] = output_image_to_np_array
 
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
@@ -76,10 +53,30 @@ def rotate_90_deg(image):
 
     return rotated
 
+def load_image_from_path(path: str):
+    image = cv2.imread(path, cv2.IMREAD_COLOR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
+
+    # send image to gpu
+    frame = cv2.cuda_GpuMat()
+    frame.upload(image)
+
+    return frame
+
+def gpumat_from_np_array(ndarray):
+    frame = cv2.cuda_GpuMat()
+    frame.upload(ndarray)
+    return frame
+
+def gpumat_to_np_array(image):
+    # get image back from gpu
+    image = image.download()
+    image = np.array(image)
+    return image
 
 try:
     assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
-    utils.load_funcs(locals(), image_from_ndarray=gpumat_from_ndarray)
+    utils.load_funcs(locals(), image_from_ndarray=gpumat_from_np_array, image_to_ndarray=gpumat_to_np_array)
 except AssertionError:
     # don't load if OpenCV Cuda is not installed
     pass
