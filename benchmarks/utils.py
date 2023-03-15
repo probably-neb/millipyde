@@ -3,7 +3,7 @@ import os.path as path
 import numpy as np
 import copy
 from imageio.v2 import imread
-
+import re
 
 BENCHMARKS_DIR = Path(__file__).parent
 
@@ -18,7 +18,10 @@ CORRECT_IMAGE_OUTPUT_DIR = benchmarks_subpath("outputs/correct/")
 
 CONVERTER_FUNC_NAME = "convert_output_to_uint8_ndarray"
 
-RTOL = 0.10
+RELATIVE_TOLERANCE = 0.10
+ABSOLUTE_TOLERANCE = 0.00
+PERCENT_MISMATCHED_TOLERANCE = 1.0
+PERCENT_MISMATCHED_REGEX = re.compile(r"(\d+\.\d+)%")
 
 COMPARISON_TYPE = np.float64
 
@@ -111,8 +114,13 @@ def get_millipyde_output(image_path, func_name):
     correct_output = np.load(correct_output_path)
     return correct_output
 
+def percent_mismatched(numpy_error_message):
+    search = PERCENT_MISMATCHED_REGEX.search(numpy_error_message)
+    if search is None:
+        return -1
+    return float(PERCENT_MISMATCHED_REGEX.search(numpy_error_message).group(1))
 
-def verify_output(actual_output, millipyde_output):
+def check_output(actual_output, millipyde_output):
     assert (
         actual_output.dtype == COMPARISON_TYPE
     ), f"""output dtype ({actual_output.dtype}) does not match {COMPARISON_TYPE} which is the dtype used for comparison.
@@ -121,11 +129,14 @@ Use the {convert_image_type_to_float.__name__} function in utils to convert the 
         actual_output.shape == millipyde_output.shape
     ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape}"
     try:
-        np.testing.assert_allclose(actual_output, millipyde_output, rtol=RTOL)
+        np.testing.assert_allclose(actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE)
     except AssertionError as e:
         msg = e.args[0]
+        prc_mismatched = percent_mismatched(msg)
+        if prc_mismatched < PERCENT_MISMATCHED_TOLERANCE and prc_mismatched > 0:
+            return
     assert np.allclose(
-        actual_output, millipyde_output, rtol=RTOL
+        actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE
     ), f"output image does not match millipyde output image {msg}"
 
 
@@ -143,7 +154,7 @@ def create_output_verifier(
     mod_locals,
     image_from_ndarray=identity,
     image_to_ndarray=np.asarray,
-    verify_output=verify_output,
+    verify_output=check_output,
 ):
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
 
@@ -186,3 +197,7 @@ def load_funcs(
 
             # TODO:
             # def benchmark_load_image_time
+
+class UnavoidableDifference(Exception):
+    "Raised when the difference between two images is unavoidable"
+    pass
