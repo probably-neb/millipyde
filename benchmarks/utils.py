@@ -142,6 +142,7 @@ def create_output_verifier(
     mod_locals,
     image_from_ndarray=identity,
     image_to_ndarray=np.asarray,
+    verify_output=verify_output,
 ):
     tool_name = mod_locals["__name__"].replace("benchmark_", "")
 
