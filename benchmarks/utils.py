@@ -78,7 +78,9 @@ def identity(x):
 
 
 def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identity):
-    ndarray = load_image_from_path(image_path)
+    # ndarray = load_image_from_path(image_path)
+    shape = (1000, 1000, 4)
+    ndarray = np.random.randint(0,256,size=np.prod(shape),dtype=np.uint8).reshape(shape)
     # TODO: run file once here to get output image type?
     @wrap_setup
     def setup():
@@ -89,7 +91,7 @@ def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identi
         "dtype": ndarray.dtype,
         "shape": ndarray.shape,
     }
-    benchmark.pedantic(func, setup=setup, rounds=rounds)
+    benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=10)
 
 
 def _create_benchmark_func(func, image_from_ndarray):
@@ -127,6 +129,7 @@ def check_output(actual_output, millipyde_output):
         actual_output.dtype == COMPARISON_TYPE
     ), f"""output dtype ({actual_output.dtype}) does not match {COMPARISON_TYPE} which is the dtype used for comparison.
 Use the {convert_image_type_to_float.__name__} function in utils to convert the image to the correct type"""
+    assert np.all(actual_output >= 0) and np.all(actual_output <= 1.001), f"values of output not in range 0..1. min: {np.min(actual_output)} max: {np.max(actual_output)}"
     assert (
         actual_output.shape == millipyde_output.shape
     ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape}"
