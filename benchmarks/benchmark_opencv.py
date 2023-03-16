@@ -67,5 +67,8 @@ def rotate_90_deg(image):
 
     return rotated
 
+def fliplr(image):
+    return cv2.flip(image, 1)
+
 
 utils.load_funcs(locals())

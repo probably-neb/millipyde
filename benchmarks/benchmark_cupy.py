@@ -88,6 +88,9 @@ utils.create_benchmark(
 def gauss_sigma_2(image):
     return gaussian_filter(image, sigma=2, truncate=8, cval=0, mode="constant")
 
+def fliplr(image):
+    return cupy.fliplr(image)
+
 
 def compare_gauss_sigma_2(actual, millipyde):
     assert not np.all(

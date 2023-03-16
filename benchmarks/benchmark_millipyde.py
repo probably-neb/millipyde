@@ -51,6 +51,9 @@ def adjust_gamma_2_gain_1(image):
     image.adjust_gamma(2, 1)
     return image
 
+def fliplr(image):
+    image.fliplr()
+    return image
 
 
 utils.load_funcs(locals(), image_from_ndarray=gpuimage_from_ndarray)

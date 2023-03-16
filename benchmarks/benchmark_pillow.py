@@ -39,6 +39,8 @@ def compare_gauss_sigma_2(a, b):
         "Pillow uses box filters to approximate a gaussian blur: https://pillow.readthedocs.io/en/stable/reference/ImageFilter.html#PIL.ImageFilter.GaussianBlur"
     )
 
+def fliplr(image):
+    return image.transpose(Image.FLIP_LEFT_RIGHT)
 
 utils.create_output_verifier(
     gauss_sigma_2,

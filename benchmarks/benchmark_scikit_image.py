@@ -74,6 +74,8 @@ def grayscale_gauss_sigma_2(image):
         rgb_to_grayscale(image), sigma=2, cval=0, truncate=8, mode="constant"
     )
 
+def fliplr(image):
+    return np.fliplr(image)
 
 # locals()[utils.CONVERTER_FUNC_NAME] = img_as_ubyte
 

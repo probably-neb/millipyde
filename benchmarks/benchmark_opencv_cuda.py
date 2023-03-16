@@ -89,6 +89,9 @@ def rotate_90_deg(image):
 
     return rotated
 
+def fliplr(image):
+    return cv2.cuda.flip(image, 1)
+
 
 try:
     assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
