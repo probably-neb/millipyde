@@ -3,6 +3,7 @@ import utils
 import numpy as np
 from benchmark_opencv import GAUSS_KDIM
 
+
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
 
@@ -35,20 +36,28 @@ def gpumat_to_np_array(image):
     return image
 
 
+# NOTE: setting border modes results in alpha channel being blended and
+# default values result in alpha value of 1.0 for every pixel like millipyde
+# also GAUSS_KDIM which is calculated how millipyde calculates it throws an error
+# because it is too large (GAUSS_KDIM=33, max=32). instead 31 is used to try and be
+# as close as possible
+RGBA_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
+    cv2.CV_8UC4,
+    cv2.CV_8UC4,
+    ksize=(31, 31),
+    sigma1=2,
+    sigma2=2,
+    rowBorderMode=cv2.BORDER_CONSTANT,
+    columnBorderMode=cv2.BORDER_CONSTANT,
+)
+
+
 def gauss_sigma_2(image):
 
     # chart mapping resulting int to opencv datatypes:
     # https://stackoverflow.com/a/39780825
 
-    # NOTE: setting border modes results in alpha channel being blended and 
-    # default values result in alpha value of 1.0 for every pixel like millipyde
-    # also GAUSS_KDIM which is calculated how millipyde calculates it throws an error
-    # because it is too large (GAUSS_KDIM=33, max=32). instead 31 is used to try and be
-    # as close as possible
-    filter = cv2.cuda.createGaussianFilter(
-        cv2.CV_8UC4, cv2.CV_8UC4, ksize=(31,31), sigma1=2, sigma2=2, rowBorderMode=cv2.BORDER_CONSTANT, columnBorderMode=cv2.BORDER_CONSTANT
-    )
-    return filter.apply(image)
+    return RGBA_GAUSS_FILTER.apply(image)
 
 
 def compare_gauss_sigma_2(actual, millipyde):
@@ -60,10 +69,30 @@ def compare_gauss_sigma_2(actual, millipyde):
     ), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
     argb = actual[:, :, :3]
     brgb = millipyde[:, :, :3]
+    percent_mismatch = utils.percent_mismatched(argb, brgb)
     raise utils.UnavoidableDifference(
-        f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3}"
+        f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3} mismatched: {percent_mismatch:.3}%"
     )
 
+
+Y_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
+    cv2.CV_8UC1,
+    cv2.CV_8UC1,
+    ksize=(31, 31),
+    sigma1=2,
+)
+
+
+def grayscale_gauss_sigma_2(image):
+    image = cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
+    assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
+    return Y_GAUSS_FILTER.apply(image)
+
+def compare_grayscale_gauss_sigma_2(a,b):
+    percent_mismatch = utils.percent_mismatched(a, b)
+    raise utils.UnavoidableDifference(
+            f"opencv restricts the kernel size to 32 while millipyde uses a kernel size of 33. mismatched: {percent_mismatch:.3}%"
+    )
 
 def rotate_90_deg(image):
     """taken from https://github.com/PyImageSearch/imutils/blob/master/imutils/convenience.py
@@ -89,6 +118,7 @@ def rotate_90_deg(image):
 
     return rotated
 
+
 def fliplr(image):
     return cv2.cuda.flip(image, 1)
 
@@ -102,6 +132,14 @@ try:
         image_to_ndarray=gpumat_to_np_array,
         verify_output=compare_gauss_sigma_2,
     )
+    utils.create_output_verifier(
+        grayscale_gauss_sigma_2,
+        locals(),
+        image_from_ndarray=gpumat_from_np_array,
+        image_to_ndarray=gpumat_to_np_array,
+        verify_output=compare_grayscale_gauss_sigma_2,
+    )
+
     utils.load_funcs(
         locals(),
         image_from_ndarray=gpumat_from_np_array,
