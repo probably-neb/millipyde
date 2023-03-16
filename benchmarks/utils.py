@@ -77,7 +77,7 @@ def identity(x):
     return x
 
 
-def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identity):
+def run_benchmark(benchmark, func, image_path, rounds, warmup_rounds, image_from_ndarray=identity):
     # ndarray = load_image_from_path(image_path)
     shape = (1000, 1000, 4)
     ndarray = np.random.randint(0,256,size=np.prod(shape),dtype=np.uint8).reshape(shape)
@@ -91,14 +91,14 @@ def run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray=identi
         "dtype": ndarray.dtype,
         "shape": ndarray.shape,
     }
-    benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=10)
+    benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=warmup_rounds)
 
 
 def _create_benchmark_func(func, image_from_ndarray):
     # the parameters are fixtures, i.e. keywords that tell the testing framework
     # what to pass to the function
-    def benchmark_func(benchmark, image_path, rounds):
-        run_benchmark(benchmark, func, image_path, rounds, image_from_ndarray)
+    def benchmark_func(benchmark, image_path, rounds, warmup_rounds):
+        run_benchmark(benchmark, func, image_path, rounds, warmup_rounds, image_from_ndarray)
 
     return benchmark_func
 

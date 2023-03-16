@@ -13,12 +13,20 @@ def pytest_addoption(parser):
         help="the images to run the test on",
     )
     parser.addoption(
-        "--benchmark-rounds",
+        "--rounds",
         dest="rounds",
         type=int,
         nargs="*",
         default=[1],
         help="the number of benchmark rounds to run",
+    )
+    parser.addoption(
+        "--warmup-rounds",
+        dest="warmup_rounds",
+        type=int,
+        nargs="*",
+        default=[0],
+        help="the number of warmup rounds to run before each benchmark",
     )
 
 
@@ -40,4 +48,14 @@ def pytest_generate_tests(metafunc):
         )
         metafunc.parametrize(
                 "rounds", round_params
+        )
+    if "warmup_rounds" in metafunc.fixturenames:
+        round_params = list(
+            map(
+                lambda r: pytest.param(r, id=f'{r}-warmup_rounds'),
+                metafunc.config.getoption("warmup_rounds"),
+            )
+        )
+        metafunc.parametrize(
+                "warmup_rounds", round_params
         )
