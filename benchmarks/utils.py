@@ -89,10 +89,6 @@ def run_benchmark(benchmark, func, rounds, warmup_rounds, image_from_ndarray=ide
         "dtype": ndarray.dtype,
         "shape": ndarray.shape,
     }
-    benchmark.extra_info["rounds"] = {
-            "rounds": rounds,
-            "warmup": warmup_rounds,
-    }
     benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=warmup_rounds)
 
 
@@ -182,6 +178,12 @@ def create_output_verifier(
         mod_locals[verify_name] = test_ouput_correct
 
 
+def _not_implemented_benchmark(func_name):
+    def mod_func(_):
+        raise NotImplementedError(func_name)
+    mod_func.__name__ = func_name
+    return mod_func
+
 def load_funcs(
     mod_locals,
     image_from_ndarray=identity,
@@ -195,9 +197,12 @@ def load_funcs(
         if func_name in mod_locals:
             mod_func = mod_locals[func_name]
             create_benchmark(mod_func, mod_locals, image_from_ndarray)
-            create_output_verifier(
-                mod_func, mod_locals, image_from_ndarray, image_to_ndarray
-            )
+        else:
+            mod_func = _not_implemented_benchmark(func_name)
+        create_output_verifier(
+            mod_func, mod_locals, image_from_ndarray, image_to_ndarray
+        )
+
 
             # TODO:
             # def benchmark_load_image_time
