@@ -1,4 +1,6 @@
 import cv2
+import pytest
+cuda = pytest.importorskip("cv2.cuda")
 import utils
 import numpy as np
 from benchmark_opencv import GAUSS_KDIM

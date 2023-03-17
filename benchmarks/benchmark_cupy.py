@@ -1,4 +1,5 @@
-import cupy
+import pytest
+cupy = pytest.importorskip("cupy")
 from cupyx.scipy.ndimage import gaussian_filter, rotate
 import numpy as np
 import utils

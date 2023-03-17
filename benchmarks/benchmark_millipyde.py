@@ -15,7 +15,7 @@ from typing import List
 #
 # autopep8: off
 sys.path.append(str(utils.MILLIPYDE_DIR))
-import millipyde as mp
+mp = pytest.importorskip("millipyde")
 # autopep8: on
 
 

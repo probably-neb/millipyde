@@ -111,7 +111,10 @@ def create_benchmark(func, locals, image_from_ndarray=identity):
 
 def get_millipyde_output(image_path, func_name):
     correct_output_path = get_correct_image_path(image_path, func_name)
-    correct_output = np.load(correct_output_path)
+    try:
+        correct_output = np.load(correct_output_path)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"millipyde output for {func_name} on {image_path} not found. run `python benchmark_millipyde.py --images {image_path}` to create it")
     return correct_output
 
 def percent_mismatched(a,b):
