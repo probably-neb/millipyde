@@ -88,11 +88,13 @@ def grayscale_gauss_sigma_2(image):
     assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
     return Y_GAUSS_FILTER.apply(image)
 
-def compare_grayscale_gauss_sigma_2(a,b):
+
+def compare_grayscale_gauss_sigma_2(a, b):
     percent_mismatch = utils.percent_mismatched(a, b)
     raise utils.UnavoidableDifference(
-            f"opencv restricts the kernel size to 32 while millipyde uses a kernel size of 33. mismatched: {percent_mismatch:.3}%"
+        f"opencv restricts the kernel size to 32 while millipyde uses a kernel size of 33. mismatched: {percent_mismatch:.3}%"
     )
+
 
 def rotate_90_deg(image):
     """taken from https://github.com/PyImageSearch/imutils/blob/master/imutils/convenience.py
@@ -122,6 +124,21 @@ def rotate_90_deg(image):
 def fliplr(image):
     return cv2.cuda.flip(image, 1)
 
+
+help(cv2.cuda.pow)
+
+
+def adjust_gamma_2_gain_1(image):
+    # cv2.cuda.GpuMat.convertTo(image,cv2.CV_32FC4)
+    return cv2.cuda.pow(image, 2.0)
+
+
+def f32_gpumat_from_np_array(ndarray):
+    ndarray = ndarray.astype(np.float32) / 255
+    return gpumat_from_np_array(ndarray)
+
+utils.create_output_verifier(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array, image_to_ndarray=gpumat_to_np_array)
+utils.create_benchmark(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array)
 
 try:
     assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"

@@ -114,8 +114,11 @@ utils.create_output_verifier(
     verify_output=compare_gauss_sigma_2,
 )
 
+def adjust_gamma_2_gain_1(image):
+    return (((image.astype(np.float32) / 255.0) ** 2) * 255.0).astype(np.uint8)
 
-locals()[utils.CONVERTER_FUNC_NAME] = cupy_array_to_ndarray
+# utils.create_benchmark(adjust_gamma_2_gain_1,locals(), image_from_ndarray=f32_cupy_array_from_ndarray)
+# utils.create_output_verifier(adjust_gamma_2_gain_1,locals(), image_from_ndarray=f32_cupy_array_from_ndarray, image_to_ndarray=cupy_array_to_ndarray)
 
 utils.load_funcs(
     locals(),

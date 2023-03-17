@@ -24,7 +24,8 @@ def transpose(image):
     # followed by a flip along the horizantal axis
     #
     # resize is for consistency with other tools implementations
-    return np.flipud(transform.rotate(image, 90, resize=True))
+    return np.transpose(image, (1, 0, 2))
+    # return np.flipud(transform.rotate(image, 90, resize=True))
 
 
 def rotate_90_deg(image):

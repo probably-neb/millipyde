@@ -2,7 +2,7 @@ import pytest
 import utils
 from pathlib import Path
 
-DEFAULT_PATH = utils.benchmarks_subpath("inputs/charlie1.png")
+DEFAULT_PATH = utils.benchmarks_subpath("inputs/charlie12.png")
 
 
 def pytest_addoption(parser):

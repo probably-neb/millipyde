@@ -75,5 +75,10 @@ def rotate_90_deg(image):
 def fliplr(image):
     return cv2.flip(image, 1)
 
+# TODO: lookup table implementation of gamma correction
+
+def adjust_gamma_2_gain_1(image):
+    cv2.intensity_transform.gammaCorrection(image,image,gamma=2)
+    return image
 
 utils.load_funcs(locals())
