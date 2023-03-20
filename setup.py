@@ -32,7 +32,7 @@ mp_sources = [
 mp_include_dirs = [
     numpy.get_include(),
     "src/include/",
-    "/opt/rocm-4.5.0/hip/include/hip",
+    f"/opt/rocm-{ROCM_VERSION}/hip/include/hip",
 ]
 
 if use_nvcc:
