@@ -75,4 +75,61 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize(
                 "input_size", input_sizes
         )
-        
+
+def strip_ansi(line):
+    import re
+    ansi_escape = re.compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
+    return ansi_escape.sub('', line)
+
+def pytest_benchmark_update_json(config, benchmarks, output_json):
+    import os
+    ROCM_HOME=os.environ.get("ROCM_HOME",None)
+    assert ROCM_HOME is not None, "Must export ROCM_HOME environment variable for saving Rocm info"
+    import subprocess
+    def cmd(argv):
+        return strip_ansi(subprocess.run(argv, cwd=f"{ROCM_HOME}", capture_output=True, check=True, universal_newlines=True).stdout).strip()
+    
+    gpu_info = {}
+    rocm_info = {}
+    tool_info = {}
+
+    gpu_info["GFX_ID"] = cmd(["bin/mygpu"])
+
+    import cupy
+    gpu = cupy.cuda.runtime.getDevice()
+    gpu_info.update(cupy.cuda.runtime.getDeviceProperties(gpu))
+    cupy_dist = ""
+    import importlib
+    for dist in importlib.metadata.distributions():
+        name = dist.metadata["Name"]
+        if "cupy" in name:
+            assert cupy_dist == "", "multiple cupy versions installed. Can't tell which one is being used"
+            cupy_dist = name
+
+
+    # TODO: opencv + cuda info
+    tool_info["cupy"] = {
+            "runtime": {
+                "is_hip": cupy.cuda.runtime.is_hip,
+                "driverVersion": cupy.cuda.runtime.driverGetVersion(),
+            },
+            "environment": {
+                "cuda_path": cupy._environment.get_cuda_path(),
+                "rocm_path": cupy._environment.get_rocm_path(),
+                "nvcc_path": cupy._environment.get_nvcc_path(),
+                "hipcc_path": cupy._environment.get_hipcc_path(),
+                "LD_LIBRARY_PATH": os.environ.get("LD_LIBRARY_PATH"),
+            },
+            "version": cupy.__version__,
+            "distribution": cupy_dist
+    }
+
+    import json
+    gpu_info.update(json.loads(cmd(["bin/rocm-smi", "--showproductname", "--showtopo", "--showdriverversion", "--showmemvendor", "--json"])))
+
+    rocm_info["hipconfig"] = cmd(["hip/bin/hipconfig", "--full"])
+    rocm_info["rocminfo"] = cmd(["bin/rocminfo"])
+
+    output_json["machine_info"]["gpu"] = gpu_info
+    output_json["rocm_info"] = rocm_info
+    output_json["tool_info"] = tool_info

@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 import os.path as path
 import numpy as np
 import copy
@@ -45,6 +46,10 @@ def benchmarks_list():
 
 IMAGES = {}
 
+GPU_TOOLS=["cupy","millipyde","opencv_cuda"]
+
+# global storage of extra info for gpu based tools
+TOOL_INFO = {}
 
 def load_image_from_path(path: str):
 
@@ -88,15 +93,21 @@ def run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from
         return image_from_ndarray(ndarray)
 
     benchmark.extra_info["input_info"] = {
-        "dtype": ndarray.dtype,
-        "shape": ndarray.shape,
+        "dtype": str(ndarray.dtype),
+        "width": shape[0],
+        "height": shape[1],
+        "channels": shape[2],
     }
+    benchmark.extra_info["name"] = func.__name__
+        
+
     benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=warmup_rounds)
 
 
-def _create_benchmark_func(func, image_from_ndarray):
+def _create_benchmark_func(func, image_from_ndarray, tool_name):
     # the parameters are fixtures, i.e. keywords that tell the testing framework
     # what to pass to the function
+    @pytest.mark.benchmark(group=tool_name)
     def benchmark_func(benchmark, rounds, warmup_rounds, input_size):
         run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray)
 
@@ -105,9 +116,9 @@ def _create_benchmark_func(func, image_from_ndarray):
 
 def create_benchmark(func, locals, image_from_ndarray=identity):
     tool_name = locals["__name__"].replace("benchmark_", "")
-    benchmark_name = f"benchmark_{tool_name}_{func.__name__}"
+    benchmark_name = f"benchmark_{func.__name__}"
     if not benchmark_name in locals:
-        benchmark_func = _create_benchmark_func(func, image_from_ndarray)
+        benchmark_func = _create_benchmark_func(func, image_from_ndarray, tool_name)
         locals[benchmark_name] = benchmark_func
 
 

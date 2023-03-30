@@ -4,6 +4,7 @@ import pathlib
 import numpy
 import os
 
+# TODO: use env.ROCM_HOME (/opt/rocm{-version}) instead of version
 ROCM_VERSION = os.environ.get("MILLIPYDE_ROCM_VERSION", "5.4.3")
 
 use_nvcc = False
