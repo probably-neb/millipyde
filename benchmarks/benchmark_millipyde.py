@@ -55,6 +55,25 @@ def fliplr(image):
     image.fliplr()
     return image
 
+def gray_gauss_transpose_rotate_pipeline(pipeline):
+    pipeline.run()
+
+
+PIPELINE_OPERATIONS=[
+            mp.Operation("rgb2grey"),
+            mp.Operation("gaussian", 2),
+            mp.Operation("transpose"),
+            mp.Operation("rotate", 90)
+            ]
+def pipeline_setup(image):
+    image = gpuimage_from_ndarray(image)
+    pipeline = mp.Pipeline([image], PIPELINE_OPERATIONS)
+    return pipeline
+
+
+utils.create_benchmark(gray_gauss_transpose_rotate_pipeline, locals(), image_from_ndarray=pipeline_setup)
+ 
+
 
 utils.load_funcs(locals(), image_from_ndarray=gpuimage_from_ndarray)
 
@@ -71,6 +90,7 @@ if __name__ == "__main__":
         "-i",
         nargs="+",
         dest="images",
+        default=["inputs/charlie12.png"],
         help="the images to generate correct outputs for",
     )
 
@@ -84,7 +104,12 @@ if __name__ == "__main__":
             image = gpuimage_from_ndarray(utils.load_image_from_path(image_path))
             output_path = utils.get_correct_image_path(image_path, func_name)
             print(output_path)
-            output_image = np.array(func(image))
+            if "pipeline" in func.__name__:
+                pipeline = mp.Pipeline([image], PIPELINE_OPERATIONS)
+                pipeline.run()
+                output_image = np.array(image)
+            else:
+                output_image = np.array(func(image))
             output_image = img_as_float64(output_image)
             print(output_image.shape, output_image.dtype)
             with open(output_path, "wb") as f:

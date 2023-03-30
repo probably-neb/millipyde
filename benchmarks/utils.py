@@ -39,6 +39,7 @@ def benchmarks_list():
         "rgb_to_grayscale",
         "adjust_gamma_2_gain_1",
         "fliplr",
+        "gray_gauss_transpose_rotate_pipeline"
     ]
 
 

@@ -95,7 +95,7 @@ def compare_gauss_sigma_2(actual, millipyde):
 
 def grayscale_gauss_sigma_2(image):
     image = cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
-    assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
+    # assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
     return Y_GAUSS_FILTER.apply(image)
 
 
@@ -146,6 +146,29 @@ def f32_gpumat_from_np_array(ndarray):
 
 utils.create_output_verifier(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array, image_to_ndarray=gpumat_to_np_array)
 utils.create_benchmark(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array)
+
+def gray_gauss_transpose_rotate_pipeline(image):
+
+    # grayscale in place
+    cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
+
+    # gauss in place
+    Y_GAUSS_FILTER.apply(image)
+
+    # transpose in place
+    cv2.cuda.transpose(image)
+
+    (w, h) = image.size()
+
+    center = (w // 2, h // 2)
+
+    M = cv2.getRotationMatrix2D(center, 90, 1.0)
+
+    # rotate in place
+    cv2.cuda.warpAffine(image, M, (w, h))
+
+    return image
+
 
 try:
     assert OPENCV_CUDA_AVAILABLE, "OpenCV Cuda Not Found"

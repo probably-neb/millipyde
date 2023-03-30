@@ -101,7 +101,11 @@ from skimage.util import compare_images
 
 
 def show_diff(a, aname, b, bname):
-    blend_rotated = compare_images(a, b, method=METHOD, n_tiles=(16, 16))
+    try:
+        blend_rotated = compare_images(a, b, method=METHOD, n_tiles=(16, 16))
+    except ValueError as e:
+        print(aname,":",a.shape,bname,":", b.shape)
+        raise e
 
     gs = GridSpec(3, 2)
     ax0 = fig.add_subplot(gs[0, 0])

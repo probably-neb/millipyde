@@ -1,4 +1,5 @@
 import pytest
+
 cupy = pytest.importorskip("cupy")
 from cupyx.scipy.ndimage import gaussian_filter, rotate
 import numpy as np
@@ -75,7 +76,11 @@ def grayscale_gauss_sigma_2(image):
     # FIXME: figure out why division by 255 is required
     return (
         gaussian_filter(
-            rgb_to_grayscale(image), sigma=2, truncate=8, cval=0, mode="constant"
+            cupy.matmul(image[:, :, :3], RGB2GRAY_COEFFS),
+            sigma=2,
+            truncate=8,
+            cval=0,
+            mode="constant",
         )
         / 255.0
     )
@@ -88,6 +93,7 @@ utils.create_benchmark(
 
 def gauss_sigma_2(image):
     return gaussian_filter(image, sigma=2, truncate=8, cval=0, mode="constant")
+
 
 def fliplr(image):
     return cupy.fliplr(image)
@@ -115,11 +121,29 @@ utils.create_output_verifier(
     verify_output=compare_gauss_sigma_2,
 )
 
+
 def adjust_gamma_2_gain_1(image):
     return (((image.astype(np.float32) / 255.0) ** 2) * 255.0).astype(np.uint8)
 
-# utils.create_benchmark(adjust_gamma_2_gain_1,locals(), image_from_ndarray=f32_cupy_array_from_ndarray)
-# utils.create_output_verifier(adjust_gamma_2_gain_1,locals(), image_from_ndarray=f32_cupy_array_from_ndarray, image_to_ndarray=cupy_array_to_ndarray)
+
+def gray_gauss_transpose_rotate_pipeline(image):
+    return rotate(
+        cupy.transpose(
+            gaussian_filter(
+                cupy.matmul(image[:, :, :3], RGB2GRAY_COEFFS),
+                sigma=2,
+                truncate=8,
+                cval=0,
+                mode="constant",
+            )
+            / 255.0,
+            axes=(1, 0),
+        ),
+        angle=90,
+        axes=(1, 0),
+        reshape=False,
+    )
+
 
 utils.load_funcs(
     locals(),
