@@ -66,7 +66,8 @@ def compare_gauss_sigma_2(actual, millipyde):
 
 
 utils.create_output_verifier(
-    gauss_sigma_2, locals(), #verify_output=compare_gauss_sigma_2
+    gauss_sigma_2,
+    locals(),  # verify_output=compare_gauss_sigma_2
 )
 
 
@@ -75,8 +76,10 @@ def grayscale_gauss_sigma_2(image):
         rgb_to_grayscale(image), sigma=2, cval=0, truncate=8, mode="constant"
     )
 
+
 def fliplr(image):
     return np.fliplr(image)
+
 
 # locals()[utils.CONVERTER_FUNC_NAME] = img_as_ubyte
 

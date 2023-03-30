@@ -52,8 +52,10 @@ def opencv():
 
     return getattr(bcv, FUNC)(a)
 
+
 def opencv_cuda():
     import benchmark_opencv_cuda as bcv
+
     return bcv.gpumat_to_np_array(getattr(bcv, FUNC)(bcv.f32_gpumat_from_np_array(a)))
 
 
@@ -87,7 +89,7 @@ TOOL_MAP = {
     "opencv": opencv,
     "opencv_cuda": opencv_cuda,
     "pillow": pillow,
-    "original": lambda: a
+    "original": lambda: a,
 }
 from matplotlib import pyplot as plt
 from matplotlib.gridspec import GridSpec
@@ -104,7 +106,7 @@ def show_diff(a, aname, b, bname):
     try:
         blend_rotated = compare_images(a, b, method=METHOD, n_tiles=(16, 16))
     except ValueError as e:
-        print(aname,":",a.shape,bname,":", b.shape)
+        print(aname, ":", a.shape, bname, ":", b.shape)
         raise e
 
     gs = GridSpec(3, 2)

@@ -4,10 +4,12 @@ import utils
 import numpy as np
 from benchmark_opencv import GAUSS_KDIM
 
-OPENCV_CUDA_AVAILABLE=cv2.cuda.getCudaEnabledDeviceCount() > 0
+OPENCV_CUDA_AVAILABLE = cv2.cuda.getCudaEnabledDeviceCount() > 0
 
 # will skip all tests in this module if opencv not built with cuda or device count query fails
-pytestmark = pytest.mark.skipif(not OPENCV_CUDA_AVAILABLE, reason="getCudaEnabledDeviceCount returned 0")
+pytestmark = pytest.mark.skipif(
+    not OPENCV_CUDA_AVAILABLE, reason="getCudaEnabledDeviceCount returned 0"
+)
 
 try:
     assert OPENCV_CUDA_AVAILABLE, "OpenCV Cuda Not Found"
@@ -26,7 +28,6 @@ try:
         columnBorderMode=cv2.BORDER_CONSTANT,
     )
 
-
     Y_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
         cv2.CV_8UC1,
         cv2.CV_8UC1,
@@ -35,6 +36,7 @@ try:
     )
 except AssertionError:
     pass
+
 
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
@@ -69,7 +71,6 @@ def gpumat_to_np_array(image):
 
 
 def gauss_sigma_2(image):
-
     # chart mapping resulting int to opencv datatypes:
     # https://stackoverflow.com/a/39780825
 
@@ -89,8 +90,6 @@ def compare_gauss_sigma_2(actual, millipyde):
     raise utils.UnavoidableDifference(
         f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3} mismatched: {percent_mismatch:.3}%"
     )
-
-
 
 
 def grayscale_gauss_sigma_2(image):
@@ -144,11 +143,19 @@ def f32_gpumat_from_np_array(ndarray):
     ndarray = ndarray.astype(np.float32) / 255
     return gpumat_from_np_array(ndarray)
 
-utils.create_output_verifier(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array, image_to_ndarray=gpumat_to_np_array)
-utils.create_benchmark(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array)
+
+utils.create_output_verifier(
+    adjust_gamma_2_gain_1,
+    locals(),
+    image_from_ndarray=f32_gpumat_from_np_array,
+    image_to_ndarray=gpumat_to_np_array,
+)
+utils.create_benchmark(
+    adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array
+)
+
 
 def gray_gauss_transpose_rotate_pipeline(image):
-
     # grayscale in place
     cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
 

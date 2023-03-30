@@ -32,7 +32,7 @@ def pytest_addoption(parser):
         "--input-sizes",
         nargs="*",
         default=[1000],
-        help="input sizes to run the benchmarks on. Default is 1000"
+        help="input sizes to run the benchmarks on. Default is 1000",
     )
 
 
@@ -48,47 +48,56 @@ def pytest_generate_tests(metafunc):
     if "rounds" in metafunc.fixturenames:
         round_params = list(
             map(
-                lambda r: pytest.param(r, id=f'{r}-rounds'),
+                lambda r: pytest.param(r, id=f"{r}-rounds"),
                 metafunc.config.getoption("rounds"),
             )
         )
-        metafunc.parametrize(
-                "rounds", round_params
-        )
+        metafunc.parametrize("rounds", round_params)
     if "warmup_rounds" in metafunc.fixturenames:
         round_params = list(
             map(
-                lambda r: pytest.param(r, id=f'{r}-warmup_rounds'),
+                lambda r: pytest.param(r, id=f"{r}-warmup_rounds"),
                 metafunc.config.getoption("warmup_rounds"),
             )
         )
-        metafunc.parametrize(
-                "warmup_rounds", round_params
-        )
+        metafunc.parametrize("warmup_rounds", round_params)
     if "input_size" in metafunc.fixturenames:
         input_sizes = list(
             map(
-                lambda r: pytest.param(int(r), id=f'{r}-input_size'),
+                lambda r: pytest.param(int(r), id=f"{r}-input_size"),
                 metafunc.config.getoption("input_sizes"),
             )
         )
-        metafunc.parametrize(
-                "input_size", input_sizes
-        )
+        metafunc.parametrize("input_size", input_sizes)
+
 
 def strip_ansi(line):
     import re
-    ansi_escape = re.compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
-    return ansi_escape.sub('', line)
+
+    ansi_escape = re.compile(r"(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]")
+    return ansi_escape.sub("", line)
+
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
     import os
-    ROCM_HOME=os.environ.get("ROCM_HOME",None)
-    assert ROCM_HOME is not None, "Must export ROCM_HOME environment variable for saving Rocm info"
+
+    ROCM_HOME = os.environ.get("ROCM_HOME", None)
+    assert (
+        ROCM_HOME is not None
+    ), "Must export ROCM_HOME environment variable for saving Rocm info"
     import subprocess
+
     def cmd(argv):
-        return strip_ansi(subprocess.run(argv, cwd=f"{ROCM_HOME}", capture_output=True, check=True, universal_newlines=True).stdout).strip()
-    
+        return strip_ansi(
+            subprocess.run(
+                argv,
+                cwd=f"{ROCM_HOME}",
+                capture_output=True,
+                check=True,
+                universal_newlines=True,
+            ).stdout
+        ).strip()
+
     gpu_info = {}
     rocm_info = {}
     tool_info = {}
@@ -96,36 +105,53 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     gpu_info["GFX_ID"] = cmd(["bin/mygpu"])
 
     import cupy
+
     gpu = cupy.cuda.runtime.getDevice()
     gpu_info.update(cupy.cuda.runtime.getDeviceProperties(gpu))
     cupy_dist = ""
     import importlib
+
     for dist in importlib.metadata.distributions():
         name = dist.metadata["Name"]
         if "cupy" in name:
-            assert cupy_dist == "", "multiple cupy versions installed. Can't tell which one is being used"
+            assert (
+                cupy_dist == ""
+            ), "multiple cupy versions installed. Can't tell which one is being used"
             cupy_dist = name
-
 
     # TODO: opencv + cuda info
     tool_info["cupy"] = {
-            "runtime": {
-                "is_hip": cupy.cuda.runtime.is_hip,
-                "driverVersion": cupy.cuda.runtime.driverGetVersion(),
-            },
-            "environment": {
-                "cuda_path": cupy._environment.get_cuda_path(),
-                "rocm_path": cupy._environment.get_rocm_path(),
-                "nvcc_path": cupy._environment.get_nvcc_path(),
-                "hipcc_path": cupy._environment.get_hipcc_path(),
-                "LD_LIBRARY_PATH": os.environ.get("LD_LIBRARY_PATH"),
-            },
-            "version": cupy.__version__,
-            "distribution": cupy_dist
+        "runtime": {
+            "is_hip": cupy.cuda.runtime.is_hip,
+            "driverVersion": cupy.cuda.runtime.driverGetVersion(),
+        },
+        "environment": {
+            "cuda_path": cupy._environment.get_cuda_path(),
+            "rocm_path": cupy._environment.get_rocm_path(),
+            "nvcc_path": cupy._environment.get_nvcc_path(),
+            "hipcc_path": cupy._environment.get_hipcc_path(),
+            "LD_LIBRARY_PATH": os.environ.get("LD_LIBRARY_PATH"),
+        },
+        "version": cupy.__version__,
+        "distribution": cupy_dist,
     }
 
     import json
-    gpu_info.update(json.loads(cmd(["bin/rocm-smi", "--showproductname", "--showtopo", "--showdriverversion", "--showmemvendor", "--json"])))
+
+    gpu_info.update(
+        json.loads(
+            cmd(
+                [
+                    "bin/rocm-smi",
+                    "--showproductname",
+                    "--showtopo",
+                    "--showdriverversion",
+                    "--showmemvendor",
+                    "--json",
+                ]
+            )
+        )
+    )
 
     rocm_info["hipconfig"] = cmd(["hip/bin/hipconfig", "--full"])
     rocm_info["rocminfo"] = cmd(["bin/rocminfo"])

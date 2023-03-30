@@ -33,14 +33,17 @@ def rgb_to_grayscale(image):
     image.rgb2gray()
     return image
 
+
 def gauss_sigma_2(image):
     image.gaussian(2)
     return image
+
 
 def grayscale_gauss_sigma_2(image):
     image.rgb2gray()
     image.gaussian(2)
     return image
+
 
 def rotate_90_deg(image):
     image.rotate(90)
@@ -51,28 +54,33 @@ def adjust_gamma_2_gain_1(image):
     image.adjust_gamma(2, 1)
     return image
 
+
 def fliplr(image):
     image.fliplr()
     return image
+
 
 def gray_gauss_transpose_rotate_pipeline(pipeline):
     pipeline.run()
 
 
-PIPELINE_OPERATIONS=[
-            mp.Operation("rgb2grey"),
-            mp.Operation("gaussian", 2),
-            mp.Operation("transpose"),
-            mp.Operation("rotate", 90)
-            ]
+PIPELINE_OPERATIONS = [
+    mp.Operation("rgb2grey"),
+    mp.Operation("gaussian", 2),
+    mp.Operation("transpose"),
+    mp.Operation("rotate", 90),
+]
+
+
 def pipeline_setup(image):
     image = gpuimage_from_ndarray(image)
     pipeline = mp.Pipeline([image], PIPELINE_OPERATIONS)
     return pipeline
 
 
-utils.create_benchmark(gray_gauss_transpose_rotate_pipeline, locals(), image_from_ndarray=pipeline_setup)
- 
+utils.create_benchmark(
+    gray_gauss_transpose_rotate_pipeline, locals(), image_from_ndarray=pipeline_setup
+)
 
 
 utils.load_funcs(locals(), image_from_ndarray=gpuimage_from_ndarray)

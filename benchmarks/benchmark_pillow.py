@@ -47,7 +47,7 @@ def gauss_sigma_2(image):
 def compare_gauss_sigma_2(a, b):
     percent_mismatch = utils.percent_mismatched(a, b)
     raise utils.UnavoidableDifference(
-            f"Pillow uses box filters to approximate a gaussian blur. mismatched: {percent_mismatch:.3}%"
+        f"Pillow uses box filters to approximate a gaussian blur. mismatched: {percent_mismatch:.3}%"
     )
 
 
@@ -58,8 +58,10 @@ utils.create_output_verifier(
     verify_output=compare_gauss_sigma_2,
 )
 
+
 def grayscale_gauss_sigma_2(image):
     return gauss_sigma_2(rgb_to_grayscale(image))
+
 
 utils.create_output_verifier(
     grayscale_gauss_sigma_2,

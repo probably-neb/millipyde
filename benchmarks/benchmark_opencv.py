@@ -29,24 +29,46 @@ def rgb_to_grayscale(image):
 def transpose(image):
     return cv2.transpose(image)
 
+
 def gauss_sigma_2(image):
     return cv2.GaussianBlur(
-        image, ksize=(GAUSS_KDIM, GAUSS_KDIM), sigmaX=SIGMA_2, sigmaY=SIGMA_2, borderType=cv2.BORDER_CONSTANT
+        image,
+        ksize=(GAUSS_KDIM, GAUSS_KDIM),
+        sigmaX=SIGMA_2,
+        sigmaY=SIGMA_2,
+        borderType=cv2.BORDER_CONSTANT,
     )
 
 
-def compare_gauss_sigma_2(actual,millipyde):
-    assert not np.all(actual[:,:,-1] == 1.0), "Assumed opencv gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
-    assert np.all(millipyde[:,:,-1] == 1.0), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
+def compare_gauss_sigma_2(actual, millipyde):
+    assert not np.all(
+        actual[:, :, -1] == 1.0
+    ), "Assumed opencv gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
+    assert np.all(
+        millipyde[:, :, -1] == 1.0
+    ), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
     # NOTE: the difference between the channels of each image is consistent
     percent_mismatch = utils.percent_mismatched(actual, millipyde)
-    raise utils.UnavoidableDifference(f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(actual - millipyde):.3} std dev: {np.std(actual-millipyde):.3} mismatched: {percent_mismatch:.3}%")
+    raise utils.UnavoidableDifference(
+        f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(actual - millipyde):.3} std dev: {np.std(actual-millipyde):.3} mismatched: {percent_mismatch:.3}%"
+    )
 
-utils.create_output_verifier(gauss_sigma_2, locals(),image_to_ndarray=utils.identity, verify_output=compare_gauss_sigma_2)
+
+utils.create_output_verifier(
+    gauss_sigma_2,
+    locals(),
+    image_to_ndarray=utils.identity,
+    verify_output=compare_gauss_sigma_2,
+)
+
 
 def grayscale_gauss_sigma_2(image):
     return cv2.GaussianBlur(
-        cv2.cvtColor(image, cv2.COLOR_RGBA2GRAY), ksize=(GAUSS_KDIM, GAUSS_KDIM), sigmaX=SIGMA_2, sigmaY=SIGMA_2, borderType=cv2.BORDER_CONSTANT
+        cv2.cvtColor(image, cv2.COLOR_RGBA2GRAY),
+        ksize=(GAUSS_KDIM, GAUSS_KDIM),
+        sigmaX=SIGMA_2,
+        sigmaY=SIGMA_2,
+        borderType=cv2.BORDER_CONSTANT,
     )
 
 
@@ -72,13 +94,17 @@ def rotate_90_deg(image):
 
     return rotated
 
+
 def fliplr(image):
     return cv2.flip(image, 1)
 
+
 # TODO: lookup table implementation of gamma correction
 
+
 def adjust_gamma_2_gain_1(image):
-    cv2.intensity_transform.gammaCorrection(image,image,gamma=2)
+    cv2.intensity_transform.gammaCorrection(image, image, gamma=2)
     return image
+
 
 utils.load_funcs(locals())

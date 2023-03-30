@@ -40,19 +40,19 @@ def benchmarks_list():
         "rgb_to_grayscale",
         "adjust_gamma_2_gain_1",
         "fliplr",
-        "gray_gauss_transpose_rotate_pipeline"
+        "gray_gauss_transpose_rotate_pipeline",
     ]
 
 
 IMAGES = {}
 
-GPU_TOOLS=["cupy","millipyde","opencv_cuda"]
+GPU_TOOLS = ["cupy", "millipyde", "opencv_cuda"]
 
 # global storage of extra info for gpu based tools
 TOOL_INFO = {}
 
-def load_image_from_path(path: str):
 
+def load_image_from_path(path: str):
     if path not in IMAGES:
         img = imread(path)
         IMAGES[path] = img
@@ -83,10 +83,15 @@ def identity(x):
     return x
 
 
-def run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray=identity):
+def run_benchmark(
+    benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray=identity
+):
     shape = (input_size, input_size, 4)
     np.random.seed(1)
-    ndarray = np.random.randint(0,256,size=np.prod(shape),dtype=np.uint8).reshape(shape)
+    ndarray = np.random.randint(0, 256, size=np.prod(shape), dtype=np.uint8).reshape(
+        shape
+    )
+
     # TODO: run file once here to get output image type?
     @wrap_setup
     def setup():
@@ -99,7 +104,6 @@ def run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from
         "channels": shape[2],
     }
     benchmark.extra_info["name"] = func.__name__
-        
 
     benchmark.pedantic(func, setup=setup, rounds=rounds, warmup_rounds=warmup_rounds)
 
@@ -109,7 +113,9 @@ def _create_benchmark_func(func, image_from_ndarray, tool_name):
     # what to pass to the function
     @pytest.mark.benchmark(group=tool_name)
     def benchmark_func(benchmark, rounds, warmup_rounds, input_size):
-        run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray)
+        run_benchmark(
+            benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray
+        )
 
     return benchmark_func
 
@@ -127,10 +133,13 @@ def get_millipyde_output(image_path, func_name):
     try:
         correct_output = np.load(correct_output_path)
     except FileNotFoundError:
-        raise FileNotFoundError(f"millipyde output for {func_name} on {image_path} not found. run `python benchmark_millipyde.py --images {image_path}` to create it")
+        raise FileNotFoundError(
+            f"millipyde output for {func_name} on {image_path} not found. run `python benchmark_millipyde.py --images {image_path}` to create it"
+        )
     return correct_output
 
-def percent_mismatched(a,b):
+
+def percent_mismatched(a, b):
     # https://numpy.org/doc/stable/reference/generated/numpy.allclose.html#numpy.allclose
     # absolute(a - b) <= (atol + rtol * absolute(b))
     res = np.abs(a - b) <= (ABSOLUTE_TOLERANCE + RELATIVE_TOLERANCE * np.abs(b))
@@ -138,12 +147,15 @@ def percent_mismatched(a,b):
     assert a.size == res.size, f"res {res.shape} is not same size as image {a.shape}"
     return 100.0 - (res.sum() / a.size * 100.0)
 
+
 def check_output(actual_output, millipyde_output):
     assert (
         actual_output.dtype == COMPARISON_TYPE
     ), f"""output dtype ({actual_output.dtype}) does not match {COMPARISON_TYPE} which is the dtype used for comparison.
 Use the {convert_image_type_to_float.__name__} function in utils to convert the image to the correct type"""
-    assert np.all(actual_output >= 0) and np.all(actual_output <= 1.001), f"values of output not in range 0..1. min: {np.min(actual_output)} max: {np.max(actual_output)}"
+    assert np.all(actual_output >= 0) and np.all(
+        actual_output <= 1.001
+    ), f"values of output not in range 0..1. min: {np.min(actual_output)} max: {np.max(actual_output)}"
     assert (
         actual_output.shape == millipyde_output.shape
     ), f"output shape {actual_output.shape} does not match millipyde output shape {millipyde_output.shape}"
@@ -152,8 +164,11 @@ Use the {convert_image_type_to_float.__name__} function in utils to convert the 
     if prc_mismatched < PERCENT_MISMATCHED_TOLERANCE and prc_mismatched > 0:
         return
     assert np.allclose(
-        actual_output, millipyde_output, rtol=RELATIVE_TOLERANCE, atol=ABSOLUTE_TOLERANCE
-        ), f"output image does not match millipyde output image. Mismatched: {prc_mismatched:.3}%"
+        actual_output,
+        millipyde_output,
+        rtol=RELATIVE_TOLERANCE,
+        atol=ABSOLUTE_TOLERANCE,
+    ), f"output image does not match millipyde output image. Mismatched: {prc_mismatched:.3}%"
 
 
 def convert_image_type_to_float(image):
@@ -197,8 +212,10 @@ def create_output_verifier(
 def _not_implemented_benchmark(func_name):
     def mod_func(_):
         raise NotImplementedError(func_name)
+
     mod_func.__name__ = func_name
     return mod_func
+
 
 def load_funcs(
     mod_locals,
@@ -219,9 +236,9 @@ def load_funcs(
             mod_func, mod_locals, image_from_ndarray, image_to_ndarray
         )
 
+        # TODO:
+        # def benchmark_load_image_time
 
-            # TODO:
-            # def benchmark_load_image_time
 
 class UnavoidableDifference(Exception):
     "Raised when the difference between two images is unavoidable"
