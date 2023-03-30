@@ -1,10 +1,40 @@
 import cv2
 import pytest
-cuda = pytest.importorskip("cv2.cuda")
 import utils
 import numpy as np
 from benchmark_opencv import GAUSS_KDIM
 
+OPENCV_CUDA_AVAILABLE=cv2.cuda.getCudaEnabledDeviceCount() > 0
+
+# will skip all tests in this module if opencv not built with cuda or device count query fails
+pytestmark = pytest.mark.skipif(not OPENCV_CUDA_AVAILABLE, reason="getCudaEnabledDeviceCount returned 0")
+
+try:
+    assert OPENCV_CUDA_AVAILABLE, "OpenCV Cuda Not Found"
+    # NOTE: setting border modes results in alpha channel being blended and
+    # default values result in alpha value of 1.0 for every pixel like millipyde
+    # also GAUSS_KDIM which is calculated how millipyde calculates it throws an error
+    # because it is too large (GAUSS_KDIM=33, max=32). instead 31 is used to try and be
+    # as close as possible
+    RGBA_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
+        cv2.CV_8UC4,
+        cv2.CV_8UC4,
+        ksize=(31, 31),
+        sigma1=2,
+        sigma2=2,
+        rowBorderMode=cv2.BORDER_CONSTANT,
+        columnBorderMode=cv2.BORDER_CONSTANT,
+    )
+
+
+    Y_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
+        cv2.CV_8UC1,
+        cv2.CV_8UC1,
+        ksize=(31, 31),
+        sigma1=2,
+    )
+except AssertionError:
+    pass
 
 def rgb_to_grayscale(image):
     return cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
@@ -38,22 +68,6 @@ def gpumat_to_np_array(image):
     return image
 
 
-# NOTE: setting border modes results in alpha channel being blended and
-# default values result in alpha value of 1.0 for every pixel like millipyde
-# also GAUSS_KDIM which is calculated how millipyde calculates it throws an error
-# because it is too large (GAUSS_KDIM=33, max=32). instead 31 is used to try and be
-# as close as possible
-RGBA_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
-    cv2.CV_8UC4,
-    cv2.CV_8UC4,
-    ksize=(31, 31),
-    sigma1=2,
-    sigma2=2,
-    rowBorderMode=cv2.BORDER_CONSTANT,
-    columnBorderMode=cv2.BORDER_CONSTANT,
-)
-
-
 def gauss_sigma_2(image):
 
     # chart mapping resulting int to opencv datatypes:
@@ -77,12 +91,6 @@ def compare_gauss_sigma_2(actual, millipyde):
     )
 
 
-Y_GAUSS_FILTER = cv2.cuda.createGaussianFilter(
-    cv2.CV_8UC1,
-    cv2.CV_8UC1,
-    ksize=(31, 31),
-    sigma1=2,
-)
 
 
 def grayscale_gauss_sigma_2(image):
@@ -127,9 +135,6 @@ def fliplr(image):
     return cv2.cuda.flip(image, 1)
 
 
-help(cv2.cuda.pow)
-
-
 def adjust_gamma_2_gain_1(image):
     # cv2.cuda.GpuMat.convertTo(image,cv2.CV_32FC4)
     return cv2.cuda.pow(image, 2.0)
@@ -143,7 +148,7 @@ utils.create_output_verifier(adjust_gamma_2_gain_1, locals(), image_from_ndarray
 utils.create_benchmark(adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array)
 
 try:
-    assert cv2.cuda.getCudaEnabledDeviceCount() > 0, "OpenCV Cuda Not Found"
+    assert OPENCV_CUDA_AVAILABLE, "OpenCV Cuda Not Found"
     utils.create_output_verifier(
         gauss_sigma_2,
         locals(),

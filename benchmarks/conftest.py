@@ -10,7 +10,7 @@ def pytest_addoption(parser):
         "--images",
         nargs="*",
         default=[DEFAULT_PATH],
-        help="the images to run the test on",
+        help="the images to run the output verification tests on",
     )
     parser.addoption(
         "--rounds",
@@ -27,6 +27,12 @@ def pytest_addoption(parser):
         nargs="*",
         default=[0],
         help="the number of warmup rounds to run before each benchmark",
+    )
+    parser.addoption(
+        "--input-sizes",
+        nargs="*",
+        default=[1000],
+        help="input sizes to run the benchmarks on. Default is 1000"
     )
 
 
@@ -59,3 +65,14 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize(
                 "warmup_rounds", round_params
         )
+    if "input_size" in metafunc.fixturenames:
+        input_sizes = list(
+            map(
+                lambda r: pytest.param(int(r), id=f'{r}-input_size'),
+                metafunc.config.getoption("input_sizes"),
+            )
+        )
+        metafunc.parametrize(
+                "input_size", input_sizes
+        )
+        

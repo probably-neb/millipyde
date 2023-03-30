@@ -77,8 +77,9 @@ def identity(x):
     return x
 
 
-def run_benchmark(benchmark, func, rounds, warmup_rounds, image_from_ndarray=identity):
-    shape = (1000, 1000, 4)
+def run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray=identity):
+    shape = (input_size, input_size, 4)
+    np.random.seed(1)
     ndarray = np.random.randint(0,256,size=np.prod(shape),dtype=np.uint8).reshape(shape)
     # TODO: run file once here to get output image type?
     @wrap_setup
@@ -95,8 +96,8 @@ def run_benchmark(benchmark, func, rounds, warmup_rounds, image_from_ndarray=ide
 def _create_benchmark_func(func, image_from_ndarray):
     # the parameters are fixtures, i.e. keywords that tell the testing framework
     # what to pass to the function
-    def benchmark_func(benchmark, rounds, warmup_rounds):
-        run_benchmark(benchmark, func, rounds, warmup_rounds, image_from_ndarray)
+    def benchmark_func(benchmark, rounds, warmup_rounds, input_size):
+        run_benchmark(benchmark, func, rounds, warmup_rounds, input_size, image_from_ndarray)
 
     return benchmark_func
 
