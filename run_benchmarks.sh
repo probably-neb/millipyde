@@ -17,11 +17,12 @@ pip install -r requirements.txt --quiet
 # @param -k: only gpu based tools
 # @param --benchmark-disable-gc: disable garbage collection during benchmarks
 py.test --benchmark-only \
-	-k 'cupy or millipyde or opencv_cuda' \
+	-k 'opencv_cuda' \
 	--rounds 100 \
 	--warmup-rounds 25 \
 	--benchmark-disable-gc \
 	--input-sizes ${INPUT_SIZES} \
-	--benchmark-save="${HIP_PLATFORM}_${TIME_STAMP}"
+	--benchmark-save="${HIP_PLATFORM}_${TIME_STAMP}" \
+	--benchmark-verbose
 
 cd ..
