@@ -156,23 +156,12 @@ utils.create_benchmark(
 
 
 def gray_gauss_transpose_rotate_pipeline(image):
-    # grayscale in place
-    cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
-
-    # gauss in place
-    Y_GAUSS_FILTER.apply(image)
-
-    # transpose in place
-    cv2.cuda.transpose(image)
-
-    (w, h) = image.size()
+    (h, w) = image.size()
 
     center = (w // 2, h // 2)
 
     M = cv2.getRotationMatrix2D(center, 90, 1.0)
-
-    # rotate in place
-    cv2.cuda.warpAffine(image, M, (w, h))
+    cv2.cuda.warpAffine(cv2.cuda.transpose(Y_GAUSS_FILTER.apply(cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY))), M, (w, h))
 
     return image
 

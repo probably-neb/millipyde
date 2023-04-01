@@ -80,6 +80,7 @@ def strip_ansi(line):
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
     import os
+    import re
 
     ROCM_HOME = os.environ.get("ROCM_HOME", None)
     assert (
@@ -102,15 +103,23 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     rocm_info = {}
     tool_info = {}
 
-    gpu_info["GFX_ID"] = cmd(["bin/mygpu"])
+    rocm_info["ROCM_HOME"] = ROCM_HOME
+
+    ROCM_VERSION = re.search(r'(\d.\d.\d)', ROCM_HOME).groups()[0]
+    rocm_info["ROCM_VERSION"] = ROCM_VERSION
+
+    rocm_info["hipconfig"] = cmd(["hip/bin/hipconfig", "--full"])
+    HIP_PLATFORM = re.search(r'HIP_PLATFORM : (\w*)', rocm_info["hipconfig"]).groups()[0]
 
     import cupy
 
     gpu = cupy.cuda.runtime.getDevice()
     gpu_info.update(cupy.cuda.runtime.getDeviceProperties(gpu))
-    cupy_dist = ""
+
+
     import importlib
 
+    cupy_dist = ""
     for dist in importlib.metadata.distributions():
         name = dist.metadata["Name"]
         if "cupy" in name:
@@ -119,7 +128,6 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
             ), "multiple cupy versions installed. Can't tell which one is being used"
             cupy_dist = name
 
-    # TODO: opencv + cuda info
     tool_info["cupy"] = {
         "runtime": {
             "is_hip": cupy.cuda.runtime.is_hip,
@@ -136,25 +144,39 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
         "distribution": cupy_dist,
     }
 
-    import json
+    if HIP_PLATFORM == "nvidia":
+        tool_info["opencv_cuda"] = {}
+        import cv2
+        info = cv2.cuda_DeviceInfo()
+        for attr in dir(info):
+            if attr[0] != "_":
+                try:
+                    tool_info["opencv_cuda"][attr] = getattr(info, attr)()
+                except TypeError:
+                    # when attr has required args
+                    pass
+        gpu_info["nvidia_smi"] = cmd(["nvidia-smi","-q"])
 
-    gpu_info.update(
-        json.loads(
-            cmd(
-                [
-                    "bin/rocm-smi",
-                    "--showproductname",
-                    "--showtopo",
-                    "--showdriverversion",
-                    "--showmemvendor",
-                    "--json",
-                ]
+
+    if HIP_PLATFORM == "amd":
+        import json
+        gpu_info["GFX_ID"] = cmd(["bin/mygpu"])
+        gpu_info.update(
+            json.loads(
+                cmd(
+                    [
+                        "bin/rocm-smi",
+                        "--showproductname",
+                        "--showtopo",
+                        "--showdriverversion",
+                        "--showmemvendor",
+                        "--json",
+                    ]
+                )
             )
         )
-    )
 
-    rocm_info["hipconfig"] = cmd(["hip/bin/hipconfig", "--full"])
-    rocm_info["rocminfo"] = cmd(["bin/rocminfo"])
+        rocm_info["rocminfo"] = cmd(["bin/rocminfo"])
 
     output_json["machine_info"]["gpu"] = gpu_info
     output_json["rocm_info"] = rocm_info
