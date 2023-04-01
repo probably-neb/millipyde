@@ -1,0 +1,4589 @@
+{
+    "machine_info": {
+        "node": "ubuntommy",
+        "processor": "x86_64",
+        "machine": "x86_64",
+        "python_compiler": "GCC 9.4.0",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.8.10",
+        "python_version": "3.8.10",
+        "python_build": [
+            "default",
+            "Mar 13 2023 10:26:41"
+        ],
+        "release": "5.15.0-69-generic",
+        "system": "Linux",
+        "cpu": {
+            "python_version": "3.8.10.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 12,
+            "arch_string_raw": "x86_64",
+            "vendor_id_raw": "AuthenticAMD",
+            "brand_raw": "AMD Ryzen 5 2600X Six-Core Processor",
+            "hz_advertised_friendly": "1.9248 GHz",
+            "hz_actual_friendly": "1.9248 GHz",
+            "hz_advertised": [
+                1924755000,
+                0
+            ],
+            "hz_actual": [
+                1924755000,
+                0
+            ],
+            "stepping": 2,
+            "model": 8,
+            "family": 23,
+            "flags": [
+                "3dnowprefetch",
+                "abm",
+                "adx",
+                "aes",
+                "aperfmperf",
+                "apic",
+                "arat",
+                "avic",
+                "avx",
+                "avx2",
+                "bmi1",
+                "bmi2",
+                "bpext",
+                "clflush",
+                "clflushopt",
+                "clzero",
+                "cmov",
+                "cmp_legacy",
+                "constant_tsc",
+                "cpb",
+                "cpuid",
+                "cr8_legacy",
+                "cx16",
+                "cx8",
+                "dbx",
+                "de",
+                "decodeassists",
+                "extapic",
+                "extd_apicid",
+                "f16c",
+                "flushbyasid",
+                "fma",
+                "fpu",
+                "fsgsbase",
+                "fxsr",
+                "fxsr_opt",
+                "ht",
+                "hw_pstate",
+                "ibpb",
+                "irperf",
+                "lahf_lm",
+                "lbrv",
+                "lm",
+                "mca",
+                "mce",
+                "misalignsse",
+                "mmx",
+                "mmxext",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "mwaitx",
+                "nonstop_tsc",
+                "nopl",
+                "npt",
+                "nrip_save",
+                "nx",
+                "osvw",
+                "osxsave",
+                "overflow_recov",
+                "pae",
+                "pat",
+                "pausefilter",
+                "pci_l2i",
+                "pclmulqdq",
+                "pdpe1gb",
+                "perfctr_core",
+                "perfctr_llc",
+                "perfctr_nb",
+                "pfthreshold",
+                "pge",
+                "pni",
+                "popcnt",
+                "pse",
+                "pse36",
+                "rapl",
+                "rdrand",
+                "rdrnd",
+                "rdseed",
+                "rdtscp",
+                "rep_good",
+                "sep",
+                "sev",
+                "sev_es",
+                "sha",
+                "sha_ni",
+                "skinit",
+                "smap",
+                "smca",
+                "sme",
+                "smep",
+                "ssbd",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "sse4a",
+                "ssse3",
+                "succor",
+                "svm",
+                "svm_lock",
+                "syscall",
+                "tce",
+                "topoext",
+                "tsc",
+                "tsc_scale",
+                "v_vmsave_vmload",
+                "vgif",
+                "vmcb_clean",
+                "vme",
+                "vmmcall",
+                "wdt",
+                "xgetbv1",
+                "xsave",
+                "xsavec",
+                "xsaveerptr",
+                "xsaveopt",
+                "xsaves"
+            ],
+            "l3_cache_size": 524288,
+            "l2_cache_size": 3145728,
+            "l1_data_cache_size": 196608,
+            "l1_instruction_cache_size": 393216,
+            "l2_cache_line_size": 512,
+            "l2_cache_associativity": 6
+        },
+        "gpu": {
+            "name": "UNSERIALIZABLE[b'NVIDIA GeForce RTX 3070']",
+            "totalGlobalMem": 8352890880,
+            "sharedMemPerBlock": 49152,
+            "regsPerBlock": 65536,
+            "warpSize": 32,
+            "maxThreadsPerBlock": 1024,
+            "maxThreadsDim": [
+                1024,
+                1024,
+                64
+            ],
+            "maxGridSize": [
+                2147483647,
+                65535,
+                65535
+            ],
+            "clockRate": 1725000,
+            "totalConstMem": 65536,
+            "major": 8,
+            "minor": 6,
+            "textureAlignment": 512,
+            "texturePitchAlignment": 32,
+            "multiProcessorCount": 46,
+            "kernelExecTimeoutEnabled": 1,
+            "integrated": 0,
+            "canMapHostMemory": 1,
+            "computeMode": 0,
+            "maxTexture1D": 131072,
+            "maxTexture2D": [
+                131072,
+                65536
+            ],
+            "maxTexture3D": [
+                16384,
+                16384,
+                16384
+            ],
+            "concurrentKernels": 1,
+            "ECCEnabled": 0,
+            "pciBusID": 9,
+            "pciDeviceID": 0,
+            "pciDomainID": 0,
+            "tccDriver": 0,
+            "memoryClockRate": 7001000,
+            "memoryBusWidth": 256,
+            "l2CacheSize": 4194304,
+            "maxThreadsPerMultiProcessor": 1536,
+            "isMultiGpuBoard": 0,
+            "cooperativeLaunch": 1,
+            "cooperativeMultiDeviceLaunch": 1,
+            "deviceOverlap": 1,
+            "maxTexture1DMipmap": 32768,
+            "maxTexture1DLinear": 268435456,
+            "maxTexture1DLayered": [
+                32768,
+                2048
+            ],
+            "maxTexture2DMipmap": [
+                32768,
+                32768
+            ],
+            "maxTexture2DLinear": [
+                131072,
+                65000,
+                2097120
+            ],
+            "maxTexture2DLayered": [
+                32768,
+                32768,
+                2048
+            ],
+            "maxTexture2DGather": [
+                32768,
+                32768
+            ],
+            "maxTexture3DAlt": [
+                8192,
+                8192,
+                32768
+            ],
+            "maxTextureCubemap": 32768,
+            "maxTextureCubemapLayered": [
+                32768,
+                2046
+            ],
+            "maxSurface1D": 32768,
+            "maxSurface1DLayered": [
+                32768,
+                2048
+            ],
+            "maxSurface2D": [
+                131072,
+                65536
+            ],
+            "maxSurface2DLayered": [
+                32768,
+                32768,
+                2048
+            ],
+            "maxSurface3D": [
+                16384,
+                16384,
+                16384
+            ],
+            "maxSurfaceCubemap": 32768,
+            "maxSurfaceCubemapLayered": [
+                32768,
+                2046
+            ],
+            "surfaceAlignment": 512,
+            "asyncEngineCount": 2,
+            "unifiedAddressing": 1,
+            "streamPrioritiesSupported": 1,
+            "globalL1CacheSupported": 1,
+            "localL1CacheSupported": 1,
+            "sharedMemPerMultiprocessor": 102400,
+            "regsPerMultiprocessor": 65536,
+            "managedMemory": 1,
+            "multiGpuBoardGroupID": 0,
+            "hostNativeAtomicSupported": 0,
+            "singleToDoublePrecisionPerfRatio": 32,
+            "pageableMemoryAccess": 0,
+            "concurrentManagedAccess": 1,
+            "computePreemptionSupported": 1,
+            "canUseHostPointerForRegisteredMem": 1,
+            "sharedMemPerBlockOptin": 101376,
+            "pageableMemoryAccessUsesHostPageTables": 0,
+            "directManagedMemAccessFromHost": 0,
+            "uuid": "UNSERIALIZABLE[b'm\\xc84\\x8a!\\xa5!\\xca\\xb2I\\x96\\x98k.\\xe7\\xc5']",
+            "luid": "UNSERIALIZABLE[b'']",
+            "luidDeviceNodeMask": 0,
+            "persistingL2CacheMaxSize": 3145728,
+            "maxBlocksPerMultiProcessor": 16,
+            "accessPolicyMaxWindowSize": 134213632,
+            "reservedSharedMemPerBlock": 1024,
+            "nvidia_smi": "==============NVSMI LOG==============\n\nTimestamp                                 : Sat Apr  1 11:36:05 2023\nDriver Version                            : 530.30.02\nCUDA Version                              : 12.1\n\nAttached GPUs                             : 1\nGPU 00000000:09:00.0\n    Product Name                          : NVIDIA GeForce RTX 3070\n    Product Brand                         : GeForce\n    Product Architecture                  : Ampere\n    Display Mode                          : Enabled\n    Display Active                        : Disabled\n    Persistence Mode                      : Enabled\n    MIG Mode\n        Current                           : N/A\n        Pending                           : N/A\n    Accounting Mode                       : Disabled\n    Accounting Mode Buffer Size           : 4000\n    Driver Model\n        Current                           : N/A\n        Pending                           : N/A\n    Serial Number                         : N/A\n    GPU UUID                              : GPU-6dc8348a-21a5-21ca-b249-96986b2ee7c5\n    Minor Number                          : 0\n    VBIOS Version                         : 94.04.25.40.88\n    MultiGPU Board                        : No\n    Board ID                              : 0x900\n    Board Part Number                     : N/A\n    GPU Part Number                       : 2484-300-A1\n    FRU Part Number                       : N/A\n    Module ID                             : 1\n    Inforom Version\n        Image Version                     : G001.0000.03.03\n        OEM Object                        : 2.0\n        ECC Object                        : N/A\n        Power Management Object           : N/A\n    GPU Operation Mode\n        Current                           : N/A\n        Pending                           : N/A\n    GSP Firmware Version                  : N/A\n    GPU Virtualization Mode\n        Virtualization Mode               : None\n        Host VGPU Mode                    : N/A\n    GPU Reset Status\n        Reset Required                    : No\n        Drain and Reset Recommended       : N/A\n    IBMNPU\n        Relaxed Ordering Mode             : N/A\n    PCI\n        Bus                               : 0x09\n        Device                            : 0x00\n        Domain                            : 0x0000\n        Device Id                         : 0x248410DE\n        Bus Id                            : 00000000:09:00.0\n        Sub System Id                     : 0x405C1458\n        GPU Link Info\n            PCIe Generation\n                Max                       : 3\n                Current                   : 3\n                Device Current            : 3\n                Device Max                : 4\n                Host Max                  : 3\n            Link Width\n                Max                       : 16x\n                Current                   : 16x\n        Bridge Chip\n            Type                          : N/A\n            Firmware                      : N/A\n        Replays Since Reset               : 0\n        Replay Number Rollovers           : 0\n        Tx Throughput                     : 0 KB/s\n        Rx Throughput                     : 0 KB/s\n        Atomic Caps Inbound               : N/A\n        Atomic Caps Outbound              : N/A\n    Fan Speed                             : 54 %\n    Performance State                     : P2\n    Clocks Throttle Reasons\n        Idle                              : Not Active\n        Applications Clocks Setting       : Not Active\n        SW Power Cap                      : Not Active\n        HW Slowdown                       : Not Active\n            HW Thermal Slowdown           : Not Active\n            HW Power Brake Slowdown       : Not Active\n        Sync Boost                        : Not Active\n        SW Thermal Slowdown               : Not Active\n        Display Clock Setting             : Not Active\n    FB Memory Usage\n        Total                             : 8192 MiB\n        Reserved                          : 226 MiB\n        Used                              : 1130 MiB\n        Free                              : 6835 MiB\n    BAR1 Memory Usage\n        Total                             : 256 MiB\n        Used                              : 16 MiB\n        Free                              : 240 MiB\n    Compute Mode                          : Default\n    Utilization\n        Gpu                               : 0 %\n        Memory                            : 0 %\n        Encoder                           : 0 %\n        Decoder                           : 0 %\n    Encoder Stats\n        Active Sessions                   : 0\n        Average FPS                       : 0\n        Average Latency                   : 0\n    FBC Stats\n        Active Sessions                   : 0\n        Average FPS                       : 0\n        Average Latency                   : 0\n    ECC Mode\n        Current                           : N/A\n        Pending                           : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable              : N/A\n            SRAM Uncorrectable            : N/A\n            DRAM Correctable              : N/A\n            DRAM Uncorrectable            : N/A\n        Aggregate\n            SRAM Correctable              : N/A\n            SRAM Uncorrectable            : N/A\n            DRAM Correctable              : N/A\n            DRAM Uncorrectable            : N/A\n    Retired Pages\n        Single Bit ECC                    : N/A\n        Double Bit ECC                    : N/A\n        Pending Page Blacklist            : N/A\n    Remapped Rows                         : N/A\n    Temperature\n        GPU Current Temp                  : 50 C\n        GPU Shutdown Temp                 : 98 C\n        GPU Slowdown Temp                 : 95 C\n        GPU Max Operating Temp            : 93 C\n        GPU Target Temperature            : 83 C\n        Memory Current Temp               : N/A\n        Memory Max Operating Temp         : N/A\n    Power Readings\n        Power Management                  : Supported\n        Power Draw                        : 59.85 W\n        Power Limit                       : 220.00 W\n        Default Power Limit               : 220.00 W\n        Enforced Power Limit              : 220.00 W\n        Min Power Limit                   : 100.00 W\n        Max Power Limit                   : 240.00 W\n    Clocks\n        Graphics                          : 1980 MHz\n        SM                                : 1980 MHz\n        Memory                            : 6800 MHz\n        Video                             : 1740 MHz\n    Applications Clocks\n        Graphics                          : N/A\n        Memory                            : N/A\n    Default Applications Clocks\n        Graphics                          : N/A\n        Memory                            : N/A\n    Deferred Clocks\n        Memory                            : N/A\n    Max Clocks\n        Graphics                          : 2100 MHz\n        SM                                : 2100 MHz\n        Memory                            : 7001 MHz\n        Video                             : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                          : N/A\n    Clock Policy\n        Auto Boost                        : N/A\n        Auto Boost Default                : N/A\n    Voltage\n        Graphics                          : 1081.250 mV\n    Fabric\n        State                             : N/A\n        Status                            : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 1180\n            Type                          : G\n            Name                          : /usr/lib/xorg/Xorg\n            Used GPU Memory               : 62 MiB\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 1453\n            Type                          : G\n            Name                          : /usr/bin/gnome-shell\n            Used GPU Memory               : 27 MiB\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 6221\n            Type                          : C\n            Name                          : /home/neb/millipyde/env/bin/python3\n            Used GPU Memory               : 1036 MiB"
+        }
+    },
+    "commit_info": {
+        "id": "e3e17493d2cfe4e9a663b82dfa1212fbbf7a03d4",
+        "time": "2023-04-01T11:32:57-05:00",
+        "author_time": "2023-04-01T11:32:57-05:00",
+        "dirty": false,
+        "project": "millipyde",
+        "branch": "pytest-benchmark"
+    },
+    "benchmarks": [
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0001392839994878159,
+                "max": 0.00027293699986330466,
+                "mean": 0.0001439648199811927,
+                "stddev": 1.7189621713266302e-05,
+                "rounds": 100,
+                "median": 0.00014087199951973162,
+                "iqr": 9.82000074145617e-07,
+                "q1": 0.00014048100001673447,
+                "q3": 0.0001414630000908801,
+                "iqr_outliers": 8,
+                "stddev_outliers": 3,
+                "outliers": "3;8",
+                "ld15iqr": 0.0001392839994878159,
+                "hd15iqr": 0.00014335099967865972,
+                "ops": 6946.1414262917715,
+                "total": 0.01439648199811927,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00035657499938679393,
+                "max": 0.0005318469993653707,
+                "mean": 0.00046787171002506513,
+                "stddev": 1.5046778742490077e-05,
+                "rounds": 100,
+                "median": 0.00046673899987581535,
+                "iqr": 1.1724996511475183e-06,
+                "q1": 0.0004661375000978296,
+                "q3": 0.00046730999974897713,
+                "iqr_outliers": 9,
+                "stddev_outliers": 7,
+                "outliers": "7;9",
+                "ld15iqr": 0.00046443999963230453,
+                "hd15iqr": 0.00046942900007707067,
+                "ops": 2137.3380321422455,
+                "total": 0.04678717100250651,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001007437999760441,
+                "max": 0.0011269339993305039,
+                "mean": 0.0010656645999824832,
+                "stddev": 5.0510298115197576e-05,
+                "rounds": 100,
+                "median": 0.0011106834999736748,
+                "iqr": 0.00010123700030817417,
+                "q1": 0.00101122949990895,
+                "q3": 0.0011124665002171241,
+                "iqr_outliers": 0,
+                "stddev_outliers": 47,
+                "outliers": "47;0",
+                "ld15iqr": 0.001007437999760441,
+                "hd15iqr": 0.0011269339993305039,
+                "ops": 938.3815508335713,
+                "total": 0.10656645999824832,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014155700000628713,
+                "max": 0.0014819559992247378,
+                "mean": 0.0014193778400203882,
+                "stddev": 6.538593696003403e-06,
+                "rounds": 100,
+                "median": 0.0014186260000315087,
+                "iqr": 2.454999503243016e-06,
+                "q1": 0.0014175140004226705,
+                "q3": 0.0014199689999259135,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 0.0014155700000628713,
+                "hd15iqr": 0.0014242870001908159,
+                "ops": 704.534037241018,
+                "total": 0.14193778400203882,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001500271000622888,
+                "max": 0.00266195099993638,
+                "mean": 0.0018774052200205915,
+                "stddev": 0.00045411604909109026,
+                "rounds": 100,
+                "median": 0.0016151035001712444,
+                "iqr": 0.0005681300003743672,
+                "q1": 0.00161325500039311,
+                "q3": 0.0021813850007674773,
+                "iqr_outliers": 0,
+                "stddev_outliers": 25,
+                "outliers": "25;0",
+                "ld15iqr": 0.001500271000622888,
+                "hd15iqr": 0.00266195099993638,
+                "ops": 532.6500583550268,
+                "total": 0.18774052200205915,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0017461560000811005,
+                "max": 0.0020088439996470697,
+                "mean": 0.0018592837000232976,
+                "stddev": 2.5569152279515185e-05,
+                "rounds": 100,
+                "median": 0.001853719999871828,
+                "iqr": 3.5470002330839634e-06,
+                "q1": 0.0018523220001043228,
+                "q3": 0.0018558690003374068,
+                "iqr_outliers": 13,
+                "stddev_outliers": 9,
+                "outliers": "9;13",
+                "ld15iqr": 0.001848921000600967,
+                "hd15iqr": 0.0018619250004121568,
+                "ops": 537.8415354189732,
+                "total": 0.18592837000232976,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00212670699966111,
+                "max": 0.0022112269998615375,
+                "mean": 0.0021459219999906054,
+                "stddev": 2.1213260491199688e-05,
+                "rounds": 100,
+                "median": 0.0021386294997682853,
+                "iqr": 5.1339993660803884e-06,
+                "q1": 0.0021365510001487564,
+                "q3": 0.002141684999514837,
+                "iqr_outliers": 14,
+                "stddev_outliers": 11,
+                "outliers": "11;14",
+                "ld15iqr": 0.0021331899997676373,
+                "hd15iqr": 0.002156774000468431,
+                "ops": 466.00016217009653,
+                "total": 0.21459219999906054,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.002425071999823558,
+                "max": 0.003672423999887542,
+                "mean": 0.002997458830013784,
+                "stddev": 0.000526596910710717,
+                "rounds": 100,
+                "median": 0.002586903000064922,
+                "iqr": 0.0010595714998089534,
+                "q1": 0.0024663000003783964,
+                "q3": 0.0035258715001873497,
+                "iqr_outliers": 0,
+                "stddev_outliers": 58,
+                "outliers": "58;0",
+                "ld15iqr": 0.002425071999823558,
+                "hd15iqr": 0.003672423999887542,
+                "ops": 333.6159249251145,
+                "total": 0.2997458830013784,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.002831230000083451,
+                "max": 0.0039008350004223757,
+                "mean": 0.002860885149984824,
+                "stddev": 0.00010779229234450805,
+                "rounds": 100,
+                "median": 0.0028406739993442898,
+                "iqr": 9.0709991127369e-06,
+                "q1": 0.0028382900004544354,
+                "q3": 0.0028473609995671723,
+                "iqr_outliers": 16,
+                "stddev_outliers": 1,
+                "outliers": "1;16",
+                "ld15iqr": 0.002831230000083451,
+                "hd15iqr": 0.002880955000364338,
+                "ops": 349.5421687953131,
+                "total": 0.2860885149984824,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.003254532000028121,
+                "max": 0.004454062999684538,
+                "mean": 0.004302201919990693,
+                "stddev": 0.00018231321113868247,
+                "rounds": 100,
+                "median": 0.0043230399996900815,
+                "iqr": 1.5930500012473203e-05,
+                "q1": 0.004316447500059439,
+                "q3": 0.0043323780000719125,
+                "iqr_outliers": 24,
+                "stddev_outliers": 3,
+                "outliers": "3;24",
+                "ld15iqr": 0.004293470000447996,
+                "hd15iqr": 0.004358372000751842,
+                "ops": 232.4391134115256,
+                "total": 0.43022019199906936,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_adjust_gamma_2_gain_1[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "adjust_gamma_2_gain_1"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004733933000352408,
+                "max": 0.006200859999808017,
+                "mean": 0.0048005660699800504,
+                "stddev": 0.00014484014381373948,
+                "rounds": 100,
+                "median": 0.00477101849992323,
+                "iqr": 5.223400057730032e-05,
+                "q1": 0.004765882999436144,
+                "q3": 0.004818117000013444,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.004733933000352408,
+                "hd15iqr": 0.006200859999808017,
+                "ops": 208.3087672208948,
+                "total": 0.480056606998005,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.633100055187242e-05,
+                "max": 0.000996998000118765,
+                "mean": 4.751064997435606e-05,
+                "stddev": 9.990183216295972e-05,
+                "rounds": 100,
+                "median": 2.06290001187881e-05,
+                "iqr": 5.7128000662487466e-05,
+                "q1": 1.6881999727047514e-05,
+                "q3": 7.401000038953498e-05,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 1.633100055187242e-05,
+                "hd15iqr": 0.000996998000118765,
+                "ops": 21047.912426787498,
+                "total": 0.004751064997435606,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00012381400028971257,
+                "max": 0.00034772900016832864,
+                "mean": 0.000143304539969904,
+                "stddev": 3.1355412751848996e-05,
+                "rounds": 100,
+                "median": 0.00013953399957244983,
+                "iqr": 6.909999683557544e-07,
+                "q1": 0.00013921399977334659,
+                "q3": 0.00013990499974170234,
+                "iqr_outliers": 21,
+                "stddev_outliers": 4,
+                "outliers": "4;21",
+                "ld15iqr": 0.00013853200016455958,
+                "hd15iqr": 0.0001418089996150229,
+                "ops": 6978.145983442076,
+                "total": 0.0143304539969904,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00028799499978049425,
+                "max": 0.0003011899998455192,
+                "mean": 0.00029099132003466364,
+                "stddev": 1.6596676973069486e-06,
+                "rounds": 100,
+                "median": 0.00029069550009808154,
+                "iqr": 1.0320000001229346e-06,
+                "q1": 0.00029023950037299073,
+                "q3": 0.00029127150037311367,
+                "iqr_outliers": 6,
+                "stddev_outliers": 8,
+                "outliers": "8;6",
+                "ld15iqr": 0.000288805999844044,
+                "hd15iqr": 0.0002934659996753908,
+                "ops": 3436.528621818951,
+                "total": 0.029099132003466366,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0004688280005211709,
+                "max": 0.0004908089995296905,
+                "mean": 0.00047196571004860745,
+                "stddev": 3.185081045488224e-06,
+                "rounds": 100,
+                "median": 0.0004714725000667386,
+                "iqr": 1.231999704032205e-06,
+                "q1": 0.0004708014998868748,
+                "q3": 0.000472033499590907,
+                "iqr_outliers": 9,
+                "stddev_outliers": 5,
+                "outliers": "5;9",
+                "ld15iqr": 0.000469549000627012,
+                "hd15iqr": 0.00047447799988731276,
+                "ops": 2118.7979946615415,
+                "total": 0.04719657100486074,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0007436980004058569,
+                "max": 0.0007656699999643024,
+                "mean": 0.0007496767599786835,
+                "stddev": 3.228061936719299e-06,
+                "rounds": 100,
+                "median": 0.000749264000205585,
+                "iqr": 2.1094992916914634e-06,
+                "q1": 0.0007480210006178822,
+                "q3": 0.0007501304999095737,
+                "iqr_outliers": 7,
+                "stddev_outliers": 8,
+                "outliers": "8;7",
+                "ld15iqr": 0.0007463530000677565,
+                "hd15iqr": 0.0007548489993496332,
+                "ops": 1333.9082300329467,
+                "total": 0.07496767599786835,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001038567000250623,
+                "max": 0.0010744450000856887,
+                "mean": 0.0010501140400083387,
+                "stddev": 4.136358071783728e-06,
+                "rounds": 100,
+                "median": 0.001049521999902936,
+                "iqr": 1.5990003703336697e-06,
+                "q1": 0.001048725000146078,
+                "q3": 0.0010503240005164116,
+                "iqr_outliers": 7,
+                "stddev_outliers": 5,
+                "outliers": "5;7",
+                "ld15iqr": 0.0010465409995958908,
+                "hd15iqr": 0.001053604999469826,
+                "ops": 952.2775259647602,
+                "total": 0.10501140400083386,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001362329000585305,
+                "max": 0.0014489739996861317,
+                "mean": 0.0013832065800215786,
+                "stddev": 8.127797962143934e-06,
+                "rounds": 100,
+                "median": 0.0013819764999425388,
+                "iqr": 3.065999408136122e-06,
+                "q1": 0.001380758500090451,
+                "q3": 0.001383824499498587,
+                "iqr_outliers": 7,
+                "stddev_outliers": 5,
+                "outliers": "5;7",
+                "ld15iqr": 0.0013762460002908483,
+                "hd15iqr": 0.0013897409999117372,
+                "ops": 722.9578100939915,
+                "total": 0.13832065800215787,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0015182839997578412,
+                "max": 0.0015650830000595306,
+                "mean": 0.0015303515100094955,
+                "stddev": 5.229326351372948e-06,
+                "rounds": 100,
+                "median": 0.0015295609996428539,
+                "iqr": 3.060999915760476e-06,
+                "q1": 0.0015283230004570214,
+                "q3": 0.0015313840003727819,
+                "iqr_outliers": 6,
+                "stddev_outliers": 6,
+                "outliers": "6;6",
+                "ld15iqr": 0.0015260390000548796,
+                "hd15iqr": 0.0015392840005006292,
+                "ops": 653.4446455336233,
+                "total": 0.15303515100094955,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0016404150001108064,
+                "max": 0.001710047999949893,
+                "mean": 0.001671927350016631,
+                "stddev": 7.886126415912747e-06,
+                "rounds": 100,
+                "median": 0.0016712390006432543,
+                "iqr": 4.14749956689775e-06,
+                "q1": 0.0016691250002622837,
+                "q3": 0.0016732724998291815,
+                "iqr_outliers": 6,
+                "stddev_outliers": 6,
+                "outliers": "6;6",
+                "ld15iqr": 0.0016672570000082487,
+                "hd15iqr": 0.0016972230005194433,
+                "ops": 598.1121129396279,
+                "total": 0.1671927350016631,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001791681999748107,
+                "max": 0.00282895600048505,
+                "mean": 0.0023013035099756964,
+                "stddev": 0.0005078332462930221,
+                "rounds": 100,
+                "median": 0.002319171000181086,
+                "iqr": 0.001010878999295528,
+                "q1": 0.0017948530007743102,
+                "q3": 0.0028057320000698383,
+                "iqr_outliers": 0,
+                "stddev_outliers": 10,
+                "outliers": "10;0",
+                "ld15iqr": 0.001791681999748107,
+                "hd15iqr": 0.00282895600048505,
+                "ops": 434.5363380645784,
+                "total": 0.23013035099756962,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_transpose[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_transpose[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "transpose"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001912852000714338,
+                "max": 0.00298393000048236,
+                "mean": 0.0024213441499978216,
+                "stddev": 0.0005076232362247992,
+                "rounds": 100,
+                "median": 0.002407798499461933,
+                "iqr": 0.0010098165003000759,
+                "q1": 0.0019162984999638866,
+                "q3": 0.0029261150002639624,
+                "iqr_outliers": 0,
+                "stddev_outliers": 9,
+                "outliers": "9;0",
+                "ld15iqr": 0.001912852000714338,
+                "hd15iqr": 0.00298393000048236,
+                "ops": 412.99374977361214,
+                "total": 0.24213441499978217,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.8431000070413575e-05,
+                "max": 0.00018654399991646642,
+                "mean": 8.294179997392348e-05,
+                "stddev": 3.180195059974091e-05,
+                "rounds": 100,
+                "median": 6.190750036694226e-05,
+                "iqr": 5.506950037670322e-05,
+                "q1": 5.925699952058494e-05,
+                "q3": 0.00011432649989728816,
+                "iqr_outliers": 0,
+                "stddev_outliers": 20,
+                "outliers": "20;0",
+                "ld15iqr": 5.8431000070413575e-05,
+                "hd15iqr": 0.00018654399991646642,
+                "ops": 12056.646953820575,
+                "total": 0.008294179997392348,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0002480690000083996,
+                "max": 0.00040375400021730457,
+                "mean": 0.0002535059200272371,
+                "stddev": 2.0238739881690466e-05,
+                "rounds": 100,
+                "median": 0.00024912100025176187,
+                "iqr": 8.019992492336314e-07,
+                "q1": 0.00024872550056898035,
+                "q3": 0.000249527499818214,
+                "iqr_outliers": 8,
+                "stddev_outliers": 5,
+                "outliers": "5;8",
+                "ld15iqr": 0.0002480690000083996,
+                "hd15iqr": 0.00025081500007217983,
+                "ops": 3944.681054756268,
+                "total": 0.025350592002723715,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0005432190000647097,
+                "max": 0.0005829629999425379,
+                "mean": 0.0005462907899527636,
+                "stddev": 6.596766728373182e-06,
+                "rounds": 100,
+                "median": 0.0005447210000966152,
+                "iqr": 1.112000518332934e-06,
+                "q1": 0.0005443449995254923,
+                "q3": 0.0005454570000438252,
+                "iqr_outliers": 8,
+                "stddev_outliers": 4,
+                "outliers": "4;8",
+                "ld15iqr": 0.0005432190000647097,
+                "hd15iqr": 0.0005475059997479548,
+                "ops": 1830.5269252049216,
+                "total": 0.05462907899527636,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000929359999645385,
+                "max": 0.0009740440000314265,
+                "mean": 0.0009362556100131769,
+                "stddev": 6.1394076488997165e-06,
+                "rounds": 100,
+                "median": 0.000935411499995098,
+                "iqr": 2.289500116603449e-06,
+                "q1": 0.0009341635000055248,
+                "q3": 0.0009364530001221283,
+                "iqr_outliers": 6,
+                "stddev_outliers": 6,
+                "outliers": "6;6",
+                "ld15iqr": 0.0009312029997090576,
+                "hd15iqr": 0.0009464920003665611,
+                "ops": 1068.0843877516802,
+                "total": 0.09362556100131769,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014968040004532668,
+                "max": 0.0015661850002288702,
+                "mean": 0.0015121987300062757,
+                "stddev": 1.0876031791553684e-05,
+                "rounds": 100,
+                "median": 0.0015081205006026721,
+                "iqr": 1.3970499367133016e-05,
+                "q1": 0.0015062220004438132,
+                "q3": 0.0015201924998109462,
+                "iqr_outliers": 3,
+                "stddev_outliers": 15,
+                "outliers": "15;3",
+                "ld15iqr": 0.0014968040004532668,
+                "hd15iqr": 0.0015478200002689846,
+                "ops": 661.2887447642877,
+                "total": 0.15121987300062756,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0020539689994620858,
+                "max": 0.002341903000342427,
+                "mean": 0.0021630988199831335,
+                "stddev": 2.223548753702534e-05,
+                "rounds": 100,
+                "median": 0.0021615724999719532,
+                "iqr": 1.828499989642296e-06,
+                "q1": 0.0021608155002468266,
+                "q3": 0.002162644000236469,
+                "iqr_outliers": 12,
+                "stddev_outliers": 6,
+                "outliers": "6;12",
+                "ld15iqr": 0.002159637999284314,
+                "hd15iqr": 0.0021697980000681127,
+                "ops": 462.29972979588484,
+                "total": 0.21630988199831336,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0027756649997172644,
+                "max": 0.002946618999885686,
+                "mean": 0.002892324689992165,
+                "stddev": 2.167104264894177e-05,
+                "rounds": 100,
+                "median": 0.002886769999804528,
+                "iqr": 1.8344499494560296e-05,
+                "q1": 0.002885242500269669,
+                "q3": 0.0029035869997642294,
+                "iqr_outliers": 4,
+                "stddev_outliers": 24,
+                "outliers": "24;4",
+                "ld15iqr": 0.0028828180002165027,
+                "hd15iqr": 0.0029334439996091533,
+                "ops": 345.7426489702679,
+                "total": 0.2892324689992165,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0034358450002400787,
+                "max": 0.003704071999891312,
+                "mean": 0.003446396259996618,
+                "stddev": 2.8133123858354213e-05,
+                "rounds": 100,
+                "median": 0.0034400274998915847,
+                "iqr": 3.6775004446099047e-06,
+                "q1": 0.0034383639999759907,
+                "q3": 0.0034420415004206006,
+                "iqr_outliers": 15,
+                "stddev_outliers": 3,
+                "outliers": "3;15",
+                "ld15iqr": 0.0034358450002400787,
+                "hd15iqr": 0.003455361999840534,
+                "ops": 290.1581607452712,
+                "total": 0.3446396259996618,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004064173999722698,
+                "max": 0.004304279000280076,
+                "mean": 0.004076849960010804,
+                "stddev": 2.7746808824776593e-05,
+                "rounds": 100,
+                "median": 0.004068057000495173,
+                "iqr": 3.135499810014153e-06,
+                "q1": 0.004066749499997968,
+                "q3": 0.004069884999807982,
+                "iqr_outliers": 21,
+                "stddev_outliers": 6,
+                "outliers": "6;21",
+                "ld15iqr": 0.004064173999722698,
+                "hd15iqr": 0.0040761170002951985,
+                "ops": 245.2874179351329,
+                "total": 0.40768499600108044,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00475880900012271,
+                "max": 0.004840202999730536,
+                "mean": 0.0047761126200475705,
+                "stddev": 1.607530822626289e-05,
+                "rounds": 100,
+                "median": 0.004769534999923053,
+                "iqr": 4.828999863093486e-06,
+                "q1": 0.004767020000144839,
+                "q3": 0.004771849000007933,
+                "iqr_outliers": 23,
+                "stddev_outliers": 19,
+                "outliers": "19;23",
+                "ld15iqr": 0.004762897000546218,
+                "hd15iqr": 0.004781732999617816,
+                "ops": 209.37529735009474,
+                "total": 0.477611262004757,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gauss_sigma_2[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00552174400036165,
+                "max": 0.005580585000643623,
+                "mean": 0.005536071179967621,
+                "stddev": 1.7954932510627775e-05,
+                "rounds": 100,
+                "median": 0.005526162000478507,
+                "iqr": 2.2392499886336736e-05,
+                "q1": 0.005524588999833213,
+                "q3": 0.00554698149971955,
+                "iqr_outliers": 1,
+                "stddev_outliers": 22,
+                "outliers": "22;1",
+                "ld15iqr": 0.00552174400036165,
+                "hd15iqr": 0.005580585000643623,
+                "ops": 180.6335156272049,
+                "total": 0.5536071179967621,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.794000026071444e-05,
+                "max": 0.00026851800066651776,
+                "mean": 7.004960998528987e-05,
+                "stddev": 3.297414928706808e-05,
+                "rounds": 100,
+                "median": 6.065949946787441e-05,
+                "iqr": 4.7039998207765166e-06,
+                "q1": 5.863600017619319e-05,
+                "q3": 6.333999999696971e-05,
+                "iqr_outliers": 21,
+                "stddev_outliers": 5,
+                "outliers": "5;21",
+                "ld15iqr": 5.794000026071444e-05,
+                "hd15iqr": 7.449099939549342e-05,
+                "ops": 14275.596969205053,
+                "total": 0.007004960998528986,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0001548629998069373,
+                "max": 0.00023077700006979285,
+                "mean": 0.00018624243004524031,
+                "stddev": 2.9866012615822383e-05,
+                "rounds": 100,
+                "median": 0.00021388950017353636,
+                "iqr": 5.8921500112774083e-05,
+                "q1": 0.00015568449953207164,
+                "q3": 0.00021460599964484572,
+                "iqr_outliers": 0,
+                "stddev_outliers": 49,
+                "outliers": "49;0",
+                "ld15iqr": 0.0001548629998069373,
+                "hd15iqr": 0.00023077700006979285,
+                "ops": 5369.345748748495,
+                "total": 0.018624243004524033,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0006123090006440179,
+                "max": 0.0007427059999827179,
+                "mean": 0.0006177359699722729,
+                "stddev": 1.329808594456648e-05,
+                "rounds": 100,
+                "median": 0.0006155705000310263,
+                "iqr": 2.2945005184737965e-06,
+                "q1": 0.0006146334994809877,
+                "q3": 0.0006169279999994615,
+                "iqr_outliers": 8,
+                "stddev_outliers": 2,
+                "outliers": "2;8",
+                "ld15iqr": 0.0006123090006440179,
+                "hd15iqr": 0.0006204649998835521,
+                "ops": 1618.8145884476908,
+                "total": 0.06177359699722729,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000925211000321724,
+                "max": 0.001082179000150063,
+                "mean": 0.0009573636599907331,
+                "stddev": 2.420192559151553e-05,
+                "rounds": 100,
+                "median": 0.0009520574999442033,
+                "iqr": 3.982999714935431e-06,
+                "q1": 0.0009500135001871968,
+                "q3": 0.0009539964999021322,
+                "iqr_outliers": 11,
+                "stddev_outliers": 7,
+                "outliers": "7;11",
+                "ld15iqr": 0.0009470830000282149,
+                "hd15iqr": 0.0009614209993742406,
+                "ops": 1044.5351560656475,
+                "total": 0.09573636599907331,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00139617399963754,
+                "max": 0.0018740179993983475,
+                "mean": 0.0014255827999386384,
+                "stddev": 5.2923488094232113e-05,
+                "rounds": 100,
+                "median": 0.0014159654997456528,
+                "iqr": 7.168499905674253e-06,
+                "q1": 0.0014126095002211514,
+                "q3": 0.0014197780001268256,
+                "iqr_outliers": 8,
+                "stddev_outliers": 4,
+                "outliers": "4;8",
+                "ld15iqr": 0.0014089079995756038,
+                "hd15iqr": 0.0014323919995149481,
+                "ops": 701.4674980948446,
+                "total": 0.14255827999386383,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001934191999680479,
+                "max": 0.0020749780005644425,
+                "mean": 0.0019525347600392706,
+                "stddev": 1.9681302549970005e-05,
+                "rounds": 100,
+                "median": 0.0019487839999783318,
+                "iqr": 3.6975002331018914e-06,
+                "q1": 0.0019471914997666318,
+                "q3": 0.0019508889999997336,
+                "iqr_outliers": 8,
+                "stddev_outliers": 3,
+                "outliers": "3;8",
+                "ld15iqr": 0.0019447320000836044,
+                "hd15iqr": 0.001956985000106215,
+                "ops": 512.1547746376035,
+                "total": 0.19525347600392706,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0025273040000683977,
+                "max": 0.002652560999194975,
+                "mean": 0.0025345461899996735,
+                "stddev": 1.3442893131445565e-05,
+                "rounds": 100,
+                "median": 0.0025325394999526907,
+                "iqr": 4.878999789070804e-06,
+                "q1": 0.0025300850002167863,
+                "q3": 0.002534964000005857,
+                "iqr_outliers": 4,
+                "stddev_outliers": 3,
+                "outliers": "3;4",
+                "ld15iqr": 0.0025273040000683977,
+                "hd15iqr": 0.0025469619995419635,
+                "ops": 394.5479486409079,
+                "total": 0.25345461899996735,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0030215799997677095,
+                "max": 0.0030949990004955907,
+                "mean": 0.00303600691999236,
+                "stddev": 7.40430731209921e-06,
+                "rounds": 100,
+                "median": 0.0030343294997692283,
+                "iqr": 3.3515002542117145e-06,
+                "q1": 0.0030331924999700277,
+                "q3": 0.0030365440002242394,
+                "iqr_outliers": 9,
+                "stddev_outliers": 9,
+                "outliers": "9;9",
+                "ld15iqr": 0.0030307480001283693,
+                "hd15iqr": 0.0030448540001088986,
+                "ops": 329.38001340343334,
+                "total": 0.303600691999236,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0038053739999668323,
+                "max": 0.003931372999431915,
+                "mean": 0.003811859370016464,
+                "stddev": 1.250913214818357e-05,
+                "rounds": 100,
+                "median": 0.0038101834998087725,
+                "iqr": 2.4599999051133636e-06,
+                "q1": 0.0038091660003374272,
+                "q3": 0.0038116260002425406,
+                "iqr_outliers": 7,
+                "stddev_outliers": 2,
+                "outliers": "2;7",
+                "ld15iqr": 0.003806265999628522,
+                "hd15iqr": 0.00381688600009511,
+                "ops": 262.33916389094935,
+                "total": 0.3811859370016464,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004573768999762251,
+                "max": 0.004589389000102528,
+                "mean": 0.004581350530015698,
+                "stddev": 2.9509360422797437e-06,
+                "rounds": 100,
+                "median": 0.0045812235002813395,
+                "iqr": 3.5265002225060016e-06,
+                "q1": 0.004579625000133092,
+                "q3": 0.004583151500355598,
+                "iqr_outliers": 2,
+                "stddev_outliers": 29,
+                "outliers": "29;2",
+                "ld15iqr": 0.0045754109996778425,
+                "hd15iqr": 0.004589389000102528,
+                "ops": 218.2762470254756,
+                "total": 0.45813505300156976,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_grayscale_gauss_sigma_2[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "grayscale_gauss_sigma_2"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.005051062999882561,
+                "max": 0.0051803780006594025,
+                "mean": 0.005078068109924061,
+                "stddev": 1.1345887562005746e-05,
+                "rounds": 100,
+                "median": 0.00507700649995968,
+                "iqr": 3.816500338871265e-06,
+                "q1": 0.005074832499758486,
+                "q3": 0.005078649000097357,
+                "iqr_outliers": 5,
+                "stddev_outliers": 5,
+                "outliers": "5;5",
+                "ld15iqr": 0.005069236999588611,
+                "hd15iqr": 0.005090245999781473,
+                "ops": 196.92528307087915,
+                "total": 0.5078068109924061,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00029510900003515417,
+                "max": 0.00046269599988590926,
+                "mean": 0.0003191838999828178,
+                "stddev": 2.969854205813362e-05,
+                "rounds": 100,
+                "median": 0.00029992800000400166,
+                "iqr": 5.224399956205161e-05,
+                "q1": 0.00029855999991923454,
+                "q3": 0.00035080399948128616,
+                "iqr_outliers": 1,
+                "stddev_outliers": 34,
+                "outliers": "34;1",
+                "ld15iqr": 0.00029510900003515417,
+                "hd15iqr": 0.00046269599988590926,
+                "ops": 3132.9901039928127,
+                "total": 0.03191838999828178,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00039419600034307223,
+                "max": 0.0006497300000773976,
+                "mean": 0.0004040966099819343,
+                "stddev": 2.6042895922135717e-05,
+                "rounds": 100,
+                "median": 0.0003999774999101646,
+                "iqr": 1.7890001799969468e-06,
+                "q1": 0.00039924549992065295,
+                "q3": 0.0004010345001006499,
+                "iqr_outliers": 15,
+                "stddev_outliers": 2,
+                "outliers": "2;15",
+                "ld15iqr": 0.0003970120005760691,
+                "hd15iqr": 0.0004037949993289658,
+                "ops": 2474.6557513677394,
+                "total": 0.04040966099819343,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0005963189996691654,
+                "max": 0.0007073489996400895,
+                "mean": 0.0006128982099744462,
+                "stddev": 1.614810420199431e-05,
+                "rounds": 100,
+                "median": 0.0006057870000404364,
+                "iqr": 1.333499949396355e-05,
+                "q1": 0.0006039035001776938,
+                "q3": 0.0006172384996716573,
+                "iqr_outliers": 6,
+                "stddev_outliers": 15,
+                "outliers": "15;6",
+                "ld15iqr": 0.0005963189996691654,
+                "hd15iqr": 0.0006376370001817122,
+                "ops": 1631.5922998725896,
+                "total": 0.06128982099744462,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0008068779998211539,
+                "max": 0.0008388989999730256,
+                "mean": 0.000811538260004454,
+                "stddev": 4.962104658056297e-06,
+                "rounds": 100,
+                "median": 0.000810258999990765,
+                "iqr": 2.7705004868039396e-06,
+                "q1": 0.0008089114999165758,
+                "q3": 0.0008116820004033798,
+                "iqr_outliers": 10,
+                "stddev_outliers": 9,
+                "outliers": "9;10",
+                "ld15iqr": 0.0008068779998211539,
+                "hd15iqr": 0.0008162049998645671,
+                "ops": 1232.2277941578645,
+                "total": 0.0811538260004454,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001137964000008651,
+                "max": 0.0013000819999433588,
+                "mean": 0.001151380200053609,
+                "stddev": 2.2461172210664e-05,
+                "rounds": 100,
+                "median": 0.001146721000168327,
+                "iqr": 5.384999894886278e-06,
+                "q1": 0.0011436899999353045,
+                "q3": 0.0011490749998301908,
+                "iqr_outliers": 9,
+                "stddev_outliers": 5,
+                "outliers": "5;9",
+                "ld15iqr": 0.001137964000008651,
+                "hd15iqr": 0.0011576919996514334,
+                "ops": 868.5228388966907,
+                "total": 0.11513802000536089,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014689310000903788,
+                "max": 0.0015988870000001043,
+                "mean": 0.001481557810011509,
+                "stddev": 1.3699341691262555e-05,
+                "rounds": 100,
+                "median": 0.001479506000123365,
+                "iqr": 8.646499736642e-06,
+                "q1": 0.0014757789999748638,
+                "q3": 0.0014844254997115058,
+                "iqr_outliers": 3,
+                "stddev_outliers": 6,
+                "outliers": "6;3",
+                "ld15iqr": 0.0014689310000903788,
+                "hd15iqr": 0.001497776000178419,
+                "ops": 674.9652246051957,
+                "total": 0.1481557810011509,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001860681999460212,
+                "max": 0.0020689670000137994,
+                "mean": 0.0018765159600025072,
+                "stddev": 2.575991690850161e-05,
+                "rounds": 100,
+                "median": 0.001871187500000815,
+                "iqr": 7.884999831730966e-06,
+                "q1": 0.0018678510000427195,
+                "q3": 0.0018757359998744505,
+                "iqr_outliers": 7,
+                "stddev_outliers": 5,
+                "outliers": "5;7",
+                "ld15iqr": 0.001860681999460212,
+                "hd15iqr": 0.0018878439996115048,
+                "ops": 532.9024752865218,
+                "total": 0.18765159600025072,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.002205436000622285,
+                "max": 0.002324641000086558,
+                "mean": 0.002218752070057235,
+                "stddev": 1.542155983019083e-05,
+                "rounds": 100,
+                "median": 0.0022133400002530834,
+                "iqr": 1.3775500065094093e-05,
+                "q1": 0.002210510000168142,
+                "q3": 0.0022242855002332362,
+                "iqr_outliers": 2,
+                "stddev_outliers": 8,
+                "outliers": "8;2",
+                "ld15iqr": 0.002205436000622285,
+                "hd15iqr": 0.0022905470004843664,
+                "ops": 450.7038048528802,
+                "total": 0.2218752070057235,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0028587119995791,
+                "max": 0.002901203000874375,
+                "mean": 0.0028678474799926335,
+                "stddev": 6.224395787062467e-06,
+                "rounds": 100,
+                "median": 0.0028673130000242963,
+                "iqr": 6.838499757577665e-06,
+                "q1": 0.0028634655000132625,
+                "q3": 0.00287030399977084,
+                "iqr_outliers": 4,
+                "stddev_outliers": 17,
+                "outliers": "17;4",
+                "ld15iqr": 0.0028587119995791,
+                "hd15iqr": 0.002883017999920412,
+                "ops": 348.6935783637171,
+                "total": 0.28678474799926335,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0034075209996444755,
+                "max": 0.0034632360002433416,
+                "mean": 0.003424061920031818,
+                "stddev": 1.1737051937266709e-05,
+                "rounds": 100,
+                "median": 0.003424016999815649,
+                "iqr": 2.0274000235076528e-05,
+                "q1": 0.003413181500036444,
+                "q3": 0.0034334555002715206,
+                "iqr_outliers": 0,
+                "stddev_outliers": 24,
+                "outliers": "24;0",
+                "ld15iqr": 0.0034075209996444755,
+                "hd15iqr": 0.0034632360002433416,
+                "ops": 292.0507932843421,
+                "total": 0.3424061920031818,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rotate_90_deg[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "rotate_90_deg"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.003525494000314211,
+                "max": 0.003567293000742211,
+                "mean": 0.0035549379399708414,
+                "stddev": 4.613590215299922e-06,
+                "rounds": 100,
+                "median": 0.00355453399970429,
+                "iqr": 3.0649998734588735e-06,
+                "q1": 0.0035531019998416014,
+                "q3": 0.0035561669997150602,
+                "iqr_outliers": 10,
+                "stddev_outliers": 16,
+                "outliers": "16;10",
+                "ld15iqr": 0.0035496300006343517,
+                "hd15iqr": 0.0035611309995147167,
+                "ops": 281.2988628454657,
+                "total": 0.35549379399708414,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.4105999980529305e-05,
+                "max": 2.1359999664127827e-05,
+                "mean": 1.5713749980932335e-05,
+                "stddev": 1.8376983882272849e-06,
+                "rounds": 100,
+                "median": 1.4913499853719259e-05,
+                "iqr": 8.174997674359474e-07,
+                "q1": 1.4572000054613454e-05,
+                "q3": 1.5389499822049402e-05,
+                "iqr_outliers": 23,
+                "stddev_outliers": 20,
+                "outliers": "20;23",
+                "ld15iqr": 1.4105999980529305e-05,
+                "hd15iqr": 1.6742000298108906e-05,
+                "ops": 63638.53320903274,
+                "total": 0.0015713749980932334,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.348300015204586e-05,
+                "max": 0.0004484290002437774,
+                "mean": 3.8668500028506966e-05,
+                "stddev": 4.139191122159509e-05,
+                "rounds": 100,
+                "median": 3.446499977144413e-05,
+                "iqr": 5.50999629922444e-07,
+                "q1": 3.424500027904287e-05,
+                "q3": 3.4795999908965314e-05,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 3.348300015204586e-05,
+                "hd15iqr": 0.0004484290002437774,
+                "ops": 25860.84278580203,
+                "total": 0.003866850002850697,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0002708830006667995,
+                "max": 0.0003162689999953727,
+                "mean": 0.0002740162399641122,
+                "stddev": 4.463612965267755e-06,
+                "rounds": 100,
+                "median": 0.00027358800025467644,
+                "iqr": 1.978999534912873e-06,
+                "q1": 0.0002725560002545535,
+                "q3": 0.0002745349997894664,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.0002708830006667995,
+                "hd15iqr": 0.0003162689999953727,
+                "ops": 3649.4187356594985,
+                "total": 0.027401623996411217,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00042490400028327713,
+                "max": 0.0004401440000947332,
+                "mean": 0.00043588694000391116,
+                "stddev": 2.6984407870385062e-06,
+                "rounds": 100,
+                "median": 0.00043682250043275417,
+                "iqr": 4.744000307255192e-06,
+                "q1": 0.00043358599941711873,
+                "q3": 0.0004383299997243739,
+                "iqr_outliers": 1,
+                "stddev_outliers": 29,
+                "outliers": "29;1",
+                "ld15iqr": 0.0004319279996707337,
+                "hd15iqr": 0.0004401440000947332,
+                "ops": 2294.1728880223554,
+                "total": 0.043588694000391115,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0006422759997803951,
+                "max": 0.0006993340002736659,
+                "mean": 0.0006738692100498155,
+                "stddev": 4.589600018265606e-06,
+                "rounds": 100,
+                "median": 0.0006739360001120076,
+                "iqr": 2.5500003175693564e-06,
+                "q1": 0.0006727434997628734,
+                "q3": 0.0006752935000804428,
+                "iqr_outliers": 3,
+                "stddev_outliers": 4,
+                "outliers": "4;3",
+                "ld15iqr": 0.0006698280003547552,
+                "hd15iqr": 0.0006993340002736659,
+                "ops": 1483.9674896647605,
+                "total": 0.06738692100498156,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000932085000385996,
+                "max": 0.0009535950002828031,
+                "mean": 0.000945004000013796,
+                "stddev": 2.203324938465389e-06,
+                "rounds": 100,
+                "median": 0.0009449740000491147,
+                "iqr": 1.2969994713785127e-06,
+                "q1": 0.0009443230005672376,
+                "q3": 0.0009456200000386161,
+                "iqr_outliers": 6,
+                "stddev_outliers": 8,
+                "outliers": "8;6",
+                "ld15iqr": 0.0009426850001545972,
+                "hd15iqr": 0.0009480140006417059,
+                "ops": 1058.1965790466506,
+                "total": 0.0945004000013796,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0012147999996159342,
+                "max": 0.0012396260008245008,
+                "mean": 0.0012293133500588737,
+                "stddev": 2.4368423030401726e-06,
+                "rounds": 100,
+                "median": 0.0012291520001781464,
+                "iqr": 1.2875002539658453e-06,
+                "q1": 0.0012285809998502373,
+                "q3": 0.0012298685001042031,
+                "iqr_outliers": 8,
+                "stddev_outliers": 10,
+                "outliers": "10;8",
+                "ld15iqr": 0.001226682000378787,
+                "hd15iqr": 0.0012324340004852274,
+                "ops": 813.4622469951281,
+                "total": 0.12293133500588738,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0012829480001528282,
+                "max": 0.0013245379996078555,
+                "mean": 0.0012878781100062041,
+                "stddev": 4.303587921081427e-06,
+                "rounds": 100,
+                "median": 0.0012876280002274143,
+                "iqr": 2.771000254142564e-06,
+                "q1": 0.0012858939999205177,
+                "q3": 0.0012886650001746602,
+                "iqr_outliers": 2,
+                "stddev_outliers": 3,
+                "outliers": "3;2",
+                "ld15iqr": 0.0012829480001528282,
+                "hd15iqr": 0.0012998810007047723,
+                "ops": 776.4709969293465,
+                "total": 0.12878781100062042,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0013192979995437781,
+                "max": 0.001389531000313582,
+                "mean": 0.0013495466399763246,
+                "stddev": 7.808127900130201e-06,
+                "rounds": 100,
+                "median": 0.001348427500033722,
+                "iqr": 3.917000412911875e-06,
+                "q1": 0.0013463739996950608,
+                "q3": 0.0013502910001079726,
+                "iqr_outliers": 9,
+                "stddev_outliers": 9,
+                "outliers": "9;9",
+                "ld15iqr": 0.0013410389992714045,
+                "hd15iqr": 0.0013565279996328172,
+                "ops": 740.9895815216458,
+                "total": 0.13495466399763245,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014122230004431913,
+                "max": 0.001492985999902885,
+                "mean": 0.001427661720008473,
+                "stddev": 9.026393747198766e-06,
+                "rounds": 100,
+                "median": 0.0014262250001593202,
+                "iqr": 1.5535001693933737e-06,
+                "q1": 0.0014253429999371292,
+                "q3": 0.0014268965001065226,
+                "iqr_outliers": 6,
+                "stddev_outliers": 5,
+                "outliers": "5;6",
+                "ld15iqr": 0.0014237150007829769,
+                "hd15iqr": 0.0014455169994107564,
+                "ops": 700.4460412331188,
+                "total": 0.1427661720008473,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_rgb_to_grayscale[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "rgb_to_grayscale"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014817860001130612,
+                "max": 0.0015267009994204273,
+                "mean": 0.0014861781299896392,
+                "stddev": 6.9925304645010945e-06,
+                "rounds": 100,
+                "median": 0.0014849864996904216,
+                "iqr": 2.1089990696054883e-06,
+                "q1": 0.0014839995005786477,
+                "q3": 0.0014861084996482532,
+                "iqr_outliers": 3,
+                "stddev_outliers": 3,
+                "outliers": "3;3",
+                "ld15iqr": 0.0014817860001130612,
+                "hd15iqr": 0.0015236950002872618,
+                "ops": 672.8668521094247,
+                "total": 0.14861781299896393,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.5198000255622901e-05,
+                "max": 9.738500011735596e-05,
+                "mean": 3.9824860032240394e-05,
+                "stddev": 2.9506580149359347e-05,
+                "rounds": 100,
+                "median": 2.085900041493005e-05,
+                "iqr": 5.393750052462565e-05,
+                "q1": 1.910599985421868e-05,
+                "q3": 7.304350037884433e-05,
+                "iqr_outliers": 0,
+                "stddev_outliers": 33,
+                "outliers": "33;0",
+                "ld15iqr": 1.5198000255622901e-05,
+                "hd15iqr": 9.738500011735596e-05,
+                "ops": 25109.94386899152,
+                "total": 0.0039824860032240395,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00012194099963380722,
+                "max": 0.00029810499927407363,
+                "mean": 0.00012966573002813674,
+                "stddev": 1.955381300126133e-05,
+                "rounds": 100,
+                "median": 0.00012642399997275788,
+                "iqr": 7.02000306773698e-07,
+                "q1": 0.00012605299980350537,
+                "q3": 0.00012675500011027907,
+                "iqr_outliers": 7,
+                "stddev_outliers": 3,
+                "outliers": "3;7",
+                "ld15iqr": 0.00012500699995143805,
+                "hd15iqr": 0.00013092799963487778,
+                "ops": 7712.137970325741,
+                "total": 0.012966573002813675,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00027890799992746906,
+                "max": 0.0003323189994262066,
+                "mean": 0.0002913440699921921,
+                "stddev": 4.743668748070851e-06,
+                "rounds": 100,
+                "median": 0.00029084550033076084,
+                "iqr": 1.041999894368928e-06,
+                "q1": 0.0002902545002143597,
+                "q3": 0.00029129650010872865,
+                "iqr_outliers": 9,
+                "stddev_outliers": 5,
+                "outliers": "5;9",
+                "ld15iqr": 0.0002890780006055138,
+                "hd15iqr": 0.00029295500007719966,
+                "ops": 3432.3677843410355,
+                "total": 0.02913440699921921,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000447748000624415,
+                "max": 0.0004932840001856675,
+                "mean": 0.0004651537900008407,
+                "stddev": 4.547668465598267e-06,
+                "rounds": 100,
+                "median": 0.00046458399992843624,
+                "iqr": 1.2264995348232333e-06,
+                "q1": 0.0004639290000341134,
+                "q3": 0.00046515549956893665,
+                "iqr_outliers": 7,
+                "stddev_outliers": 5,
+                "outliers": "5;7",
+                "ld15iqr": 0.00046227599978010403,
+                "hd15iqr": 0.00046705399927304825,
+                "ops": 2149.826619703975,
+                "total": 0.04651537900008407,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0007167869998738752,
+                "max": 0.000750320999941323,
+                "mean": 0.000721177900022667,
+                "stddev": 3.8037381186840144e-06,
+                "rounds": 100,
+                "median": 0.0007204740004453924,
+                "iqr": 1.5835003068787046e-06,
+                "q1": 0.000719887499599281,
+                "q3": 0.0007214709999061597,
+                "iqr_outliers": 6,
+                "stddev_outliers": 5,
+                "outliers": "5;6",
+                "ld15iqr": 0.0007181589999163407,
+                "hd15iqr": 0.000724220999472891,
+                "ops": 1386.620416361302,
+                "total": 0.0721177900022667,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0009818380003707716,
+                "max": 0.0010342580008000368,
+                "mean": 0.0010023700399506197,
+                "stddev": 7.848465074527954e-06,
+                "rounds": 100,
+                "median": 0.0009985004999180092,
+                "iqr": 1.3846499768987997e-05,
+                "q1": 0.0009968419999495381,
+                "q3": 0.0010106884997185261,
+                "iqr_outliers": 1,
+                "stddev_outliers": 30,
+                "outliers": "30;1",
+                "ld15iqr": 0.0009818380003707716,
+                "hd15iqr": 0.0010342580008000368,
+                "ops": 997.6355638574987,
+                "total": 0.10023700399506197,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0012986679994355654,
+                "max": 0.0013893200002712547,
+                "mean": 0.001315847629939526,
+                "stddev": 1.579674853354631e-05,
+                "rounds": 100,
+                "median": 0.0013064129998383578,
+                "iqr": 2.7777999548561638e-05,
+                "q1": 0.0013054010000814742,
+                "q3": 0.0013331789996300358,
+                "iqr_outliers": 1,
+                "stddev_outliers": 34,
+                "outliers": "34;1",
+                "ld15iqr": 0.0012986679994355654,
+                "hd15iqr": 0.0013893200002712547,
+                "ops": 759.9664104315468,
+                "total": 0.1315847629939526,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0014088469997659558,
+                "max": 0.001793775999431091,
+                "mean": 0.0015343271600067965,
+                "stddev": 0.000163493820284377,
+                "rounds": 100,
+                "median": 0.0014212655000847008,
+                "iqr": 0.0003438359999563545,
+                "q1": 0.001419808000264311,
+                "q3": 0.0017636440002206655,
+                "iqr_outliers": 0,
+                "stddev_outliers": 33,
+                "outliers": "33;0",
+                "ld15iqr": 0.0014088469997659558,
+                "hd15iqr": 0.001793775999431091,
+                "ops": 651.7514817345542,
+                "total": 0.15343271600067965,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001502875999904063,
+                "max": 0.001581253999574983,
+                "mean": 0.0015170391400624794,
+                "stddev": 1.3295549806148545e-05,
+                "rounds": 100,
+                "median": 0.0015141109993237478,
+                "iqr": 1.7040001694113016e-06,
+                "q1": 0.001513494999926479,
+                "q3": 0.0015151990000958904,
+                "iqr_outliers": 12,
+                "stddev_outliers": 6,
+                "outliers": "6;12",
+                "ld15iqr": 0.0015114010002434952,
+                "hd15iqr": 0.0015179629999693134,
+                "ops": 659.1787736991512,
+                "total": 0.15170391400624794,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0015919130000838777,
+                "max": 0.0016873149997991277,
+                "mean": 0.0016228284099724989,
+                "stddev": 1.3428914434743871e-05,
+                "rounds": 100,
+                "median": 0.0016201319995161612,
+                "iqr": 3.7224999687168747e-06,
+                "q1": 0.0016186644998015254,
+                "q3": 0.0016223869997702423,
+                "iqr_outliers": 7,
+                "stddev_outliers": 5,
+                "outliers": "5;7",
+                "ld15iqr": 0.0016155690000232426,
+                "hd15iqr": 0.0016282420001516584,
+                "ops": 616.2080931384154,
+                "total": 0.16228284099724988,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_fliplr[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_fliplr[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "fliplr"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0017312969994236482,
+                "max": 0.0018060390002574422,
+                "mean": 0.0017408240399709029,
+                "stddev": 1.218831694629697e-05,
+                "rounds": 100,
+                "median": 0.0017383659996994538,
+                "iqr": 4.012499630334787e-06,
+                "q1": 0.001736421999794402,
+                "q3": 0.0017404344994247367,
+                "iqr_outliers": 6,
+                "stddev_outliers": 6,
+                "outliers": "6;6",
+                "ld15iqr": 0.0017312969994236482,
+                "hd15iqr": 0.001755373000378313,
+                "ops": 574.440596544562,
+                "total": 0.1740824039970903,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 500
+            },
+            "param": "100-rounds-25-warmup_rounds-500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 500,
+                    "height": 500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0005108670002300641,
+                "max": 0.0007664410004508682,
+                "mean": 0.0006533228800708458,
+                "stddev": 1.9188258827610383e-05,
+                "rounds": 100,
+                "median": 0.0006524499999613909,
+                "iqr": 1.4935003491700627e-06,
+                "q1": 0.0006516784997074865,
+                "q3": 0.0006531720000566565,
+                "iqr_outliers": 14,
+                "stddev_outliers": 4,
+                "outliers": "4;14",
+                "ld15iqr": 0.0006497799995486275,
+                "hd15iqr": 0.0006558619998031645,
+                "ops": 1530.6367349197399,
+                "total": 0.06533228800708457,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-1000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-1000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1000
+            },
+            "param": "100-rounds-25-warmup_rounds-1000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1000,
+                    "height": 1000,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0006410740006685955,
+                "max": 0.0009707179997349158,
+                "mean": 0.0006665220800641692,
+                "stddev": 5.768347604567575e-05,
+                "rounds": 100,
+                "median": 0.0006461630000558216,
+                "iqr": 6.222000592970289e-06,
+                "q1": 0.0006444849996114499,
+                "q3": 0.0006507070002044202,
+                "iqr_outliers": 12,
+                "stddev_outliers": 11,
+                "outliers": "11;12",
+                "ld15iqr": 0.0006410740006685955,
+                "hd15iqr": 0.0006923800001459313,
+                "ops": 1500.3253904262638,
+                "total": 0.06665220800641691,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-1500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-1500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 1500
+            },
+            "param": "100-rounds-25-warmup_rounds-1500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 1500,
+                    "height": 1500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.001458220000131405,
+                "max": 0.0015810830000191345,
+                "mean": 0.0014832047600248188,
+                "stddev": 3.498158410684101e-05,
+                "rounds": 100,
+                "median": 0.0014677890003440552,
+                "iqr": 1.4878500223858282e-05,
+                "q1": 0.001464036000015767,
+                "q3": 0.0014789145002396253,
+                "iqr_outliers": 17,
+                "stddev_outliers": 16,
+                "outliers": "16;17",
+                "ld15iqr": 0.001458220000131405,
+                "hd15iqr": 0.0015077840007506893,
+                "ops": 674.2157434710948,
+                "total": 0.14832047600248188,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-2000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-2000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2000
+            },
+            "param": "100-rounds-25-warmup_rounds-2000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2000,
+                    "height": 2000,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0017810019999160431,
+                "max": 0.0021601799999189097,
+                "mean": 0.0018095955500302807,
+                "stddev": 5.502727348028649e-05,
+                "rounds": 100,
+                "median": 0.0017957949999072298,
+                "iqr": 7.724500392214395e-06,
+                "q1": 0.0017933749995791004,
+                "q3": 0.0018010994999713148,
+                "iqr_outliers": 15,
+                "stddev_outliers": 5,
+                "outliers": "5;15",
+                "ld15iqr": 0.0017861309997897479,
+                "hd15iqr": 0.0018140739994123578,
+                "ops": 552.6096701460536,
+                "total": 0.18095955500302807,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-2500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-2500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 2500
+            },
+            "param": "100-rounds-25-warmup_rounds-2500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 2500,
+                    "height": 2500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0024032100000113132,
+                "max": 0.0027571499995246995,
+                "mean": 0.002425027019953632,
+                "stddev": 3.752668456501303e-05,
+                "rounds": 100,
+                "median": 0.002418417999706435,
+                "iqr": 1.2093000350432703e-05,
+                "q1": 0.0024120214998220035,
+                "q3": 0.0024241145001724362,
+                "iqr_outliers": 12,
+                "stddev_outliers": 3,
+                "outliers": "3;12",
+                "ld15iqr": 0.0024032100000113132,
+                "hd15iqr": 0.0024446280003758147,
+                "ops": 412.3665393299909,
+                "total": 0.24250270199536317,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-3000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-3000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3000
+            },
+            "param": "100-rounds-25-warmup_rounds-3000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3000,
+                    "height": 3000,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.002882958000554936,
+                "max": 0.0035005570007342612,
+                "mean": 0.0029179143100645888,
+                "stddev": 6.393985319227022e-05,
+                "rounds": 100,
+                "median": 0.0029030650002823677,
+                "iqr": 2.0443500034161843e-05,
+                "q1": 0.002897279499848082,
+                "q3": 0.002917722999882244,
+                "iqr_outliers": 8,
+                "stddev_outliers": 4,
+                "outliers": "4;8",
+                "ld15iqr": 0.002882958000554936,
+                "hd15iqr": 0.002951176999886229,
+                "ops": 342.7105438123249,
+                "total": 0.2917914310064589,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-3500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-3500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 3500
+            },
+            "param": "100-rounds-25-warmup_rounds-3500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 3500,
+                    "height": 3500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0034627459999683197,
+                "max": 0.0042873370002780575,
+                "mean": 0.003499209819983662,
+                "stddev": 8.444175748732022e-05,
+                "rounds": 100,
+                "median": 0.003483183500065934,
+                "iqr": 1.1145500138809439e-05,
+                "q1": 0.0034788809998644865,
+                "q3": 0.003490026500003296,
+                "iqr_outliers": 15,
+                "stddev_outliers": 5,
+                "outliers": "5;15",
+                "ld15iqr": 0.0034627459999683197,
+                "hd15iqr": 0.0035091219997411827,
+                "ops": 285.7788047716067,
+                "total": 0.3499209819983662,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-4000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-4000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4000
+            },
+            "param": "100-rounds-25-warmup_rounds-4000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4000,
+                    "height": 4000,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004289550000066811,
+                "max": 0.005118439999932889,
+                "mean": 0.0043229965300179175,
+                "stddev": 8.462869590709991e-05,
+                "rounds": 100,
+                "median": 0.00430849149961432,
+                "iqr": 1.0896499588852748e-05,
+                "q1": 0.004304483000396431,
+                "q3": 0.0043153794999852835,
+                "iqr_outliers": 12,
+                "stddev_outliers": 4,
+                "outliers": "4;12",
+                "ld15iqr": 0.004289550000066811,
+                "hd15iqr": 0.0043319599999449565,
+                "ops": 231.32102768443707,
+                "total": 0.43229965300179174,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-4500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-4500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 4500
+            },
+            "param": "100-rounds-25-warmup_rounds-4500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 4500,
+                    "height": 4500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.005155189000106475,
+                "max": 0.006255322000470187,
+                "mean": 0.005200401589927423,
+                "stddev": 0.00012402015413231807,
+                "rounds": 100,
+                "median": 0.0051759590000983735,
+                "iqr": 1.3841000054526376e-05,
+                "q1": 0.0051715454997065535,
+                "q3": 0.00518538649976108,
+                "iqr_outliers": 12,
+                "stddev_outliers": 2,
+                "outliers": "2;12",
+                "ld15iqr": 0.005155189000106475,
+                "hd15iqr": 0.005209521999859135,
+                "ops": 192.29284175608367,
+                "total": 0.5200401589927424,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-5000-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-5000-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5000
+            },
+            "param": "100-rounds-25-warmup_rounds-5000-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5000,
+                    "height": 5000,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.006206509999174159,
+                "max": 0.007621328000823269,
+                "mean": 0.006255933960028414,
+                "stddev": 0.00014013942858216778,
+                "rounds": 100,
+                "median": 0.006235398500393785,
+                "iqr": 1.2994000371691072e-05,
+                "q1": 0.006229798500044126,
+                "q3": 0.006242792500415817,
+                "iqr_outliers": 14,
+                "stddev_outliers": 1,
+                "outliers": "1;14",
+                "ld15iqr": 0.00621889200010628,
+                "hd15iqr": 0.006263176999709685,
+                "ops": 159.8482347143348,
+                "total": 0.6255933960028415,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "opencv_cuda",
+            "name": "benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-5500-input_size]",
+            "fullname": "benchmarks/benchmark_opencv_cuda.py::benchmark_gray_gauss_transpose_rotate_pipeline[100-rounds-25-warmup_rounds-5500-input_size]",
+            "params": {
+                "rounds": 100,
+                "warmup_rounds": 25,
+                "input_size": 5500
+            },
+            "param": "100-rounds-25-warmup_rounds-5500-input_size",
+            "extra_info": {
+                "input_info": {
+                    "dtype": "uint8",
+                    "width": 5500,
+                    "height": 5500,
+                    "channels": 4
+                },
+                "name": "gray_gauss_transpose_rotate_pipeline"
+            },
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0072131850001824205,
+                "max": 0.00852156200016907,
+                "mean": 0.007273101179998775,
+                "stddev": 0.0001280741205259921,
+                "rounds": 100,
+                "median": 0.007255224999880738,
+                "iqr": 1.250849982170621e-05,
+                "q1": 0.007250720999763871,
+                "q3": 0.007263229499585577,
+                "iqr_outliers": 11,
+                "stddev_outliers": 1,
+                "outliers": "1;11",
+                "ld15iqr": 0.0072401059996991535,
+                "hd15iqr": 0.007284979999894858,
+                "ops": 137.49293117907214,
+                "total": 0.7273101179998775,
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2023-04-01T16:36:05.502821",
+    "version": "4.0.0",
+    "rocm_info": {
+        "ROCM_HOME": "/opt/rocm-5.4.3",
+        "ROCM_VERSION": "5.4.3",
+        "hipconfig": "HIP version  : 5.4.22804-474e8620\n\n== hipconfig\nHIP_PATH     : /opt/rocm-5.4.3\nROCM_PATH    : /opt/rocm\nHIP_COMPILER : clang\nHIP_PLATFORM : nvidia\nHIP_RUNTIME  : rocclr\nCPP_CONFIG   :  -D__HIP_PLATFORM_NVCC__= -D__HIP_PLATFORM_NVIDIA__= -I/opt/rocm-5.4.3/include -I/usr/local/cuda/include\n\n== nvcc\nCUDA_PATH   : /usr/local/cuda\nnvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Tue_Feb__7_19:32:13_PST_2023\nCuda compilation tools, release 12.1, V12.1.66\nBuild cuda_12.1.r12.1/compiler.32415258_0\n\n=== Environment Variables\nPATH=/home/neb/millipyde/env/bin:/home/neb/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/neb/.local/bin:/home/neb/.local/bin\nLD_LIBRARY_PATH=/home/neb/millipyde/env/lib/python3.8/site-packages/cv2/../../lib:/opt/rocm-5.4.3/lib:/opt/rocm-5.4.3/lib64:/opt/rocm-5.4.3/hsa\nHIP_PLATFORM=nvidia\n\n== Linux Kernel\nHostname     : ubuntommy\nLinux ubuntommy 5.15.0-69-generic #76~20.04.1-Ubuntu SMP Mon Mar 20 15:54:19 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux\nLSB Version:\tcore-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch\nDistributor ID:\tUbuntu\nDescription:\tUbuntu 20.04.6 LTS\nRelease:\t20.04\nCodename:\tfocal"
+    },
+    "tool_info": {
+        "cupy": {
+            "runtime": {
+                "is_hip": false,
+                "driverVersion": 12010
+            },
+            "environment": {
+                "cuda_path": "/usr/local/cuda",
+                "rocm_path": "/opt/rocm-5.4.3",
+                "nvcc_path": "/usr/local/cuda/bin/nvcc",
+                "hipcc_path": "/opt/rocm-5.4.3/bin/hipcc",
+                "LD_LIBRARY_PATH": "/home/neb/millipyde/env/lib/python3.8/site-packages/cv2/../../lib:/opt/rocm-5.4.3/lib:/opt/rocm-5.4.3/lib64:/opt/rocm-5.4.3/hsa"
+            },
+            "version": "12.0.0",
+            "distribution": "cupy-cuda12x"
+        },
+        "opencv_cuda": {
+            "ECCEnabled": false,
+            "asyncEngineCount": 2,
+            "canMapHostMemory": true,
+            "clockRate": 1725000,
+            "computeMode": 0,
+            "concurrentKernels": true,
+            "deviceID": 0,
+            "freeMemory": 7167082496,
+            "integrated": false,
+            "isCompatible": true,
+            "kernelExecTimeoutEnabled": true,
+            "l2CacheSize": 4194304,
+            "majorVersion": 8,
+            "maxGridSize": [
+                2147483647,
+                65535,
+                65535
+            ],
+            "maxSurface1D": 32768,
+            "maxSurface1DLayered": [
+                32768,
+                2048
+            ],
+            "maxSurface2D": [
+                131072,
+                65536
+            ],
+            "maxSurface2DLayered": [
+                32768,
+                32768,
+                2048
+            ],
+            "maxSurface3D": [
+                16384,
+                16384,
+                16384
+            ],
+            "maxSurfaceCubemap": 32768,
+            "maxSurfaceCubemapLayered": [
+                32768,
+                2046
+            ],
+            "maxTexture1D": 131072,
+            "maxTexture1DLayered": [
+                32768,
+                2048
+            ],
+            "maxTexture1DLinear": 268435456,
+            "maxTexture1DMipmap": 32768,
+            "maxTexture2D": [
+                131072,
+                65536
+            ],
+            "maxTexture2DGather": [
+                32768,
+                32768
+            ],
+            "maxTexture2DLayered": [
+                32768,
+                32768,
+                2048
+            ],
+            "maxTexture2DLinear": [
+                131072,
+                65000,
+                2097120
+            ],
+            "maxTexture2DMipmap": [
+                32768,
+                32768
+            ],
+            "maxTexture3D": [
+                16384,
+                16384,
+                16384
+            ],
+            "maxTextureCubemap": 32768,
+            "maxTextureCubemapLayered": [
+                32768,
+                2046
+            ],
+            "maxThreadsDim": [
+                1024,
+                1024,
+                64
+            ],
+            "maxThreadsPerBlock": 1024,
+            "maxThreadsPerMultiProcessor": 1536,
+            "memPitch": 2147483647,
+            "memoryBusWidth": 256,
+            "memoryClockRate": 7001000,
+            "minorVersion": 6,
+            "multiProcessorCount": 46,
+            "pciBusID": 9,
+            "pciDeviceID": 0,
+            "pciDomainID": 0,
+            "regsPerBlock": 65536,
+            "sharedMemPerBlock": 49152,
+            "surfaceAlignment": 512,
+            "tccDriver": false,
+            "textureAlignment": 512,
+            "texturePitchAlignment": 32,
+            "totalConstMem": 65536,
+            "totalGlobalMem": 8352890880,
+            "totalMemory": 8352890880,
+            "unifiedAddressing": true,
+            "warpSize": 32
+        }
+    }
+}
