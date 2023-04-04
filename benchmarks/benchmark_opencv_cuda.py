@@ -46,6 +46,28 @@ def transpose(image):
     return cv2.cuda.transpose(image)
 
 
+def gauss_sigma_2(image):
+    # chart mapping resulting int to opencv datatypes:
+    # https://stackoverflow.com/a/39780825
+
+    return RGBA_GAUSS_FILTER.apply(image)
+
+def grayscale_gauss_sigma_2(image):
+    image = cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
+    # assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
+    return Y_GAUSS_FILTER.apply(image)
+
+
+def fliplr(image):
+    return cv2.cuda.flip(image, 1)
+
+
+def adjust_gamma_2_gain_1(image):
+    # cv2.cuda.GpuMat.convertTo(image,cv2.CV_32FC4)
+    return cv2.cuda.pow(image, 2.0)
+
+
+
 def load_image_from_path(path: str):
     image = cv2.imread(path, cv2.IMREAD_COLOR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
@@ -56,53 +78,6 @@ def load_image_from_path(path: str):
 
     return frame
 
-
-def gpumat_from_np_array(ndarray):
-    frame = cv2.cuda_GpuMat()
-    frame.upload(ndarray)
-    return frame
-
-
-def gpumat_to_np_array(image):
-    # get image back from gpu
-    image = image.download()
-    image = np.array(image)
-    return image
-
-
-def gauss_sigma_2(image):
-    # chart mapping resulting int to opencv datatypes:
-    # https://stackoverflow.com/a/39780825
-
-    return RGBA_GAUSS_FILTER.apply(image)
-
-
-def compare_gauss_sigma_2(actual, millipyde):
-    assert not np.all(
-        actual[:, :, -1] == 1.0
-    ), "Assumed opencv gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
-    assert np.all(
-        millipyde[:, :, -1] == 1.0
-    ), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
-    argb = actual[:, :, :3]
-    brgb = millipyde[:, :, :3]
-    percent_mismatch = utils.percent_mismatched(argb, brgb)
-    raise utils.UnavoidableDifference(
-        f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3} mismatched: {percent_mismatch:.3}%"
-    )
-
-
-def grayscale_gauss_sigma_2(image):
-    image = cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY)
-    # assert image.type() == cv2.CV_8UC1, f"Image type: {repr(image.type())}"
-    return Y_GAUSS_FILTER.apply(image)
-
-
-def compare_grayscale_gauss_sigma_2(a, b):
-    percent_mismatch = utils.percent_mismatched(a, b)
-    raise utils.UnavoidableDifference(
-        f"opencv restricts the kernel size to 32 while millipyde uses a kernel size of 33. mismatched: {percent_mismatch:.3}%"
-    )
 
 
 def rotate_90_deg(image):
@@ -129,15 +104,52 @@ def rotate_90_deg(image):
 
     return rotated
 
+def gray_gauss_transpose_rotate_pipeline(image):
+    (h, w) = image.size()
 
-def fliplr(image):
-    return cv2.cuda.flip(image, 1)
+    center = (w // 2, h // 2)
+
+    M = cv2.getRotationMatrix2D(center, 90, 1.0)
+    cv2.cuda.warpAffine(cv2.cuda.transpose(Y_GAUSS_FILTER.apply(cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY))), M, (w, h))
+
+    return image
 
 
-def adjust_gamma_2_gain_1(image):
-    # cv2.cuda.GpuMat.convertTo(image,cv2.CV_32FC4)
-    return cv2.cuda.pow(image, 2.0)
 
+def gpumat_from_np_array(ndarray):
+    frame = cv2.cuda_GpuMat()
+    frame.upload(ndarray)
+    return frame
+
+
+def gpumat_to_np_array(image):
+    # get image back from gpu
+    image = image.download()
+    image = np.array(image)
+    return image
+
+
+
+def compare_gauss_sigma_2(actual, millipyde):
+    assert not np.all(
+        actual[:, :, -1] == 1.0
+    ), "Assumed opencv gaussian blur did not set the alpha channel of each pixel to 1.0 but it did"
+    assert np.all(
+        millipyde[:, :, -1] == 1.0
+    ), "Assumed millipyde gaussian blur set the alpha channel of each pixel to 1.0 bit it didn't"
+    argb = actual[:, :, :3]
+    brgb = millipyde[:, :, :3]
+    percent_mismatch = utils.percent_mismatched(argb, brgb)
+    raise utils.UnavoidableDifference(
+        f"millipyde sets the alpha channel of every pixel to 1.0, opencv treats it as another channel. Diff between rgb channels is consistent: mean: {np.mean(argb - brgb):.3} std dev: {np.std(argb-brgb):.3} mismatched: {percent_mismatch:.3}%"
+    )
+
+
+def compare_grayscale_gauss_sigma_2(a, b):
+    percent_mismatch = utils.percent_mismatched(a, b)
+    raise utils.UnavoidableDifference(
+        f"opencv restricts the kernel size to 32 while millipyde uses a kernel size of 33. mismatched: {percent_mismatch:.3}%"
+    )
 
 def f32_gpumat_from_np_array(ndarray):
     ndarray = ndarray.astype(np.float32) / 255
@@ -153,17 +165,6 @@ utils.create_output_verifier(
 utils.create_benchmark(
     adjust_gamma_2_gain_1, locals(), image_from_ndarray=f32_gpumat_from_np_array
 )
-
-
-def gray_gauss_transpose_rotate_pipeline(image):
-    (h, w) = image.size()
-
-    center = (w // 2, h // 2)
-
-    M = cv2.getRotationMatrix2D(center, 90, 1.0)
-    cv2.cuda.warpAffine(cv2.cuda.transpose(Y_GAUSS_FILTER.apply(cv2.cuda.cvtColor(image, cv2.COLOR_RGBA2GRAY))), M, (w, h))
-
-    return image
 
 
 try:
