@@ -97,6 +97,6 @@ Because of how Cupy (and numpy) store arrays, a transpose is simply a permutatio
 
 #### Opencv
 
-1. The builtin rotate method was not used for the `rotate_90_deg` function as it resized the image. Instead the opencv methods for generating and applying were used
+1. The builtin rotate method was not used for the `rotate_90_deg` function as it resized the image. Instead the opencv methods for generating and applying an affine tranformation were used
 
 2. opencv and scikit image compute the kernel size based on sigma differently when doing gaussian blur. For the cpu implementation of opencv the kernel size was computed the same way scikit image does as scikit image is what the millipyde functions seem to be based on, however for the cuda implementation there is an (arbitrary?) restriction on the kernel dimensions. The closest possible kernel size was used.
